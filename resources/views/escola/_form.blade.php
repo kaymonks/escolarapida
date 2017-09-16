@@ -1,0 +1,2 @@
+<input type="text" name="nome" placeholder="Escola" value="{{isset($registro->nome) ? $registro->nome : ''}}">
+<input type="text" name="telefone" placeholder="Telefone" value="{{isset($registro->telefone) ? $registro->telefone : ''}}">
