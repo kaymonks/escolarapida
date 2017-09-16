@@ -10,5 +10,4 @@
         @include('escola._form')
         <button>Salvar</button>
     </form>
-
 @endsection

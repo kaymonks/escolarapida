@@ -11,6 +11,8 @@
                 <th>Id</th>
                 <th>Escola</th>
                 <th>Telefone</th>
+                <th>Login</th>
+                <th>Senha</th>
                 <th>Ação</th>
             </tr>
         </thead>
@@ -20,6 +22,8 @@
                     <td>{{$registro->id}}</td>
                     <td>{{ $registro->nome }}</td>
                     <td>{{$registro->telefone}}</td>
+                    <td>{{$registro->login}}</td>
+                    <td>{{$registro->senha}}</td>
                     <td>
                         <a href="{{ route('escola.editar',$registro->id) }}">Editar</a>
                         <a href="{{ route('escola.deletar',$registro->id) }}">Deletar</a>
@@ -28,5 +32,5 @@
             @endforeach
         </tbody>
     </table>
-
+    <a href="{{ route('escola.adicionar') }}">Adicionar escola</a>
 @endsection

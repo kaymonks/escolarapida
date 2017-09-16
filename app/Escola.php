@@ -7,6 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 class Escola extends Model
 {
     protected $fillable = [
-        'nome', 'telefone',
+        'nome', 'telefone', 'login', 'senha',
     ];
 }
