@@ -11,7 +11,7 @@ class escolaController extends Controller
     public function index()
     {
         $registros = Escola::all();
-        return view('escola.index', compact('registros'));
+        return view('escola.index', compact('registros'))->with(['page' => 'escola']);
     }
 
     public function adicionar()
