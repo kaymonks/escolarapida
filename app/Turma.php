@@ -3,16 +3,16 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-//use App\Professor;
+
 
 class Turma extends Model
 {
-    protected $fillable = [
-        'ano',
-    ];
+    protected $table = 'turmas';
+    protected $primaryKey = 'id';
+    protected $fillable = ['ano'];
 
-    public function Professores()
+    public function professores()
     {
-         return $this->belongsToMany('App\Professor')->withTimestamps();
+         return $this->belongsToMany('App\Professor', 'turma_professores', 'turma_id', 'professor_id');
     }
 }
