@@ -1,24 +1,35 @@
 @extends('layout.site')
 
-@section('titulo', 'Adicionar Escola')
+@section('titulo', 'Editar Turma')
 
 @section('conteudo')
-    <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
-        <!-- Content Header (Page header) -->
         <section class="content-header">
-            <h3>Olá Escola</h3>
-            <h2>Editar Turma</h2>
-            <form method="post" action="{{ route('turma.atualizar', $registro->id) }}" enctype="multipart/form-data">
-                {{ csrf_field() }}
-                <input type="hidden" name="_method" value="put">
-                @include('turma._form')
-                <button>Atualizar</button>
-            </form>
+            <h1>Turmas</h1>
             <ol class="breadcrumb">
-                <li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
-                <li class="active">Here</li>
+                <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+                <li><a href="{{ route('turmas') }}"> Turmas</a></li>
+                <li class="active">Editar</li>
             </ol>
+        </section>
+        <section class="content">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="box box-primary">
+                        <div class="box-header with-border"><h2 class="box-title">Editar Turma</h2></div>
+                        <form method="post" action="{{ route('turma.atualizar', $turmas->id) }}" enctype="multipart/form-data">
+                            <div class="box-body">
+                                {{ csrf_field() }}
+                                <input type="hidden" name="_method" value="put">
+                                @include('turma._form')
+                            </div>
+                            <div class="box-footer">
+                                <button type="submit" class="btn btn-primary">Atualizar</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </section>
     </div>
 @endsection
