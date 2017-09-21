@@ -1,23 +1,37 @@
 @extends('layout.site')
 
-@section('titulo', 'Adicionar Escola')
+@section('titulo', 'Editar Professor')
 
 @section('conteudo')
     <div class="content-wrapper">
-        <!-- Content Header (Page header) -->
         <section class="content-header">
-            <h3>Olá Super Admin</h3>
-            <h2>Editar Escola</h2>
-            <form method="post" action="{{ route('escola.atualizar', $registro->id) }}" enctype="multipart/form-data">
-                {{ csrf_field() }}
-                <input type="hidden" name="_method" value="put">
-                @include('escola._form')
-                <button>Atualizar</button>
-            </form>
+            <h1>Escolas</h1>
             <ol class="breadcrumb">
-                <li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
-                <li class="active">Here</li>
+                <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+                <li><a href="{{ route('escolas') }}"> Escolas</a></li>
+                <li class="active">Editar</li>
             </ol>
+        </section>
+        <section class="content">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="box box-primary">
+                        <div class="box-header with-border">
+                            <h2 class="box-title">Editar Escola</h2>
+                        </div>
+                        <form method="post" action="{{ route('escola.atualizar', $registro->id) }}" enctype="multipart/form-data">
+                            <div class="box-body">
+                                {{ csrf_field() }}
+                                <input type="hidden" name="_method" value="put">
+                                @include('escola._form')
+                            </div>
+                            <div class="box-footer">
+                                <button type="submit" class="btn btn-primary">Atualizar</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </section>
     </div>
 @endsection
