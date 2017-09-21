@@ -13,7 +13,7 @@ class CreateTurmaProfessorTable extends Migration
      */
     public function up()
     {
-        Schema::create('turma_professor', function (Blueprint $table) {
+        Schema::create('turma_professors', function (Blueprint $table) {
             $table->integer('turma_id')->unsigned()->nullable();
             $table->foreign('turma_id')->references('id')->on('turmas')->onDelete('cascade');
 
@@ -30,6 +30,6 @@ class CreateTurmaProfessorTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('turma_professor');
+        Schema::dropIfExists('turma_professors');
     }
 }
