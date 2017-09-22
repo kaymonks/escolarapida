@@ -31,10 +31,10 @@ Route::group(['middleware'=>'auth'], function (){
 
     Route::get('/professores', ['as'=>'professores', 'uses'=>'ProfessorController@index']);
     Route::get('/professor/adicionar', ['as'=>'professor.adicionar', 'uses'=>'ProfessorController@adicionar']);
-    Route::post('/professor/salvar', ['as'=>'professor.salvar', 'uses'=>'professorController@salvar']);
-    Route::get('/professor/editar/{id}', ['as'=>'professor.editar', 'uses'=>'professorController@editar']);
-    Route::put('/professor/atualizar/{id}', ['as'=>'professor.atualizar', 'uses'=>'professorController@atualizar']);
-    Route::get('/professor/deletar/{id}', ['as'=>'professor.deletar', 'uses'=>'professorController@deletar']);
+    Route::post('/professor/salvar', ['as'=>'professor.salvar', 'uses'=>'ProfessorController@salvar']);
+    Route::get('/professor/editar/{id}', ['as'=>'professor.editar', 'uses'=>'ProfessorController@editar']);
+    Route::put('/professor/atualizar/{id}', ['as'=>'professor.atualizar', 'uses'=>'ProfessorController@atualizar']);
+    Route::get('/professor/deletar/{id}', ['as'=>'professor.deletar', 'uses'=>'ProfessorController@deletar']);
 
     Route::get('/turmas', ['as'=>'turmas', 'uses'=>'TurmaController@index']);
     Route::get('/turma/adicionar', ['as'=>'turma.adicionar', 'uses'=>'TurmaController@adicionar']);
