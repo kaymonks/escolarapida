@@ -37,7 +37,6 @@ class TurmaController extends Controller
             $professor['professor_id'] = $item;
             TurmaProfessor::create($professor);
         }
-//        print_r($professor);die();
         return redirect()->route('turmas');
     }
 
@@ -62,11 +61,11 @@ class TurmaController extends Controller
         $dados = $request->all();
 
         Turma::find($id)->update($dados);
-
+        TurmaProfessor::where('turma_id', '=', $id)->delete();
         foreach ($request->professor as $item) {
-            echo "Turma id".$professor['turma_id'] = $id;
-            echo "Professor id".$professor['professor_id'] = $item;
-            TurmaProfessor::updated($professor);
+            $professor['turma_id'] = $id;
+            $professor['professor_id'] = $item;
+            TurmaProfessor::create($professor);
         }
 
         return redirect()->route('turmas');
