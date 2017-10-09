@@ -49,5 +49,22 @@ Route::group(['middleware'=>'auth'], function (){
     Route::get('/pai/editar/{id}', ['as'=>'pai.editar', 'uses'=>'PaiController@editar']);
     Route::put('/pai/atualizar/{id}', ['as'=>'pai.atualizar', 'uses'=>'PaiController@atualizar']);
     Route::get('/pai/deletar/{id}', ['as'=>'pai.deletar', 'uses'=>'PaiController@deletar']);
+
+    Route::get('/alunos', ['as'=>'alunos', 'uses'=>'AlunoController@index']);
+    Route::get('/aluno/adicionar', ['as'=>'aluno.adicionar', 'uses'=>'AlunoController@adicionar']);
+    Route::post('/aluno/salvar', ['as'=>'aluno.salvar', 'uses'=>'AlunoController@salvar']);
+    Route::get('/aluno/editar/{id}', ['as'=>'aluno.editar', 'uses'=>'AlunoController@editar']);
+    Route::put('/aluno/atualizar/{id}', ['as'=>'aluno.atualizar', 'uses'=>'AlunoController@atualizar']);
+    Route::get('/aluno/deletar/{id}', ['as'=>'aluno.deletar', 'uses'=>'AlunoController@deletar']);
+
+
+    Route::get('/mensagens', ['as'=>'mensagens', 'uses'=>'MensagemController@index']);
+    Route::get('/mensagem/escola', ['as'=>'mensagem.escola', 'uses'=>'MensagemController@escola']);
+    Route::post('/mensagem/escola/enviar', ['as'=>'mensagem.escola.enviar', 'uses'=>'MensagemController@salvarMensagemEscola']);
+    Route::get('/mensagem/pai', ['as'=>'mensagem.pai', 'uses'=>'MensagemController@pai']);
+    Route::post('/mensagem/pai/enviar', ['as'=>'mensagem.pai.enviar', 'uses'=>'MensagemController@salvarMensagemPai']);
+    Route::get('/mensagem/turma', ['as'=>'mensagem.turma', 'uses'=>'MensagemController@turma']);
+    Route::post('/mensagem/turma/enviar', ['as'=>'mensagem.turma.enviar', 'uses'=>'MensagemController@salvarMensagemTurma']);
+
 });
 
