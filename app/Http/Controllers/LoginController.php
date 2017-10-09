@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\LoginRequest;
+use Validator;
 use Illuminate\Http\Request;
 use Auth;
 
@@ -12,7 +14,7 @@ class LoginController extends Controller
         return view('login.index');
     }
 
-    public function entrar(Request $request)
+    public function entrar(LoginRequest  $request)
     {
         $dados = $request->all();
         if (Auth::attempt(['email'=>$dados['email'], 'password'=>$dados['senha']])){
