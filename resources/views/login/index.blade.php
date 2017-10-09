@@ -13,33 +13,29 @@
         <div class="login-box-body">
             <p class="login-box-msg">Entre para iniciar sua sessão</p>
 
-            <form method="post" action="{{ route('login.entrar') }}">
+            <form role="form" method="post" action="{{ route('login.entrar') }}">
                 {{ csrf_field() }}
+                <div class="box-body">
 
-                <div class="form-group has-feedback">
-                    <input type="email" class="form-control" placeholder="Email" name="email">
-                    <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
-                </div>
-
-                <div class="form-group has-feedback">
-                    <input type="password" class="form-control" placeholder="Senha" name="senha">
-                    <span class="glyphicon glyphicon-lock form-control-feedback"></span>
-
-                </div>
-
-                <div class="row">
-                    <div class="col-xs-8">
-                        <div class="checkbox icheck">
-                            <label>
-                                <input type="checkbox"> Lermbrar-me
-                            </label>
-                        </div>
+                    <div class="form-group {{ ($errors->first('email')) ? 'has-error'  :''}}">
+                        <label for="inputEmail1">Email</label>
+                        <input type="email" id="inputEmail1" class="form-control" placeholder="Email" name="email">
+                        {!! $errors->first('email', '<span class="help-block">:message</span>') !!}
                     </div>
-                    <div class="col-xs-4">
-                        <button type="submit" class="btn btn-primary btn-block btn-flat">Entrar</button>
-                    </div>
-                </div>
 
+                    <div class="form-group {{ ($errors->first('senha')) ? 'has-error'  :''}}">
+                        <label for="inputSenha">Senha</label>
+                        <input type="password" id="inputSenha" class="form-control" placeholder="Senha" name="senha">
+                        {!! $errors->first('senha', '<span class="help-block">:message</span>') !!}
+                    </div>
+
+                    {{--<div class="checkbox"><label><input type="checkbox"> Lermbrar-me</label>--}}
+                    {{--</div>--}}
+
+                </div>
+                <div class="box-footer">
+                    <button type="submit" class="btn btn-primary">Entrar</button>
+                </div>
             </form>
         </div>
         <!-- /.login-box-body -->
