@@ -27,17 +27,31 @@
             <li class="{{ str_contains(request()->url(), '/professor') ? 'active' : '' }}"><a href="{{ route('professores') }}"><i class="fa fa-user"></i> <span>Professores</span></a></li>
             <li class="{{ str_contains(request()->url(), '/turma') ? 'active' : '' }}"><a href="{{ route('turmas') }}"><i class="fa fa-graduation-cap"></i> <span>Turmas</span></a></li>
             <li class="{{ str_contains(request()->url(), '/pai') ? 'active' : '' }}"><a href="{{ route('pais') }}"><i class="fa fa-user"></i> <span>Pais</span></a></li>
-            {{--<li class="treeview">--}}
-                {{--<a href="#"><i class="fa fa-link"></i> <span>Multilevel</span>--}}
-                    {{--<span class="pull-right-container">--}}
-              {{--<i class="fa fa-angle-left pull-right"></i>--}}
-            {{--</span>--}}
-                {{--</a>--}}
-                {{--<ul class="treeview-menu">--}}
-                    {{--<li><a href="#">Link in level 2</a></li>--}}
-                    {{--<li><a href="#">Link in level 2</a></li>--}}
-                {{--</ul>--}}
-            {{--</li>--}}
+            <li class="{{ str_contains(request()->url(), '/aluno') ? 'active' : '' }}"><a href="{{ route('alunos') }}"><i class="fa fa-book"></i> <span>Alunos</span></a></li>
+            <li class="treeview {{ str_contains(request()->url(), '/mensagem') ? 'active' : '' }}">
+                <a href="{{ route('mensagens') }}">
+                    <i class="fa fa-envelope"></i><span>Mensagens</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                    <ul class="treeview-menu">
+                        <li><a href=""><i class="fa fa-inbox"></i> Caixa de entrada</a></li>
+                        <li class="treeview">
+                            <a href=""><i class="fa fa-paper-plane"></i>
+                                Enviar
+                                <span class="pull-right-container">
+                                    <i class="fa fa-angle-left pull-right"></i>
+                                </span>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="{{ route('mensagem.pai') }}">Pai(s)</a></li>
+                                <li><a href="{{ route('mensagem.turma') }}">Turma(s)</a></li>
+                                <li><a href="{{ route('mensagem.escola') }}">Escola</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </a>
+            </li>
         </ul>
         <!-- /.sidebar-menu -->
     </section>
