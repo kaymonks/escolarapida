@@ -25,8 +25,6 @@
                                     <th style="width: 10px">#</th>
                                     <th>Professor</th>
                                     <th>Telefone</th>
-                                    <th>Login</th>
-                                    <th>Senha</th>
                                     <th style="width: 150px">Ação</th>
                                 </tr>
                                 </thead>
@@ -36,11 +34,9 @@
                                         <td>{{$registro->id}}</td>
                                         <td>{{ $registro->nome }}</td>
                                         <td>{{$registro->telefone}}</td>
-                                        <td>{{$registro->login}}</td>
-                                        <td>{{$registro->senha}}</td>
                                         <td>
-                                            <a class="btn btn-success btn-sm"  href="{{ route('professor.editar',$registro->id) }}">Editar</a>
-                                            <a class="btn btn-danger btn-sm"  href="{{ route('professor.deletar',$registro->id) }}">Deletar</a>
+                                            <a title="Editar" class="btn btn-primary btn-sm"  href="{{ route('professor.editar',$registro->id) }}"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                                            <a title="Excluir" class="btn btn-danger btn-sm"  href="{{ route('professor.deletar',$registro->id) }}"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
                                         </td>
                                     </tr>
                                 @endforeach
@@ -48,7 +44,7 @@
                             </table>
                         </div>
                     </div>
-                    <a class="btn btn-primary" href="{{ route('professor.adicionar') }}">Adicionar professor</a>
+                    <a class="btn btn-success" href="{{ route('professor.adicionar') }}"><i class="fa fa-plus" aria-hidden="true"></i> Adicionar professor</a>
                 </div>
             </div>
         </section>

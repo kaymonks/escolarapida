@@ -25,7 +25,7 @@
                                 @include('escola._form')
                             </div>
                             <div class="box-footer">
-                                <button type="submit" class="btn btn-primary">Salvar</button>
+                                <button type="submit" class="btn btn-primary"><i class="fa fa-floppy-o "></i> Salvar</button>
                             </div>
                         </form>
                     </div>

@@ -24,7 +24,6 @@
                         <div class="box-body table-responsive">
                             <table class="table table-hover table-bordered">
                                 <thead>
-                                <tr>
                                     <th style="width: 10px">#</th>
                                     <th>Escola</th>
                                     <th>Telefone</th>
@@ -42,8 +41,8 @@
                                         <td>{{$registro->login}}</td>
                                         <td>{{$registro->senha}}</td>
                                         <td>
-                                            <a class="btn btn-success btn-sm" href="{{ route('escola.editar',$registro->id) }}">Editar</a>
-                                            <a class="btn btn-danger btn-sm" href="{{ route('escola.deletar',$registro->id) }}">Deletar</a>
+                                            <a title="Editar" class="btn btn-primary btn-sm" href="{{ route('escola.editar',$registro->id) }}"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                                            <a title="Excluir" class="btn btn-danger btn-sm" href="{{ route('escola.deletar',$registro->id) }}"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
                                         </td>
                                     </tr>
                                 @endforeach
@@ -51,7 +50,7 @@
                             </table>
                         </div>
                     </div>
-                    <a class="btn btn-primary" href="{{ route('escola.adicionar') }}">Adicionar escola</a>
+                    <a class="btn btn-success" href="{{ route('escola.adicionar') }}"><i class="fa fa-plus" aria-hidden="true"></i> Adicionar escola</a>
                 </div>
             </div>
         </section>

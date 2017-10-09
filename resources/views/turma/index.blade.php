@@ -36,8 +36,8 @@
                                             <td>{{$registro->id}}</td>
                                             <td>{{ $registro->ano }}</td>
                                             <td>
-                                                <a class="btn btn-success" href="{{ route('turma.editar',$registro->id) }}">Editar</a>
-                                                <a class="btn btn-danger" href="{{ route('turma.deletar',$registro->id) }}">Deletar</a>
+                                                <a title="Editar" class="btn btn-primary" href="{{ route('turma.editar',$registro->id) }}"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                                                <a title="Excluir" class="btn btn-danger" href="{{ route('turma.deletar',$registro->id) }}"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
                                             </td>
                                         </tr>
                                     @endforeach
@@ -45,7 +45,7 @@
                             </table>
                         </div>
                     </div>
-                    <a class="btn btn-primary" href="{{ route('turma.adicionar') }}">Adicionar turma</a>
+                    <a class="btn btn-success" href="{{ route('turma.adicionar') }}">Adicionar turma</a>
                 </div>
             </div>
         </section>

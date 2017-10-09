@@ -33,8 +33,8 @@
                                             <td>{{$registro->id}}</td>
                                             <td>{{ $registro->nome }}</td>
                                             <td>
-                                                <a class="btn btn-success btn-sm" href="{{ route('pai.editar',$registro->id) }}">Editar</a>
-                                                <a class="btn btn-danger btn-sm" href="{{ route('pai.deletar',$registro->id) }}">Deletar</a>
+                                                <a title="Editar" class="btn btn-primary btn-sm" href="{{ route('pai.editar',$registro->id) }}"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                                                <a title="Excluir" class="btn btn-danger btn-sm" href="{{ route('pai.deletar',$registro->id) }}"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
                                             </td>
                                         </tr>
                                     @endforeach
@@ -42,7 +42,7 @@
                             </table>
                         </div>
                     </div>
-                    <a class="btn btn-primary" href="{{ route('pai.adicionar') }}">Adicionar pai</a>
+                    <a class="btn btn-success" href="{{ route('pai.adicionar') }}"><i class="fa fa-plus" aria-hidden="true"></i> Adicionar pai</a>
                 </div>
             </div>
         </section>
