@@ -1,6 +1,6 @@
 @extends('layout.site')
 
-@section('titulo', 'Listar Professor')
+@section('titulo', 'Listar Professores')
 
 @section('conteudo')
     <div class="content-wrapper">
