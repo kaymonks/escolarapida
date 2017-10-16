@@ -45,7 +45,7 @@
                             </table>
                         </div>
                     </div>
-                    <a class="btn btn-success" href="{{ route('turma.adicionar') }}">Adicionar turma</a>
+                    <a class="btn btn-success" href="{{ route('turma.adicionar') }}"><i class="fa fa-plus" aria-hidden="true"></i> Adicionar turma</a>
                 </div>
             </div>
         </section>
