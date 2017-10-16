@@ -25,9 +25,9 @@
             <li><a href="#"><i class="fa fa-home"></i> <span>Home</span></a></li>
             <li class="{{ str_contains(request()->url(), '/escola') ? 'active' : '' }}"><a href="{{ route('escolas') }}"><i class="fa fa-institution"></i> <span>Escolas</span></a></li>
             <li class="{{ str_contains(request()->url(), '/professor') ? 'active' : '' }}"><a href="{{ route('professores') }}"><i class="fa fa-user"></i> <span>Professores</span></a></li>
-            <li class="{{ str_contains(request()->url(), '/turma') ? 'active' : '' }}"><a href="{{ route('turmas') }}"><i class="fa fa-graduation-cap"></i> <span>Turmas</span></a></li>
+            <li class="{{ str_contains(request()->url(), '/turma') ? 'active' : '' }}"><a href="{{ route('turmas') }}"><i class="fa fa-pencil-square"></i> <span>Turmas</span></a></li>
             <li class="{{ str_contains(request()->url(), '/pai') ? 'active' : '' }}"><a href="{{ route('pais') }}"><i class="fa fa-user"></i> <span>Pais</span></a></li>
-            <li class="{{ str_contains(request()->url(), '/aluno') ? 'active' : '' }}"><a href="{{ route('alunos') }}"><i class="fa fa-book"></i> <span>Alunos</span></a></li>
+            <li class="{{ str_contains(request()->url(), '/aluno') ? 'active' : '' }}"><a href="{{ route('alunos') }}"><i class="fa fa-graduation-cap"></i> <span>Alunos</span></a></li>
             <li class="treeview {{ str_contains(request()->url(), '/mensagem') ? 'active' : '' }}">
                 <a href="{{ route('mensagens') }}">
                     <i class="fa fa-envelope"></i><span>Mensagens</span>
@@ -47,6 +47,30 @@
                                 <li><a href="{{ route('mensagem.pai') }}">Pai(s)</a></li>
                                 <li><a href="{{ route('mensagem.turma') }}">Turma(s)</a></li>
                                 <li><a href="{{ route('mensagem.escola') }}">Escola</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </a>
+            </li>
+            <li class="treeview {{ str_contains(request()->url(), '/evento') ? 'active' : '' }}">
+                <a href="{{ route('eventos') }}">
+                    <i class="fa fa-calendar-o"></i><span>Eventos</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                    <ul class="treeview-menu">
+                        <li><a href="{{ route('eventos') }}"><i class="fa fa-list"></i> Eventos</a></li>
+                        <li class="treeview">
+                            <a href=""><i class="fa fa-plus"></i>
+                                Adicionar
+                                <span class="pull-right-container">
+                                    <i class="fa fa-angle-left pull-right"></i>
+                                </span>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="{{ route('evento.pai') }}">Pai(s)</a></li>
+                                <li><a href="{{ route('evento.turma') }}">Turma(s)</a></li>
+                                <li><a href="{{ route('evento.escola') }}">Escola</a></li>
                             </ul>
                         </li>
                     </ul>
