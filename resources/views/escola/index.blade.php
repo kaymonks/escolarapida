@@ -26,9 +26,6 @@
                                 <thead>
                                     <th style="width: 10px">#</th>
                                     <th>Escola</th>
-                                    <th>Telefone</th>
-                                    <th>Login</th>
-                                    <th>Senha</th>
                                     <th style="width: 150px">Ação</th>
                                 </tr>
                                 </thead>
@@ -37,9 +34,6 @@
                                     <tr>
                                         <td>{{$registro->id}}</td>
                                         <td>{{ $registro->nome }}</td>
-                                        <td>{{$registro->telefone}}</td>
-                                        <td>{{$registro->login}}</td>
-                                        <td>{{$registro->senha}}</td>
                                         <td>
                                             <a title="Editar" class="btn btn-primary btn-sm" href="{{ route('escola.editar',$registro->id) }}"><i class="fa fa-pencil" aria-hidden="true"></i></a>
                                             <a title="Excluir" class="btn btn-danger btn-sm" href="{{ route('escola.deletar',$registro->id) }}"><i class="fa fa-trash-o" aria-hidden="true"></i></a>

@@ -1,6 +1,6 @@
 @extends('layout.site')
 
-@section('titulo', 'Editar Professor')
+@section('titulo', 'Editar Escola')
 
 @section('conteudo')
     <div class="content-wrapper">
