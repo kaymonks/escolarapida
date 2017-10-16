@@ -66,5 +66,15 @@ Route::group(['middleware'=>'auth'], function (){
     Route::get('/mensagem/turma', ['as'=>'mensagem.turma', 'uses'=>'MensagemController@turma']);
     Route::post('/mensagem/turma/enviar', ['as'=>'mensagem.turma.enviar', 'uses'=>'MensagemController@salvarMensagemTurma']);
 
+    Route::get('/eventos', ['as'=>'eventos', 'uses'=>'EventoController@index']);
+    Route::get('/eventos/editar/{id}', ['as'=>'evento.editar', 'uses'=>'EventoController@editar']);
+    Route::put('/eventos/atualizar/{id}', ['as'=>'evento.atualizar', 'uses'=>'EventoController@atualizar']);
+    Route::get('/evento/escola', ['as'=>'evento.escola', 'uses'=>'EventoController@escola']);
+    Route::post('/evento/escola/enviar', ['as'=>'evento.escola.enviar', 'uses'=>'EventoController@salvarEventoEscola']);
+    Route::get('/evento/pai', ['as'=>'evento.pai', 'uses'=>'EventoController@pai']);
+    Route::post('/evento/pai/enviar', ['as'=>'evento.pai.enviar', 'uses'=>'EventoController@salvarEventoPai']);
+    Route::get('/evento/turma', ['as'=>'evento.turma', 'uses'=>'EventoController@turma']);
+    Route::post('/evento/turma/enviar', ['as'=>'evento.turma.enviar', 'uses'=>'EventoController@salvarEventoTurma']);
+
 });
 
