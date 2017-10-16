@@ -32,7 +32,6 @@ class MensagemController extends Controller
         $destinatario['escola_id']  = $request->destinatario;
         MensagemPara::create($destinatario);
 
-
         return redirect()->route('mensagem.escola');
     }
 
@@ -68,9 +67,7 @@ class MensagemController extends Controller
     public function salvarMensagemTurma(Request $request)
     {
         $dados = $request->all();
-
-        $turma = Turma::create($dados);
-
+        $turma = Mensagem::create($dados);
         $turma_id = $turma->id;
 
         foreach ($request->destinatario as $item) {

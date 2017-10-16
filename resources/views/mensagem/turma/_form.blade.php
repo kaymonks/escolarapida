@@ -1,11 +1,10 @@
 <div class="form-group">
-    <label>Pais</label>
-    <select class="form-control select2 select2-hidden-accessible" multiple="" name="destinatario[]" data-placeholder="Select a State" style="width: 100%;" tabindex="-1" aria-hidden="true">
+    <label>Turmas</label>
+    <select class="form-control select2 select2-hidden-accessible" multiple="" name="destinatario[]" data-placeholder="Selecione a(s) turma(s)" style="width: 100%;" tabindex="-1" aria-hidden="true">
         @foreach($turmas as $turma)
             <option value="{{ $turma->id }}">{{ $turma->ano}}</option>
         @endforeach
     </select>
-    {{--<span class="select2 select2-container select2-container--default select2-container--below select2-container--focus select2-container--open" dir="ltr" style="width: 100%;"><span class="selection"><span class="select2-selection select2-selection--multiple" role="combobox" aria-haspopup="true" aria-expanded="true" tabindex="-1" aria-owns="select2-2ujh-results" aria-activedescendant="select2-2ujh-result-k1bs-Washington"><ul class="select2-selection__rendered"><li class="select2-search select2-search--inline"><input class="select2-search__field" tabindex="0" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" role="textbox" aria-autocomplete="list" placeholder="Select a State" style="width: 1114.5px;" type="search"></li></ul></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>--}}
 </div>
 <div class="form-group">
     <label>Título</label>

@@ -9,8 +9,8 @@
             <h1>Escolas</h1>
             <ol class="breadcrumb">
                 <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-                <li><a href="{{ route('escolas') }}"> Escolas</a></li>
                 <li><a href="{{ route('mensagens') }}"> Mensagens</a></li>
+                <li><a href="{{ route('escolas') }}"> Escolas</a></li>
                 <li class="active">Enviar</li>
             </ol>
         </section>
@@ -19,7 +19,7 @@
                 <div class="col-xs-12">
                     <div class="box box-primary">
                         <div class="box-header with-border">
-                            <h3 class="box-title">Compose New Message</h3>
+                            <h3 class="box-title">Escrever nova mensagem</h3>
                         </div>
                         <!-- /.box-header -->
                         <form action="{{ route('mensagem.escola.enviar') }}" method="post">
