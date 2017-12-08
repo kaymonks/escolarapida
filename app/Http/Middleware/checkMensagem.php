@@ -4,8 +4,8 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Support\Facades\Auth;
-
-class checkMensagem
+ 
+class CheckMensagem
 {
     /**
      * Handle an incoming request.
