@@ -8,11 +8,11 @@ class Aluno extends Model
 {
     protected $table = 'alunos';
     protected $primaryKey = 'id';
-    protected $fillable = ['turma_id', 'nome', 'pai_id', 'data_nascimento', 'sexo', 'telefone_id'];
+    protected $fillable = ['turma_id', 'telefone_id', 'escola_id', 'nome', 'data_nascimento', 'sexo'];
 
-    public function pais()
+    public function responsaveis()
     {
-        return $this->belongsTo('App\Pai', 'pai_id', 'id');
+        return $this->belongsToMany('App\Responsavel');
     }
 
     public function turmas()

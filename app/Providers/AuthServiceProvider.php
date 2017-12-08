@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Permissao;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
@@ -25,6 +26,11 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        //
+
+    }
+
+    public function listaPermissoes()
+    {
+        return Permissao::with('papeis')->get();
     }
 }

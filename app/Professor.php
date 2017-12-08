@@ -8,7 +8,7 @@ class Professor extends Model
 {
     protected $table = 'professores';
     protected $primaryKey = 'id';
-    protected $fillable = ['nome', 'telefone_id', 'data_nascimento', 'email', 'sexo', 'endereco', 'cep', 'numero', 'bairro', 'estado', 'cidade'];
+    protected $fillable = ['telefone_id', 'escola_id', 'nome', 'data_nascimento', 'email', 'sexo', 'endereco', 'cep', 'numero', 'bairro', 'estado', 'cidade', 'user_id'];
 
     public function turmas()
     {
@@ -18,5 +18,10 @@ class Professor extends Model
     public function telefones()
     {
         return $this->belongsTo('App\Telefone', 'telefone_id', 'id');
+    }
+
+    public function login()
+    {
+        return $this->belongsTo('App\User', 'user_id', 'id');
     }
 }

@@ -30,18 +30,22 @@
                                 </thead>
                                 <tbody>
                                 @foreach($registros as $registro)
+
                                     <tr>
                                         <td>{{$registro->id}}</td>
                                         <td>{{ $registro->nome }}</td>
-                                        <td>{{$registro->telefone}}</td>
+                                        <td>{{$registro->telefones->telefone}}</td>
                                         <td>
                                             <a title="Editar" class="btn btn-primary btn-sm"  href="{{ route('professor.editar',$registro->id) }}"><i class="fa fa-pencil" aria-hidden="true"></i></a>
-                                            <a title="Excluir" class="btn btn-danger btn-sm"  href="{{ route('professor.deletar',$registro->id) }}"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                                            <a title="Excluir" class="btn btn-danger btn-sm excluirProfessor"  href="{{ route('professor.deletar',$registro->id) }}"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
                                         </td>
                                     </tr>
                                 @endforeach
                                 </tbody>
                             </table>
+                        </div>
+                        <div class="row" align="center">
+                            {{ $registros->links() }}
                         </div>
                     </div>
                     <a class="btn btn-success" href="{{ route('professor.adicionar') }}"><i class="fa fa-plus" aria-hidden="true"></i> Adicionar professor</a>

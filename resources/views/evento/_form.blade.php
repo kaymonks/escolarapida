@@ -1,6 +1,13 @@
-<div class="form-group">
-	@if (@isset ($escolas))
-	
+@if(isset($errors) and count($errors) > 0)
+    <div class="alert alert-danger">
+        @foreach($errors->all() as $error)
+            <p>{{ $error }}</p>
+        @endforeach
+    </div>
+@endif
+
+@if (@isset ($escolas))
+    <div class="form-group">
 	    <label>Escola</label>
 	    <select class="form-control"  name="destinatario" style="width: 100%;" tabindex="-1" aria-hidden="true">
 	        @foreach($escolas as $escola)
@@ -9,8 +16,29 @@
 	    </select>
 		@endisset
 		{{-- expr --}}
-	@endif
+    </div>
+@endif
 
+<div class="form-group">
+    <label for="">Evento agendado para:</label>
+    @if(!empty($nomeTurmas))
+        <br>Turma(s):
+        @foreach($nomeTurmas as $nt)
+            {{ end($nomeTurmas) == $nt ? $nt : $nt.", "}}
+        @endforeach
+    @endif
+    @if(!empty($nomePais))
+        <br>Pai(s):
+        @foreach($nomePais as $np)
+            {{ end($nomePais) == $np ? $np : $np.", "}}
+        @endforeach
+    @endif
+    @if(!empty($nomeEscola))
+        <br>Escola:
+        @foreach($nomeEscola as $ne)
+            {{ end($nomeEscola) == $ne ? $ne : $ne.", "}}
+        @endforeach
+    @endif
 </div>
 <div class="form-group">
     <label>Título</label>

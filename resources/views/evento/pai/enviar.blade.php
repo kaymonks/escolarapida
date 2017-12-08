@@ -21,7 +21,7 @@
                             <h3 class="box-title">Criar Evento</h3>
                         </div>
                         <!-- /.box-header -->
-                        <form action="{{ route('evento.pai.enviar') }}" method="post">
+                        <form action="{{ route('responsavel') }}" method="post">
                             <div class="box-body">
                                 {{ csrf_field() }}
                                 @include('evento.pai._form')

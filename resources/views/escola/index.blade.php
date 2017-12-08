@@ -36,7 +36,7 @@
                                         <td>{{ $registro->nome }}</td>
                                         <td>
                                             <a title="Editar" class="btn btn-primary btn-sm" href="{{ route('escola.editar',$registro->id) }}"><i class="fa fa-pencil" aria-hidden="true"></i></a>
-                                            <a title="Excluir" class="btn btn-danger btn-sm" href="{{ route('escola.deletar',$registro->id) }}"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                                            <a title="Excluir" class="btn btn-danger btn-sm excluirEscola" href="{{ route('escola.deletar',$registro->id) }}"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
                                         </td>
                                     </tr>
                                 @endforeach

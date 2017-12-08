@@ -22,7 +22,7 @@
                             <table class="table table-hover table-bordered">
                                 <thead>
                                     <tr>
-                                        <th style="width: 10px">Id</th>
+                                        <th style="width: 10px">#</th>
                                         <th>Aluno</th>
                                         <th style="width: 150px">Ação</th>
                                     </tr>
@@ -34,12 +34,15 @@
                                             <td>{{ $registro->nome }}</td>
                                             <td>
                                                 <a title="Editar" class="btn btn-primary btn-sm" href="{{ route('aluno.editar',$registro->id) }}"><i class="fa fa-pencil" aria-hidden="true"></i></a>
-                                                <a title="Excluir" class="btn btn-danger btn-sm" href="{{ route('aluno.deletar',$registro->id) }}"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                                                <a title="Excluir" class="btn btn-danger btn-sm excluirAluno" href="{{ route('aluno.deletar',$registro->id) }}"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
                                             </td>
                                         </tr>
                                     @endforeach
                                 </tbody>
                             </table>
+                        </div>
+                        <div class="row" align="center">
+                            {{ $registros->links() }}
                         </div>
                     </div>
                     <a class="btn btn-success" href="{{ route('aluno.adicionar') }}"><i class="fa fa-plus" aria-hidden="true"></i> Adicionar aluno</a>

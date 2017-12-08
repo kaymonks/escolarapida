@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddFieldsToAlunosTable extends Migration
+class CreatePermissaosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,11 @@ class AddFieldsToAlunosTable extends Migration
      */
     public function up()
     {
-        Schema::table('alunos', function (Blueprint $table) {
-            $table->date('data_nascimento');
-            $table->char('sexo');
-            $table->foreign('telefone_id')->references('id')->on('telefones')->onDelete('cascade');
+        Schema::create('permissoes', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('nome');
+            $table->string('descricao')->nullable();
+            $table->timestamps();
         });
     }
 
@@ -27,6 +28,6 @@ class AddFieldsToAlunosTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('permissoes');
     }
 }

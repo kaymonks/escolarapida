@@ -1,6 +1,6 @@
 @extends('layout.site')
 
-@section('titulo', 'Listar Pais')
+@section('titulo', 'Listar Responsáveis')
 
 @section('conteudo')
     <div class="content-wrapper">
@@ -22,7 +22,7 @@
                             <table class="table table-hover table-bordered">
                                 <thead>
                                     <tr>
-                                        <th style="width: 10px">Id</th>
+                                        <th style="width: 10px">#</th>
                                         <th>Pai</th>
                                         <th style="width: 150px">Ação</th>
                                     </tr>
@@ -33,16 +33,19 @@
                                             <td>{{$registro->id}}</td>
                                             <td>{{ $registro->nome }}</td>
                                             <td>
-                                                <a title="Editar" class="btn btn-primary btn-sm" href="{{ route('pai.editar',$registro->id) }}"><i class="fa fa-pencil" aria-hidden="true"></i></a>
-                                                <a title="Excluir" class="btn btn-danger btn-sm" href="{{ route('pai.deletar',$registro->id) }}"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                                                <a title="Editar" class="btn btn-primary btn-sm" href="{{ route('responsavel.editar',$registro->id) }}"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                                                <a title="Excluir" class="btn btn-danger btn-sm excluirPai" href="{{ route('responsavel.deletar',$registro->id) }}"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
                                             </td>
                                         </tr>
                                     @endforeach
                                 </tbody>
                             </table>
                         </div>
+                        <div class="row" align="center">
+{{--                            {{ $registros->links() }}--}}
+                        </div>
                     </div>
-                    <a class="btn btn-success" href="{{ route('pai.adicionar') }}"><i class="fa fa-plus" aria-hidden="true"></i> Adicionar pai</a>
+                    <a class="btn btn-success" href="{{ route('responsavel.adicionar') }}"><i class="fa fa-plus" aria-hidden="true"></i> Adicionar pai</a>
                 </div>
             </div>
         </section>

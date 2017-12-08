@@ -9,7 +9,7 @@ class Turma extends Model
 {
     protected $table = 'turmas';
     protected $primaryKey = 'id';
-    protected $fillable = ['ano'];
+    protected $fillable = ['escola_id', 'ano'];
 
     public function professores()
     {
@@ -19,5 +19,10 @@ class Turma extends Model
     public function alunos()
     {
         return $this->hasMany('App\Aluno');
+    }
+
+    public function escola()
+    {
+        return $this->belongsTo('App\Escola', 'escola_id', 'id');
     }
 }

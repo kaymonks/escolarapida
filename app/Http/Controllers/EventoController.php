@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Escola;
 use App\Evento;
 use App\EventoPara;
+use App\Http\Requests\EscolaRequest;
+use App\Http\Requests\EventoRequest;
 use App\Pai;
 use App\Turma;
 use Illuminate\Http\Request;
@@ -14,7 +16,7 @@ class EventoController extends Controller
 {
     public function index()
     {
-        $eventos = Evento::all();
+        $eventos = Evento::orderBy('id', 'desc')->paginate(5);
         return view('evento.index', compact('eventos'));
     }
 
@@ -22,10 +24,28 @@ class EventoController extends Controller
     {
         $eventos = Evento::find($id);
         $eventos['date'] = date( 'd/m/Y' , strtotime($eventos->date ) );
-        return view('evento.editar', compact('eventos'));
+        $destinatarios = EventoPara::where('evento_id', '=', $id)->get(); //obtem quem foi o destinatario: turma, responsavel ou escola.
+        $nomeTurmas = array();
+        $nomePais = array();
+        $nomeEscola = array();
+        foreach($destinatarios as $destinatario) {
+            if($destinatario->turma_id != NULL){
+                $turmas = Turma::find($destinatario->turma_id);
+                $nomeTurmas[] = $turmas->ano;
+            }
+            if($destinatario->pai_id != NULL){
+                $pais = Pai::find($destinatario->pai_id);
+                $nomePais[] = $pais->nome;
+            }
+            if($destinatario->escola_id != NULL){
+                $escola = Escola::find($destinatario->escola_id);
+                $nomeEscola[] = $escola->nome;
+            }
+        }
+        return view('evento.editar', compact('eventos', 'destinatarios', 'nomeTurmas', 'nomePais', 'nomeEscola'));
     }
 
-    public function atualizar(Request $request, $id)
+    public function atualizar(EventoRequest $request, $id)
     {
         $dados = $request->all();
         $novaData = DateTime::createFromFormat('d/m/Y', $dados['date']);
@@ -38,6 +58,12 @@ class EventoController extends Controller
         return redirect()->route('eventos');
     }
 
+    public function deletar($id)
+    {
+        Evento::find($id)->delete();
+        return redirect('eventos');
+    }
+
     public function escola()
     {
         $escolas = Escola::all(); //alterar para find($id) da escola
@@ -45,7 +71,7 @@ class EventoController extends Controller
         return view('evento.escola.enviar', compact('escolas'));
     }
 
-    public function salvarEventoEscola(Request $request)
+    public function salvarEventoEscola(EventoRequest $request)
     {
         $dados = $request->all();
         $novaData = DateTime::createFromFormat('d/m/Y', $dados['date']);
@@ -63,10 +89,10 @@ class EventoController extends Controller
     public function pai()
     {
         $pais = Pai::orderBy('nome', 'asc')->get();
-        return view('evento.pai.enviar', compact('pais'));
+        return view('evento.responsavel.enviar', compact('pais'));
     }
 
-    public function salvarEventoPai(Request $request)
+    public function salvarEventoPai(EventoRequest $request)
     {
         $dados = $request->all();
         $novaData = DateTime::createFromFormat('d/m/Y', $dados['date']);
@@ -95,7 +121,7 @@ class EventoController extends Controller
         return view('evento.turma.enviar', compact('turmas'));
     }
 
-    public function salvarEventoTurma(Request $request)
+    public function salvarEventoTurma(EventoRequest $request)
     {
         $dados = $request->all();
         $novaData = DateTime::createFromFormat('d/m/Y', $dados['date']);

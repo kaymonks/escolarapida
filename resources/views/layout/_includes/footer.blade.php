@@ -15,21 +15,9 @@
 <script type="text/javascript" src="https://rawgit.com/FezVrasta/bootstrap-material-design/master/dist/js/material.min.js"></script>
 <script type="text/javascript" src="http://momentjs.com/downloads/moment-with-locales.min.js"></script>
 <script type="text/javascript" src="{{asset("/bower_components/AdminLTE/plugins/bootstrap-material-datetimepicker/bootstrap-material-datetimepicker.js")}}"></script>
-<!-- iCheck -->
-{{--<script src="{{ asset("/bower_components/AdminLTE/plugins/iCheck/icheck.min.js") }}"></script>--}}
-{{--<script>--}}
-    {{--$(function () {--}}
-        {{--$('input').iCheck({--}}
-            {{--checkboxClass: 'icheckbox_square-blue',--}}
-            {{--radioClass: 'iradio_square-blue',--}}
-            {{--increaseArea: '20%' // optional--}}
-        {{--});--}}
-    {{--});--}}
-{{--</script>--}}
-<!-- Optionally, you can add Slimscroll and FastClick plugins.
-     Both of these plugins are recommended to enhance the
-     user experience. Slimscroll is required when using the
-     fixed layout. -->
+<script src="{{asset("/bower_components/AdminLTE/plugins/jQuery-Mask-Plugin/jquery.mask.js")}}"></script>
+
+
 <script>
     $('.select2').select2();
 
@@ -38,9 +26,8 @@
         format: "DD/MM/YYYY",
         time: false,
         clearButton: true,
-        lang: 'pt-BR'
+        lang: 'pt-BR',
     });
-
 
     $('#time').bootstrapMaterialDatePicker
     ({
@@ -48,6 +35,27 @@
         shortTime: false,
         format: 'HH:mm'
     });
+
+    $(".excluirEvento").on("click", function(){
+        return confirm("Você tem certeza que deseja excluir este evento?");
+    });
+    $(".excluirProfessor").on("click", function(){
+        return confirm("Você tem certeza que deseja excluir este Professor?");
+    });
+    $(".excluirPai").on("click", function(){
+        return confirm("Você tem certeza que deseja excluir este Pai?");
+    });
+    $(".excluirAluno").on("click", function(){
+        return confirm("Você tem certeza que deseja excluir este Aluno?");
+    });
+    $(".excluirTurma").on("click", function(){
+        return confirm("Você tem certeza que deseja excluir esta Turma?");
+    });
+    $(".excluirEscola").on("click", function(){
+        return confirm("Você tem certeza que deseja excluir esta Escola?");
+    });
+
+    $("#inputTelefone").mask('(99) 9999-9999');
 
 </script>
 </body>

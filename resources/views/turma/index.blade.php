@@ -18,7 +18,7 @@
         </section>
         <section class="content">
             <div class="row">
-                <div class="col-xs-12">
+                <div class="col-xs-12 col-md-6">
                     <div class="box">
                         <div class="box-header with-border"><h3 class="box-title">Listar Turmas</h3></div>
                         <div class="box-body">
@@ -27,25 +27,34 @@
                                     <tr>
                                         <th style="width: 10px">#</th>
                                         <th>Turma</th>
+
                                         <th style="width: 150px">Ação</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach($registros as $registro)
+                                    @foreach($turmas as $registro)
                                         <tr>
+
                                             <td>{{$registro->id}}</td>
                                             <td>{{ $registro->ano }}</td>
                                             <td>
-                                                <a title="Editar" class="btn btn-primary" href="{{ route('turma.editar',$registro->id) }}"><i class="fa fa-pencil" aria-hidden="true"></i></a>
-                                                <a title="Excluir" class="btn btn-danger" href="{{ route('turma.deletar',$registro->id) }}"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                                                @if ($turmas->permission_id == 2)
+                                                    <a title="Editar" class="btn btn-primary" href="{{ route('turma.editar',$registro->id) }}"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                                                    <a title="Excluir" class="btn btn-danger excluirTurma" href="{{ route('turma.deletar',$registro->id) }}"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                                                @endif
                                             </td>
                                         </tr>
                                     @endforeach
                                 </tbody>
                             </table>
                         </div>
+                        <div class="row" align="center">
+                            {{ $turmas->links() }}
+                        </div>
                     </div>
-                    <a class="btn btn-success" href="{{ route('turma.adicionar') }}"><i class="fa fa-plus" aria-hidden="true"></i> Adicionar turma</a>
+                    @if ($turmas->permission_id == 2)
+                        <a class="btn btn-success" href="{{ route('turma.adicionar') }}"><i class="fa fa-plus" aria-hidden="true"></i> Adicionar turma</a>
+                    @endif
                 </div>
             </div>
         </section>
