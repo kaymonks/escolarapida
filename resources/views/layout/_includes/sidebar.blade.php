@@ -48,7 +48,7 @@
                                 </a>
                                 <ul class="treeview-menu">
                                     <li><a href="{{ route('mensagem.responsavel') }}">Pai(s)</a></li>
-                                    <li><a href="{{ route('mensagem.turma') }}">Turma(s)</a></li>
+                                    {{--<li><a href="{{ route('mensagem.turma') }}">Turma(s)</a></li>--}}
                                     {{--<li><a href="{{ route('mensagem.escola') }}">Escola</a></li>--}}
                                 </ul>
                             </li>

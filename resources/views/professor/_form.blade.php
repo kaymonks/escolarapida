@@ -10,7 +10,7 @@
     <div class="row">
         <div class="form-group col-lg-12">
             <label for="inputNome">Nome</label>
-            <input type="text" name="nome" placeholder="Nome" class="form-control" id="inputNome" value="{{ null !== old('nome') ? old('nome') : isset($registro->nome) ? $registro->nome : '' }}">
+            <input type="text" name="nome" placeholder="Nome" class="form-control" id="inputNome" value="{{ isset($registro->nome) ? $registro->nome : '' }}">
         </div>
     </div>
     <div class="row">
@@ -86,7 +86,7 @@
         <div class="row">
             <div class="form-group col-lg-6">
                 <label for="inputEmail">Email</label>
-                <input type="text" name="email" id="inputEmail" class="form-control" placeholder="Email" value="{{isset($registro->email) ? $registro->email : ''}} ">
+                <input type="text" name="email" id="inputEmail" class="form-control" placeholder="Email" value="{{isset($registro->email) ? $registro->email : ''}}">
             </div>
             <div class="form-group col-lg-6">
                 <label for="inputSenha">Senha</label>
