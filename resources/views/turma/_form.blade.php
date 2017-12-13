@@ -8,7 +8,7 @@
 <div class="col-lg-4 col-md-6">
     <div class="form-group">
         <label for="inputAno">Turma</label>
-        <input type="text" name="ano" placeholder="Ano" class="form-control" id="inputAno" value="{{isset($turmas->ano) ? $turmas->ano : ''}}">
+        <input type="text" name="ano" placeholder="Ano" class="form-control" id="inputAno" value="{{isset($turmas->ano) ? $turmas->ano : old('ano')}}">
     </div>
 </div>
 <div class="col-lg-4 col-md-6">
