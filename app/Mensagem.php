@@ -18,6 +18,16 @@ class Mensagem extends Model
 
     public function remetente()
     {
-        return $this->hasOne('App\Professor', 'remetente_id', 'id');
+        return $this->hasOne('App\Professor', 'id', 'remetente_professor_id');
+    }
+
+    public function remetente_resp()
+    {
+        return $this->hasOne('App\Responsavel', 'id', 'remetente_responsavel_id');
+    }
+
+    public function remetente_escola()
+    {
+        return $this->hasOne('App\Escola', 'id', 'remetente_escola_id');
     }
 }
