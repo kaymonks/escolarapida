@@ -28,7 +28,6 @@
                                 {{ csrf_field() }}
                                 @include('mensagem.responsavel._form')
                             </div>
-{{--                        {{ Auth::user()->permission_id  }}--}}
                             <!-- /.box-body -->
                             <div class="box-footer">
                                 <div class="pull-right">

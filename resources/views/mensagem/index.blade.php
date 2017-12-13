@@ -22,17 +22,31 @@
                             <table class="table table-hover table-bordered">
                                 <thead>
                                 <tr>
-                                    <th style="width: 10px">#</th>
-                                    <th>Título</th>
-                                    <th style="width: 150px">#</th>
+                                    {{--<th style="width: 70px">#</th>--}}
+                                    <th  style="width: 280px">Remetente</th>
+                                    <th style=" ">Título</th>
+                                    <th style="width: 80px">Visualizar</th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 @forelse($mensagens as $mensagem)
                                     <tr>
-                                        <td>{{$mensagem->id}}</td>
-                                        <td>{{ $mensagem->titulo }}</td>
+                                        {{--<td>{{$mensagem->id}}</td>--}}
+{{--                                        <td>{{ $mensagem->remetente_resp->nome  }}--}}
                                         <td>
+                                            @if ($mensagem->remetente_escola!=NULL)
+                                                {{ $mensagem->remetente_escola->nome }}
+                                            @elseif($mensagem->remetente_resp!=NULL)
+                                                {{ $mensagem->remetente_resp->nome }}
+                                            @else
+                                                    {{ $mensagem->remetente->nome }}
+
+                                            @endif
+                                        </td>
+                                        <td>{{ $mensagem->titulo }}</td>
+
+                                        </td>
+                                        <td style="text-align: center">
                                             <a title="Visualizar" class="btn btn-primary btn-sm"  href="{{ route('mensagem.view',$mensagem->id) }}"><i class="fa fa-eye" aria-hidden="true"></i></a>
                                         </td>
                                     </tr>

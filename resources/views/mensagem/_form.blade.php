@@ -33,19 +33,25 @@
         @if(!empty($nomeTurmas))
             <br>Turma(s):
             @foreach($nomeTurmas as $nt)
-                {{ $nt }}
+                {{ $nt }} @if($nt != end($nomeTurmas)), @endif
             @endforeach
         @endif
         @if(!empty($nomePais))
             <br>Pai(s):
             @foreach($nomePais as $np)
-                {{ $np }}
-            @endforeach
+                {{ $np }} @if($np != end($nomePais)), @endif
+                @endforeach
         @endif
         @if(!empty($escola))
             <br>Escola:
             @foreach($escola as $ne)
                 {{ $ne['nome'] }}
+            @endforeach
+        @endif
+        @if(!empty($professor))
+            <br>Professor:
+            @foreach($professor as $npr)
+                {{ $npr['nome'] }}
             @endforeach
         @endif
     </h2>
