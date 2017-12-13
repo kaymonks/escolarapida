@@ -29,8 +29,6 @@ class ProfessorController extends Controller
 
     public function salvar(ProfessorRequest $request)
     {
-        $request->flash();
-//        dd($request->nome);
         $dados = $request->all();
         $user['email'] = $dados['email'];
         $user['password'] = bcrypt($dados['senha']);
@@ -54,15 +52,13 @@ class ProfessorController extends Controller
 
         return redirect()->route('professores');
     }
-//Turma::find($id)->professores->all();
+
     public function editar($id)
     {
         $registro = Professor::find($id);
         $user_id = $registro->user_id;
         $login = User::find($user_id);
         $registro['email'] = $login->email;
-//        $dados_login = Professor::where('user_id', $user_id)->login->all();
-
 
         $telefone = Professor::find($id)->telefones;
         $registro['telefone'] = $telefone->telefone;
@@ -76,10 +72,7 @@ class ProfessorController extends Controller
     {
         $dados = $request->all();
         $novaData = DateTime::createFromFormat('d/m/Y', $dados['data_nascimento']);
-//        if ( false===$novaData )
-//        {
-//            die('formato de data inválido');
-//        }
+
         $dados['data_nascimento'] = $novaData->format('Y-m-d');
         $telefone = Telefone::find($dados['telefone_id']);
         $telefone->telefone = $dados['telefone'];
