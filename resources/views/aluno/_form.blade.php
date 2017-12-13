@@ -8,7 +8,7 @@
 <div class="col-md-6">
     <div class="form-group">
         <label for="inputNome">Nome</label>
-        <input type="text" name="nome" placeholder="Nome" class="form-control" id="inputNome" value="{{isset($registro->nome) ? $registro->nome : ''}}">
+        <input type="text" name="nome" placeholder="Nome" class="form-control" id="inputNome" value="{{isset($registro->nome) ? $registro->nome : old('nome') }}">
     </div>
 
     <div class="form-group">
@@ -24,12 +24,12 @@
         <label>Sexo</label><br>
         <div class="radio">
             <label>
-                <input type="radio" name="sexo" class="" value="m" @if(isset($registro) and ($registro->sexo == 'm')) checked @endif > Masculino&nbsp;
+                <input type="radio" name="sexo" class="" value="m" @if(isset($registro) and ($registro->sexo == 'm')) checked @else {{ old('sexo')=="m" ? 'checked' : '' }} @endif > Masculino&nbsp;
             </label>
         </div>
         <div class="radio">
             <label>
-                <input type="radio" name="sexo" class="" value="f" @if(isset($registro) and $registro->sexo == 'f') checked @endif> Feminino
+                <input type="radio" name="sexo" class="" value="f" @if(isset($registro) and $registro->sexo == 'f') checked @else {{ old('sexo')=="f" ? 'checked' : '' }} @endif > Feminino
             </label>
         </div>
     </div>
@@ -41,13 +41,13 @@
         <div class="col-md-6">
             <div class="form-group">
                 <label for="inputDataNascimento">Data de Nascimento</label>
-                <input type="text" name="data_nascimento" placeholder="Data de Nascimento" class="form-control" id="date" value="{{isset($registro->data_nascimento) ? $registro->data_nascimento : ''}}">
+                <input type="text" name="data_nascimento" placeholder="Data de Nascimento" class="form-control" id="date" value="{{isset($registro->data_nascimento) ? $registro->data_nascimento : old('data_nascimento')}}">
             </div>
         </div>
         <div class="col-md-6">
             <div class="form-group">
                 <label for="inputTelefone">Telefone</label>
-                <input type="text" name="telefone" placeholder="Telefone" class="form-control" id="inputTelefone" value="{{isset($telefone->telefone) ? $telefone->telefone : ''}}">
+                <input type="text" name="telefone" placeholder="Telefone" class="form-control" id="inputTelefone" value="{{isset($telefone->telefone) ? $telefone->telefone : old('telefone')}}">
             </div>
         </div>
     </div>
