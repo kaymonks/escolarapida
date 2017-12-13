@@ -24,7 +24,7 @@ class MensagemRequest extends FormRequest
     public function rules()
     {
         return [
-//            'destinatario' => 'required',
+            'destinatario' => 'required',
             'titulo' => 'required',
             'corpo' => 'required',
         ];
@@ -33,7 +33,7 @@ class MensagemRequest extends FormRequest
     public function messages()
     {
         return [
-//            'destinatario.required' => 'O campo Destinatário é obrigatório',
+            'destinatario.required' => 'O campo Destinatário é obrigatório',
             'titulo.required' => 'O campo Título é obrigatório',
             'corpo.required' => 'O Conteúdo da mensagem é obrigatório',
         ];
