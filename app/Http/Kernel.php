@@ -59,5 +59,8 @@ class Kernel extends HttpKernel
         'checkAluno' => \App\Http\Middleware\CheckAluno::class,
         'checkMensagem' => \App\Http\Middleware\CheckMensagem::class,
         'checkResponsaveis' => \App\Http\Middleware\CheckResponsaveis::class,
+        'checkEvento' => \App\Http\Middleware\CheckEvento::class,
+        'checkEventoEscola' =>\App\Http\Middleware\CheckEventoEscola::class,
+        'checkEventoResponsavel' =>\App\Http\Middleware\CheckEventoResponsavel::class,
     ];
 }

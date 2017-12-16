@@ -25,6 +25,7 @@
                                     {{--<th style="width: 70px">#</th>--}}
                                     <th  style="width: 280px">Remetente</th>
                                     <th style=" ">Título</th>
+                                    <th style="width: 110px">Data</th>
                                     <th style="width: 80px">Visualizar</th>
                                 </tr>
                                 </thead>
@@ -44,7 +45,7 @@
                                             @endif
                                         </td>
                                         <td>{{ $mensagem->titulo }}</td>
-
+                                        <td> {{ $mensagem->data = date('d/m/Y', strtotime($mensagem->data)) }}</td>
                                         </td>
                                         <td style="text-align: center">
                                             <a title="Visualizar" class="btn btn-primary btn-sm"  href="{{ route('mensagem.view',$mensagem->id) }}"><i class="fa fa-eye" aria-hidden="true"></i></a>

@@ -15,6 +15,10 @@ Route::get('/', function () {
     return view('home');
 });
 
+Route::get('/401',function () {
+   return view('errors/401');
+});
+
 Route::get('/login', ['as'=>'login', 'uses'=>'LoginController@index']);
 Route::post('/login/entrar', ['as'=>'login.entrar', 'uses'=>'LoginController@entrar']);
 Route::get('/login/sair', ['as'=>'login.sair', 'uses'=>'LoginController@sair']);
@@ -69,18 +73,19 @@ Route::group(['middleware'=> ['checkMensagem']], function () {
     Route::post('/mensagem/professor/enviar', ['as'=>'mensagem.professor.enviar', 'uses'=>'MensagemController@salvarMensagemProfessor']);
 });
 
-Route::group(['middleware'=> ['checkEscola']], function () {
-    Route::get('/eventos', ['as' => 'eventos', 'uses' => 'EventoController@index']);
+Route::group(['middleware'=> ['checkEvento']], function () {
     Route::get('/eventos/editar/{id}', ['as' => 'evento.editar', 'uses' => 'EventoController@editar']);
     Route::put('/eventos/atualizar/{id}', ['as' => 'evento.atualizar', 'uses' => 'EventoController@atualizar']);
     Route::get('/eventos/deletar/{id}', ['as' => 'evento.deletar', 'uses' => 'EventoController@deletar']);
     Route::get('/evento/responsavel', ['as' => 'evento.responsavel', 'uses' => 'EventoController@responsavel']);
-    Route::post('/evento/responsavel/enviar', ['as' => 'evento.responsavel.enviar', 'uses' => 'EventoController@salvarEventoPai']);
+    Route::post('/evento/responsavel/enviar', ['as' => 'evento.responsavel.enviar', 'uses' => 'EventoController@salvarEventoResponsavel']);
     Route::get('/evento/turma', ['as' => 'evento.turma', 'uses' => 'EventoController@turma']);
     Route::post('/evento/turma/enviar', ['as' => 'evento.turma.enviar', 'uses' => 'EventoController@salvarEventoTurma']);
-    Route::get('/evento/escola', ['as' => 'evento.escola', 'uses' => 'EventoController@turma']);
-    Route::post('/evento/escola/enviar', ['as' => 'evento.escola.enviar', 'uses' => 'EventoController@salvarEventoTurma']);
 });
+Route::get('/eventos', ['as' => 'eventos', 'uses' => 'EventoController@index'])->middleware('checkEventoResponsavel');
+Route::get('/eventos/visualizar/{id}', ['as' => 'evento.visualizar', 'uses' => 'EventoController@visualizar'])->middleware('checkEventoResponsavel');
+Route::get('/evento/escola', ['as' => 'evento.escola', 'uses' => 'EventoController@escola'])->middleware('checkEventoEscola');
+Route::post('/evento/escola/enviar', ['as' => 'evento.escola.enviar', 'uses' => 'EventoController@salvarEventoEscola'])->middleware('checkEventoEscola');
 
 Route::group(['middleware'=> ['checkTurma']], function () {
     Route::get('/turmas', ['as'=>'turmas', 'uses'=>'TurmaController@index']);
@@ -90,6 +95,7 @@ Route::group(['middleware'=> ['checkTurma']], function () {
     Route::put('/turma/atualizar/{id}', ['as'=>'turma.atualizar', 'uses'=>'TurmaController@atualizar']);
     Route::get('/turma/deletar/{id}', ['as'=>'turma.deletar', 'uses'=>'TurmaController@deletar']);
 });
+
 
 //Auth::routes();
 

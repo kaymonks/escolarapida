@@ -17,7 +17,7 @@
                 <div class="col-xs-12">
                     <div class="box box-primary">
                         <div class="box-header with-border">
-                            <h2 class="">{{ isset($mensagem->titulo) ? $mensagem->titulo : '' }}</h2>
+                            <h2 class="">{{  isset($mensagem->titulo) ? $mensagem->titulo : '' }}</h2>
                         </div>
                         <form method="post" action="{{ route('mensagem.atualizar', $mensagem->id) }}" enctype="multipart/form-data">
                             <div class="box-body">

@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Support\Facades\Auth;
 
-class Admin
+class CheckEventoResponsavel
 {
     /**
      * Handle an incoming request.
@@ -16,15 +16,16 @@ class Admin
      */
     public function handle($request, Closure $next)
     {
+
         if (Auth::check())
         {
-            if (Auth::user()->permission_id == 1)
+
+            if (Auth::user()->permission_id == 4 || Auth::user()->permission_id == 2 || Auth::user()->permission_id == 3)
             {
                 return $next($request);
             }
-            return redirect('401');
-        }else{
-            return redirect()->route('login');
+            return response('Unauthorized.', 401);
+
         }
     }
 }

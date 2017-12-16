@@ -6,31 +6,32 @@
     </div>
 @endif
 <div class="form-group">
-    <label>Escola</label>
-    <select class="form-control"  name="destinatario" style="width: 100%;" tabindex="-1" aria-hidden="true">
-        @foreach($escolas as $escola)
-            <option value="{{ $escola->id }}">{{ $escola->nome }}</option>
-        @endforeach
-    </select>
+    <label>Evento para: </label><br>Escola
+    <input type="hidden" name="destinatario[]" value="{{ $escolas->id }}">
+
 
 </div>
 <div class="form-group">
-    <label>Título</label>
-    <input class="form-control" placeholder="Titulo" name="titulo">
-</div>
-<div class="form-group">
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-8">
+            <label>Título</label>
+            <input class="form-control" placeholder="Titulo" name="titulo">
+        </div>
+        <div class="col-xs-6 col-md-2">
             <label>Data</label>
             <div class="form-control-wrapper">
                 <input type="text" class="form-control" name="date" id="date">
             </div>
         </div>
-        <div class="col-md-6">
-           
+        <div class="col-xs-6 col-md-2">
             <label for="">Hora</label>
             <input type="text" class="form-control" name="time" id="time">
         </div>
+    </div>
+</div>
+<div class="form-group">
+    <div class="row">
+
         
     </div>
 </div>

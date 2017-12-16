@@ -34,13 +34,13 @@ class MensagemController extends Controller
                 $id_user = Escola::where('user_id', '=', $id_usuario)->first();
                 $id_user = $id_user->id;
                 $mensagens_id = MensagemDestinatario::where('destinatario_escola_id', '=', $id_user)->pluck('mensagem_id')->toArray();
-                $mensagens = Mensagem::with('remetente_resp:id,nome')->whereIn('id', $mensagens_id)->paginate(10);
+                $mensagens = Mensagem::with('remetente_resp:id,nome')->whereIn('id', $mensagens_id)->orderBy('id', 'desc')->paginate(10);
                 break;
             case 3: //Professor
                 $id_user = Professor::where('user_id', '=', $id_usuario)->first();
                 $id_user = $id_user->id;
                 $mensagens_id = MensagemDestinatario::where('destinatario_professor_id', '=', $id_user)->pluck('mensagem_id')->toArray();
-                $mensagens = Mensagem::select('*')->whereIn('id', $mensagens_id)->paginate(10);
+                $mensagens = Mensagem::select('*')->whereIn('id', $mensagens_id)->orderBy('id', 'desc')->paginate(10);
                 break;
         }
 
@@ -154,6 +154,7 @@ class MensagemController extends Controller
 
                 break;
         }
+
         $mensagem = Mensagem::create($dados);
         $destinatario['mensagem_id'] = $mensagem->id;
         $destinatario['destinatario_escola_id']  = $dados['escola_id'];

@@ -13,10 +13,10 @@
             <input class="form-control" placeholder="Titulo" name="titulo">
         </div>
         <div class="col-md-12 col-lg-6">
-            <label>Turmas</label>
-            <select class="form-control select2 select2-hidden-accessible" multiple="" name="destinatario[]" data-placeholder="Selecione a(s) turma(s)" style="width: 100%;" tabindex="-1" aria-hidden="true">
-                @foreach($turmas as $turma)
-                    <option value="{{ $turma->id }}">{{ $turma->ano}}</option>
+            <label>Pais</label>
+            <select class="form-control select2 select2-hidden-accessible" multiple="" name="destinatario[]" data-placeholder="Selecione o(s) pai(s)" style="width: 100%;" tabindex="-1" aria-hidden="true">
+                @foreach($responsaveis as $responsavel)
+                    <option value="{{ $responsavel->id }}">{{ $responsavel->nome }}</option>
                 @endforeach
             </select>
         </div>

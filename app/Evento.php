@@ -8,5 +8,5 @@ class Evento extends Model
 {
     protected $table = 'eventos';
     protected $primaryKey = 'id';
-    protected $fillable = ['titulo', 'descricao', 'date', 'time'];
+    protected $fillable = ['escola_id', 'titulo', 'descricao', 'date', 'time'];
 }

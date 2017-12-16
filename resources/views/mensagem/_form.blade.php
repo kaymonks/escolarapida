@@ -5,9 +5,9 @@
         @endforeach
     </div>
 @endif
-<div class="form-group">
-	@if (@isset ($escolas))
-	
+@if (@isset ($escolas))
+    <div class="form-group">
+
 	    <label>Escola</label>
 	    <select class="form-control"  name="destinatario" style="width: 100%;" tabindex="-1" aria-hidden="true">
 	        @foreach($escolas as $escola)
@@ -16,8 +16,13 @@
 	    </select>
 		@endisset
 		{{-- expr --}}
-	@endif
 
+    </div>
+@endif
+<div class="pull-right">
+    <p>
+        {{ $mensagem->data = date('d/m/Y H:i:s', strtotime($mensagem->data)) }}
+    </p>
 </div>
 
 <div class="form-group">

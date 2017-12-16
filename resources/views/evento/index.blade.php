@@ -36,9 +36,12 @@
                                         <td>{{ $evento->titulo }}</td>
                                         <td>{{date( 'd/m/Y' , strtotime($evento->date ) )}}</td>
                                         <td>{{$evento->time}}</td>
-                                        <td>
-                                            <a title="Editar" class="btn btn-primary btn-sm"  href="{{ route('evento.editar',$evento->id) }}"><i class="fa fa-pencil" aria-hidden="true"></i></a>
-                                            <a title="Excluir" class="btn btn-danger btn-sm excluirEvento"  href="{{ route('evento.deletar',$evento->id) }}"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                                        <td>@if($tipo_usuario == 2)
+                                                <a title="Editar" class="btn btn-primary btn-sm"  href="{{ route('evento.editar',$evento->id) }}"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                                                <a title="Excluir" class="btn btn-danger btn-sm excluirEvento"  href="{{ route('evento.deletar',$evento->id) }}"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                                            @else
+                                                <a title="Visualizar" class="btn btn-primary btn-sm"  href="{{ route('evento.visualizar',$evento->id) }}"><i class="fa fa-eye" aria-hidden="true"></i></a>
+                                            @endif
                                         </td>
                                     </tr>
                                 @endforeach
@@ -46,7 +49,7 @@
                             </table>
                         </div>
                         <div class="row" align="center">
-                            {{ $eventos->links() }}
+                            {{--{{ $eventos->links() }}--}}
                         </div>
                     </div>
                 </div>
