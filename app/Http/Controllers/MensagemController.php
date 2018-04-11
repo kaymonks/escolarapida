@@ -25,9 +25,20 @@ class MensagemController extends Controller
 
         switch ($tipo_usuario){
             case 4: //Responsável
-                $id_user = Responsavel::where('user_id', '=', $id_usuario)->first();
-                $id_user = $id_user->id;
-                $mensagens_id = MensagemDestinatario::where('destinatario_id', '=', $id_user)->pluck('mensagem_id')->toArray();
+                $alunos = Responsavel::with('alunoss')->where('user_id', '=', $id_usuario)->get();
+                foreach ($alunos as $aluno) {
+                    $id_user = $aluno->id;
+                    if ($aluno->alunoss->count() > 0){
+                        foreach ($aluno->alunoss as $nome) {
+                            $turma_id[] = $nome->turma_id;
+                        }
+                    }
+                    else{
+                        $turma_id = "";
+                    }
+                }
+
+                $mensagens_id = MensagemDestinatario::where('destinatario_id', '=', $id_user)->orWhereIn('destinatario_turma_id', $turma_id)->pluck('mensagem_id')->toArray();
                 $mensagens = Mensagem::with('remetente_escola:id,nome', 'remetente_resp:id,nome', 'remetente:id,nome')->whereIn('id', $mensagens_id)->orderBy('id', 'desc')->paginate(10);
                 break;
             case 2: //Escola
@@ -233,19 +244,30 @@ class MensagemController extends Controller
     public function turma()
     {
         $usuario = Auth::user();
-
+//        echo $usuario->id;
+        if($usuario->permission_id == 2) {
+            $escola_id = Escola::where('user_id', '=', $usuario->id)->pluck('id');
+//            echo "<pre>";
+//            print_r($escola_id);
+            $turmas = Escola::find($escola_id)->turmas()->get();
+//            print_r($turmas);
+        }
         if ($usuario->permission_id == 3) {
             $professor_id = Professor::where('user_id', '=', $usuario->id)->pluck('id');
-
+//            echo "<pre>";
+//            print_r($professor_id);
             $turmas = Professor::find($professor_id)->turmas()->get();
         }
 
+//        return;
         return view('mensagem.turma.enviar', compact('turmas'));
     }
 
     public function salvarMensagemTurma(MensagemRequest $request)
     {
         $dados = $request->all();
+        echo "<pre>";
+        print_r($dados);
         $user_logado = Auth::user();
         $tipo_usuario = $user_logado->permission_id;
         $id_usuario = $user_logado->id;
@@ -254,6 +276,11 @@ class MensagemController extends Controller
         $dados['remetente_responsavel_id'] = null;
 
         switch ($tipo_usuario) {
+            case 2:
+                $escola = Escola::where('user_id', '=', $id_usuario)->first();
+                $escola_id = $escola->id;
+                $dados['remetente_escola_id'] = $escola_id;
+                break;
             case 4:
                 $id_user = Responsavel::where('user_id', '=', $id_usuario)->first();
                 $escola_id = $id_user->escola_id;
