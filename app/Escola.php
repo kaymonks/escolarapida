@@ -24,7 +24,12 @@ class Escola extends Model
 
     public function responsaveis()
     {
-        return $this->hasMany('App\Responsavel', 'id', 'escola_id');
+        return $this->hasMany('App\Responsavel', 'escola_id', 'id');
+    }
+
+    public function turmas()
+    {
+        return $this->hasMany('App\Turma', 'escola_id', 'id');
     }
 
 }
