@@ -12,13 +12,29 @@
 <script src="{{asset("/bower_components/AdminLTE/plugins/datepicker/bootstrap-datepicker.js")}}"></script>
 <!-- Bootstrap 3.3.6 -->
 <script src="{{ asset("/bower_components/AdminLTE/bootstrap/js/bootstrap.min.js") }}"></script>
-<script type="text/javascript" src="https://rawgit.com/FezVrasta/bootstrap-material-design/master/dist/js/material.min.js"></script>
 <script type="text/javascript" src="http://momentjs.com/downloads/moment-with-locales.min.js"></script>
 <script type="text/javascript" src="{{asset("/bower_components/AdminLTE/plugins/bootstrap-material-datetimepicker/bootstrap-material-datetimepicker.js")}}"></script>
 <script src="{{asset("/bower_components/AdminLTE/plugins/jQuery-Mask-Plugin/jquery.mask.js")}}"></script>
 
 
 <script>
+
+    // $("#accordion .box-primary .box-body").css("display", "none");
+
+    $("#accordion .box-primary").on('click', function () {
+        $(this).children('.box-body').toggle("slow");
+    })
+
+
+    $("#nova_mensagem").css("display", "none");
+    $("#exibirResposta").click(function(){
+        if ($("#nova_mensagem").css('display') == 'none') {
+            $("#nova_mensagem").show('slow');
+        } else {
+            $("#nova_mensagem").hide('slow');
+        }
+    });
+
     $('.select2').select2();
 
     $('#date').bootstrapMaterialDatePicker

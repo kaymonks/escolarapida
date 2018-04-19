@@ -8,7 +8,7 @@ class Mensagem extends Model
 {
     protected $table = 'mensagens';
     protected $primaryKey = 'id';
-    protected $fillable = ['escola_id', 'remetente_escola_id', 'remetente_responsavel_id', 'remetente_professor_id', 'titulo', 'corpo', 'lido', 'data', 'tipo_remetente'];
+    protected $fillable = ['escola_id', 'remetente_escola_id', 'remetente_responsavel_id', 'remetente_professor_id', 'titulo', 'corpo', 'lido', 'data', 'tipo_remetente', 'mensagem_id'];
 
 
     public function escolas()

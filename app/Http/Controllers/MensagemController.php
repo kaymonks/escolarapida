@@ -14,6 +14,7 @@ use App\Turma;
 use App\TurmaProfessor;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use PhpParser\Node\Expr\Array_;
 
 class MensagemController extends Controller
 {
@@ -71,33 +72,45 @@ class MensagemController extends Controller
 
                 foreach ($mensagens as $mensagem) {
                     if ($mensagem->remetente_escola_id != NULL){
-                        $remetente =  Escola::where('id', $mensagem->remetente_escola_id)->pluck('nome')->toArray();
+                        $remetente =  Escola::select('id', 'nome')->where('id', $mensagem->remetente_escola_id)->get()->toArray();
                     }elseif ($mensagem->remetente_professor_id != NULL){
-                        $remetente =  Professor::where('id', $mensagem->remetente_professor_id)->pluck('nome')->toArray();
+                        $remetente =  Professor::select('id', 'nome')->where('id', $mensagem->remetente_professor_id)->get()->toArray();
                     }
                 }
                 break;
             case 2: //Escola
                 foreach ($mensagens as $mensagem) {
                     if ($mensagem->remetente_responsavel_id != NULL){
-                        $remetente = Responsavel::where('id', $mensagem->remetente_responsavel_id)->pluck('nome')->toArray();
+                        $remetente = Responsavel::select('id', 'nome')->where('id', $mensagem->remetente_responsavel_id)->get()->toArray();
+//                        dd($remetente);
                     }
                 }
                 break;
             case 3:
                 foreach ($mensagens as $mensagem) {
                     if ($mensagem->remetente_responsavel_id != NULL){
-                        $remetente = Responsavel::where('id', $mensagem->remetente_responsavel_id)->pluck('nome')->toArray();
+                        $remetente = Responsavel::select('id', 'nome')->where('id', $mensagem->remetente_responsavel_id)->get()->toArray();
                     }
                 }
         }
 
         $mensagem = Mensagem::find($id);
-        $destinatarios = MensagemDestinatario::where('mensagem_id', '=', $id)->get(); //obtem quem foi o destinatario: turma, responsavel, escola ou professor.
+        $tem_resposta = Mensagem::select('id', 'mensagem_id')->where('id', $id)->get()->toArray();
+        $mensagem_id = $tem_resposta[0]["mensagem_id"];
+
+        $i = 0;
+        while ($mensagem_id != NULL) {
+            $arrayMensagens[] = Mensagem::where('id', $mensagem_id)->get();
+            $mensagem_id = $arrayMensagens[$i][0]->mensagem_id;
+            $i++;
+        }
+        $arrayMensagens = array_reverse($arrayMensagens);
+
         $nomeTurmas = array();
         $nomePais = array();
         $escola = "";
         $professor = "";
+        $destinatarios = MensagemDestinatario::where('mensagem_id', '=', $id)->get(); //obtem quem foi o destinatario: turma, responsavel, escola ou professor.
         foreach($destinatarios as $destinatario) {
             if($destinatario->turma_id != NULL){
                 $turmas = Turma::find($destinatario->turma_id);
@@ -115,7 +128,7 @@ class MensagemController extends Controller
             }
         }
 
-        return view('mensagem.editar', compact('mensagem', 'destinatarios', 'remetente', 'nomeTurmas', 'nomePais', 'escola', 'professor'));
+        return view('mensagem.visualizar', compact('mensagem', 'destinatarios', 'remetente', 'nomeTurmas', 'nomePais', 'escola', 'professor', 'tipo_usuario', 'arrayMensagens'));
     }
 
     public function atualizar(MensagemRequest $request, $id)
@@ -132,6 +145,10 @@ class MensagemController extends Controller
         $id_usuario = $user_logado->id;
 
         switch ($tipo_usuario) {
+            case 2: //Escola
+                $id_user = Escola::where('user_id', '=', $id_usuario)->first();
+                $id_escola = $id_user->id;
+                break;
             case 4:
                 $id_user = Responsavel::where('user_id', '=', $id_usuario)->first();
                 $id_escola = $id_user->escola_id;
@@ -144,31 +161,36 @@ class MensagemController extends Controller
 
     public function salvarMensagemEscola(MensagemRequest $request)
     {
-        //ESCOLA RECEBE MENSAGEM
         $dados = $request->all();
         $user_logado = Auth::user();
         $tipo_usuario = $user_logado->permission_id;
         $id_usuario = $user_logado->id;
+        $id_user = Escola::where('user_id', '=', $id_usuario)->first();
+        $id_escola = $id_user->id;
         $dados['remetente_escola_id'] = null;
         $dados['remetente_professor_id'] = null;
+        $dados['remetente_responsavel_id'] = null;
         $dados['destinatario_id'] = null;
-        foreach ($request->destinatario as $item) {
-            $dados['escola_id']  = $item;
+        $dados['remetente_professor_id'] = null;
+        $mensagem_id = null;
+        if (isset($dados['mensagem_id'])) {
+            $mensagem_id = $dados['mensagem_id'];
+            $dados['remetente_escola_id'] = $id_escola;
+            $destinatario['destinatario_id'] = $request->destinatario[0];
         }
-
+        $dados['escola_id']  = $id_escola;
+        $dados['mensagem_id'] = $mensagem_id;
         switch ($tipo_usuario) {
             case 4:
                 $id_user = Responsavel::where('user_id', '=', $id_usuario)->first();
                 $dados['remetente_responsavel_id'] = $id_user->id;
-                break;
-            case 2:
-
+                $destinatario['destinatario_escola_id']  = $dados['escola_id'];
                 break;
         }
 
         $mensagem = Mensagem::create($dados);
         $destinatario['mensagem_id'] = $mensagem->id;
-        $destinatario['destinatario_escola_id']  = $dados['escola_id'];
+//        $destinatario['destinatario_escola_id']  = $dados['escola_id'];
         $destinatario['tipo_destinatario']  = $tipo_usuario;
 
         MensagemDestinatario::create($destinatario);
@@ -201,44 +223,66 @@ class MensagemController extends Controller
 
     public function salvarMensagemResponsavel(MensagemRequest $request)
     {
-        //RESPONSAVEL RECEBE MENSAGEM
         $dados = $request->all();
 
-        $user_logado = $request->user()->id;
+//        $user_logado = $request->user()->id;
+        $user_logado = Auth::user();
         $tipo_usuario = Auth::user()->permission_id;
-        $remetene_escola = null;
+        $id_usuario = $user_logado->id;
+        $remetente_escola = null;
         $remetente_professor = null;
+        $remetente_responsavel = null;
         switch ($tipo_usuario) {
+            case 4:
+                $remetente = Responsavel::where('user_id', '=', $id_usuario)->first();
+                $remetente_responsavel = $remetente->id;
+                $escola_id = $remetente->escola_id;
+                break;
             case 2:
-                $remetene_escola = Escola::where('user_id', $user_logado)->first();
-                $remetene_escola = $remetene_escola->id;
-                $escola_id = $remetene_escola;
+                $remetente = Escola::where('user_id', $id_usuario)->first();
+                $remetente_escola = $remetente->id;
+                $escola_id = $remetente_escola;
                 break;
             case 3:
-                $professor = Professor::where('user_id', $user_logado)->first();
-                $remetente_professor = $professor->id;
-                $escola_id = $professor->escola_id;
+                $remetene = Professor::where('user_id', $id_usuario)->first();
+                $remetente_professor = $remetene->id;
+                $escola_id = $remetene->escola_id;
                 break;
         }
 
         $dados['escola_id'] = $escola_id;
-        $dados['remetente_escola_id'] = $remetene_escola;
+        $dados['remetente_escola_id'] = $remetente_escola;
         $dados['remetente_professor_id'] = $remetente_professor;
-        $dados['remetente_responsavel_id'] = null;
+        $dados['remetente_responsavel_id'] = $remetente_responsavel;
         $dados['tipo_remetente'] = $tipo_usuario;
 
+        $responsaveis = Responsavel::select('email')->whereIn('id', $request->destinatario)->get()->toArray();
         $mensagem = Mensagem::create($dados);
-
+        if ($mensagem) {
+            foreach ($responsaveis as $responsavel) {
+                $email = $responsavel['email'];
+                require (app_path() . '\SendGrid\sendgrid.php');
+            }
+        }
         $mensagem_id = $mensagem->id;
+        $destinatario['destinatario_escola_id']  = $escola_id;
+        $destinatario['destinatario_id']  = null;
 
-        foreach ($request->destinatario as $item) {
-            $destinatario['mensagem_id'] = $mensagem_id;
-            $destinatario['destinatario_id']  = $item;
-            $destinatario['tipo_destinatario'] = 4;
-            MensagemDestinatario::create($destinatario);
+        switch ($tipo_usuario) {
+            case 4:
+                foreach ($request->destinatario as $item) {
+                    $destinatario['destinatario_escola_id']  = $item;
+                    $destinatario['tipo_destinatario'] = 4;
+
+                }
+            break;
         }
 
-        return redirect()->route('mensagem.responsavel');
+        $destinatario['mensagem_id'] = $mensagem_id;
+
+        MensagemDestinatario::create($destinatario);
+
+        return redirect()->route('mensagens');
     }
 
     public function turma()

@@ -19,50 +19,7 @@
 
     </div>
 @endif
-<div class="pull-right">
-    <p>
-        {{ $mensagem->data = date('d/m/Y H:i:s', strtotime($mensagem->data)) }}
-    </p>
-</div>
 
-<div class="form-group">
-    <h2 class="h5">De:
-        @if(isset($remetente))
-
-            @foreach($remetente as $rt)
-                {{ $rt }}
-            @endforeach
-        @endif
-    </h2>
-    <h2 class="box-title h5">Para:
-        @if(!empty($nomeTurmas))
-            <br>Turma(s):
-            @foreach($nomeTurmas as $nt)
-                {{ $nt }} @if($nt != end($nomeTurmas)), @endif
-            @endforeach
-        @endif
-        @if(!empty($nomePais))
-            <br>Pai(s):
-            @foreach($nomePais as $np)
-                {{ $np }} @if($np != end($nomePais)), @endif
-                @endforeach
-        @endif
-        @if(!empty($escola))
-            <br>Escola:
-            @foreach($escola as $ne)
-                {{ $ne['nome'] }}
-            @endforeach
-        @endif
-        @if(!empty($professor))
-            <br>Professor:
-            @foreach($professor as $npr)
-                {{ $npr['nome'] }}
-            @endforeach
-        @endif
-    </h2>
-</div>
-<hr>
-
-<div class="form-group">
+<div class="mailbox-read-message">
     <p>{{ isset($mensagem->corpo) ? $mensagem->corpo : '' }}</p>
 </div>

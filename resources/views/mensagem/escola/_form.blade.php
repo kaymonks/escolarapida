@@ -10,8 +10,8 @@
 <div class="row">
     <div class="col-md-4">
         <div class="form-group">
-            <p>para: Escola</p>
-            {{--<p>{{ $escolas->nome }}</p>--}}
+            <p>Para: {{ $escolas->nome }}</p>
+
             <input type="hidden" name="destinatario[]" value="{{ $escolas->id }}">
         </div>
     </div>
