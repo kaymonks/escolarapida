@@ -18,8 +18,8 @@
                 <div class="box-body">
 
                     <div class="form-group {{ ($errors->first('email')) ? 'has-error'  :''}}">
-                        <label for="inputEmail1">Email</label>
-                        <input type="email" id="inputEmail1" class="form-control" placeholder="Email" name="email">
+                        <label for="inputEmail1">Login</label>
+                        <input type="text" id="inputEmail1" class="form-control" placeholder="Email" name="email">
                         {!! $errors->first('email', '<span class="help-block">:message</span>') !!}
                     </div>
 

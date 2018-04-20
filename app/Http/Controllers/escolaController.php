@@ -53,9 +53,15 @@ class escolaController extends Controller
     public function atualizar(EscolaRequest $request, $id)
     {
         $dados = $request->all();
+        $dadosUser = array();
+        $dadosUser['email'] = $dados['email'];
+        $dadosUser['password'] = bcrypt($dados['senha']);
 
         Escola::find($id)->update($dados);
+        $escolaUser = Escola::where('id', $id)->pluck('user_id');
+        $escolaUser = $escolaUser[0];
 
+        User::find($escolaUser)->update($dadosUser);
         return redirect()->route('escolas');
     }
 

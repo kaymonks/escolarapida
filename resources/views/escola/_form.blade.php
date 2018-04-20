@@ -76,7 +76,7 @@
     <div class="col-md-3">
         <div class="form-group">
             <label for="inputSenha">Senha</label>
-            <input type="password" name="senha" id="inputSenha" class="form-control" placeholder="senha" value="{{isset($registro->senha) ? $registro->senha : ''}}">
+            <input type="password" name="senha" id="inputSenha" class="form-control" placeholder="senha">
         </div>
     </div>
 </fieldset>
