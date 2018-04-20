@@ -55,6 +55,7 @@
                         </ul>
                     </a>
                 </li>
+            <!--
                 <li class="treeview {{ str_contains(request()->url(), '/evento') ? 'active' : '' }}">
                     <a href="{{ route('eventos') }}">
                         <i class="fa fa-calendar-o"></i><span>Eventos</span>
@@ -79,6 +80,7 @@
                         </ul>
                     </a>
                 </li>
+                -->
                 @elseif(Auth::check() && Auth::user()->permission_id == 3)
                     <li class="{{ str_contains(request()->url(), '/turma') ? 'active' : '' }}"><a href="{{ route('turmas') }}"><i class="fa fa-pencil-square"></i> <span>Turmas</span></a></li>
                     <li class="treeview {{ str_contains(request()->url(), '/mensagem') ? 'active' : '' }}">
@@ -104,6 +106,7 @@
                         </ul>
                     </a>
                 </li>
+                <!--
                 <li class="treeview {{ str_contains(request()->url(), '/evento') ? 'active' : '' }}">
                     <a href="{{ route('eventos') }}">
                         <i class="fa fa-calendar-o"></i><span>Eventos</span>
@@ -112,6 +115,7 @@
                         </span>
                     </a>
                 </li>
+                -->
             @elseif(Auth::check() && Auth::user()->permission_id == 4)
                 <li class="treeview {{ str_contains(request()->url(), '/mensagem') ? 'active' : '' }}">
                     <a href="{{ route('mensagens') }}">
@@ -136,6 +140,7 @@
                         </ul>
                     </a>
                 </li>
+                <!--
                 <li class="treeview {{ str_contains(request()->url(), '/evento') ? 'active' : '' }}">
                     <a href="{{ route('eventos') }}">
                         <i class="fa fa-calendar-o"></i><span>Eventos</span>
@@ -144,6 +149,7 @@
                         </span>
                     </a>
                 </li>
+                -->
                 @endif
         </ul>
         <!-- /.sidebar-menu -->
