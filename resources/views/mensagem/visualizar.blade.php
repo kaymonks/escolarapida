@@ -30,6 +30,15 @@
                                                 </span>
                                                 </div>
                                             </h3>
+
+                                            <h5>De: @if(!is_null($ms->remetente_responsavel_id[0]))
+                                                        {{ $ms->remetente_responsavel_id[0] }}
+                                                        @elseif(!is_null($ms->remetente_escola_id[0]))
+                                                            {{ $ms->remetente_escola_id[0] }}
+                                                        @else
+                                                            {{ $ms->remetente_professor_id[0] }}
+                                                    @endif
+                                            </h5>
                                         </div>
                                         <div class="box-body" style="display: none;">
                                             {{ $ms->corpo }}
