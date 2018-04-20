@@ -28,7 +28,7 @@ class escolaController extends Controller
         $user['email'] = $dados['email'];
         $user['password'] = bcrypt($dados['senha']);
         $user['permission_id'] = 2;
-        $user['name'] = 'escola';
+        $user['name'] = $dados['nome'];
         $user = User::create($user);
         $telefone['telefone'] = $dados['telefone'];
         $telefone2 = Telefone::create($telefone);
