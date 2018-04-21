@@ -7,25 +7,15 @@
 @endif
 <div class="clearfix"></div>
 
-<div class="row">
-    <div class="col-md-4">
-        <div class="form-group">
-            <p>Para: {{ $escolas->nome }}</p>
+<div class="form-group">
+    <p>Para: {{ $escolas->nome }}</p>
+    <input type="hidden" name="destinatario[]" value="{{ $escolas->id }}">
+</div>
 
-            <input type="hidden" name="destinatario[]" value="{{ $escolas->id }}">
-        </div>
-    </div>
-    <div class="clearfix"></div>
-    <div class="col-md-6">
-        <div class="form-group">
-            <input class="form-control" placeholder="Titulo" name="titulo" value="{{ old('titulo')}}">
-        </div>
-    </div>
-    <div class="clearfix"></div>
-    <div class="col-md-6">
-        <div class="form-group">
-            <p>Mensagem</p>
-            <textarea id="compose-textarea" name="corpo" class="form-control" style="height: 200px; /*display: none;*/">{{ old('corpo') }}</textarea>
-        </div>
-    </div>
+<div class="form-group">
+    <input class="form-control" placeholder="Titulo" name="titulo" value="{{ old('titulo')}}">
+</div>
+
+<div class="form-group">
+    <textarea id="compose-textarea" name="corpo" class="form-control" style="height: 200px; /*display: none;*/" placeholder="Adicione uma mensagem aqui">{{ old('corpo') }}</textarea>
 </div>
