@@ -7,11 +7,10 @@
 
     <div class="login-box">
         <div class="login-logo">
-            <a href="">Escola<b>Rápida</b></a>
+            <img style="" src="{{ asset("/images/logo2.jpg") }}" alt="Escola Rápida">
         </div>
         <!-- /.login-logo -->
-        <div class="login-box-body">
-            <p class="login-box-msg">Entre para iniciar sua sessão</p>
+        <div class="login-box-body box box-solid box-default">
 
             <form role="form" method="post" action="{{ route('login.entrar') }}">
                 {{ csrf_field() }}
@@ -34,7 +33,10 @@
 
                 </div>
                 <div class="box-footer">
-                    <button type="submit" class="btn btn-primary">Entrar</button>
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-primary">Entrar</button>
+                    </div>
+
                 </div>
             </form>
         </div>
