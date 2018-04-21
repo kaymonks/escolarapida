@@ -4,32 +4,24 @@
     <section class="sidebar">
 
         <!-- Sidebar user panel (optional) -->
-        <div class="user-panel">
-            <div class="pull-left image">
-                <img src="{{ asset("/bower_components/AdminLTE/dist/img/user2-160x160.jpg") }}" class="img-circle" alt="User Image">
-            </div>
-            <div class="pull-left info">
+        <div style="background-color: white">
+            <div class="text-center">
 
-                <p> @if(Auth::guest())
-
-                    @else
-                        {{ Auth::user()->name }}
-                    @endif</p>
+                <h1 style="margin: 0;">
+                    <img style="" src="{{ asset("/images/logo2.jpg") }}" alt="Logo">
+                </h1>
                 <!-- Status -->
             </div>
         </div>
 
         <!-- Sidebar Menu -->
         <ul class="sidebar-menu">
-            <li class="header">MENU</li>
-            <!-- Optionally, you can add icons to the links -->
-            {{--<li><a href="#"><i class="fa fa-home"></i> <span>Home</span></a></li>--}}
             @if(Auth::check() && Auth::user()->permission_id == 1)
                 <li class="{{ str_contains(request()->url(), '/escola') ? 'active' : '' }}"><a href="{{ route('escolas') }}"><i class="fa fa-institution"></i> <span>Escolas</span></a></li>
             @elseif(Auth::check() && Auth::user()->permission_id == 2)
                 <li class="{{ str_contains(request()->url(), '/professor') ? 'active' : '' }}"><a href="{{ route('professores') }}"><i class="fa fa-user"></i> <span>Professores</span></a></li>
                 <li class="{{ str_contains(request()->url(), '/turma') ? 'active' : '' }}"><a href="{{ route('turmas') }}"><i class="fa fa-pencil-square"></i> <span>Turmas</span></a></li>
-                <li class="{{ str_contains(request()->url(), '/responsavel') ? 'active' : '' }}"><a href="{{ route('responsaveis') }}"><i class="fa fa-user"></i> <span>Pais</span></a></li>
+                <li class="{{ str_contains(request()->url(), '/responsavel') ? 'active' : '' }}"><a href="{{ route('responsaveis') }}"><i class="fa fa-user"></i> <span>Responsáveis</span></a></li>
                 <li class="{{ str_contains(request()->url(), '/aluno') ? 'active' : '' }}"><a href="{{ route('alunos') }}"><i class="fa fa-graduation-cap"></i> <span>Alunos</span></a></li>
                 <li class="treeview {{ str_contains(request()->url(), '/mensagem') ? 'active' : '' }}">
                     <a href="{{ route('mensagens') }}">
@@ -47,7 +39,7 @@
                                     </span>
                                 </a>
                                 <ul class="treeview-menu">
-                                    <li><a href="{{ route('mensagem.responsavel') }}">Pai(s)</a></li>
+                                    <li><a href="{{ route('mensagem.responsavel') }}">Responsáveis</a></li>
                                     <li><a href="{{ route('mensagem.turma') }}">Turma(s)</a></li>
                                     <li><a href="{{ route('mensagem.escola') }}">Escola</a></li>
                                 </ul>
@@ -99,7 +91,7 @@
                                     </span>
                                 </a>
                                 <ul class="treeview-menu">
-                                    <li><a href="{{ route('mensagem.responsavel') }}">Pai(s)</a></li>
+                                    <li><a href="{{ route('mensagem.responsavel') }}">Responsáveis</a></li>
                                     <li><a href="{{ route('mensagem.turma') }}">Turma(s)</a></li>
                                 </ul>
                             </li>
