@@ -17,7 +17,7 @@
                 <div class="col-xs-12">
                     <div class="box box-primary">
                         <div class="box-header with-border">
-                            <h3 class="box-title">Adicionar Alunos</h3>
+                            <h3 class="box-title">Adicionar Aluno</h3>
                         </div>
                         <form method="post" action="{{ route('aluno.salvar') }}">
                             <div class="box-body">
