@@ -18,7 +18,7 @@
         </section>
         <section class="content">
             <div class="row">
-                <div class="col-xs-12 col-md-6">
+                <div class="col-xs-12">
                     <div class="box">
                         <div class="box-header with-border"><h3 class="box-title">Listar Turmas</h3></div>
                         <div class="box-body">

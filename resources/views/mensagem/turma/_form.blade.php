@@ -18,12 +18,11 @@
     </div>
     <div class="col-md-6">
         <div class="form-group">
-            <label>Título</label>
-            <input class="form-control" placeholder="Titulo" name="titulo">
+            <label>Assunto</label>
+            <input class="form-control" placeholder="Assunto" name="titulo">
         </div>
     </div>
 </div>
 <div class="form-group">
-    <textarea id="compose-textarea" name="corpo" class="form-control" style="height: 300px; /*display: none;*/"></textarea>
-    {{--<iframe class="wysihtml5-sandbox" security="restricted" allowtransparency="true" marginwidth="0" marginheight="0" style="display: block; background-color: rgb(255, 255, 255); border-collapse: separate; border-color: rgb(210, 214, 222); border-style: solid; border-width: 1px; clear: none; float: none; margin: 0px; outline: 0px none rgb(85, 85, 85); outline-offset: 0px; padding: 6px 12px; position: static; top: auto; left: auto; right: auto; bottom: auto; z-index: auto; vertical-align: text-bottom; text-align: start; box-sizing: border-box; box-shadow: none; border-radius: 0px; width: 100%; height: 300px;" width="0" height="0" frameborder="0"></iframe>--}}
+    <textarea id="compose-textarea" name="corpo" class="form-control" style="height: 300px; /*display: none;*/" placeholder="Adicione uma mensagem aqui"></textarea>
 </div>
