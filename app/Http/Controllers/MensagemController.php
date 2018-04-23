@@ -193,27 +193,28 @@ class MensagemController extends Controller
 
         switch ($tipo_usuario) {
             case 2:
-                $escola = Escola::where('user_id', '=', $id_usuario)->first();
-                $dados['escola_id'] = $escola->id;
+                $remetente = Escola::where('user_id', '=', $id_usuario)->first();
+                $escola_id = $remetente->id;
                 break;
             case 4:
-                $id_user = Responsavel::where('user_id', '=', $id_usuario)->first();
-                $dados['remetente_responsavel_id'] = $id_user->id;
-                $destinatario['destinatario_escola_id']  = $dados['escola_id'] = $id_user->escola_id;
+                $remetente = Responsavel::where('user_id', '=', $id_usuario)->first();
+                $dados['remetente_responsavel_id'] = $remetente->id;
+                $escola_id = $remetente->escola_id;
+                $destinatario['destinatario_escola_id']  = $escola_id;
                 break;
         }
 
         $mensagem_id = null;
         if (isset($dados['mensagem_id'])) {
             $mensagem_id = $dados['mensagem_id'];
-            $dados['remetente_escola_id'] = $dados['escola_id'];
+            $dados['remetente_escola_id'] = $escola_id;
             $destinatario['destinatario_id'] = $request->destinatario[0];
         }
         $dados['mensagem_id'] = $mensagem_id;
 
         $mensagem = Mensagem::create($dados);
         $destinatario['mensagem_id'] = $mensagem->id;
-        $destinatario['destinatario_escola_id']  = $dados['escola_id'];
+        $destinatario['destinatario_escola_id']  = $escola_id;
         $destinatario['tipo_destinatario']  = $tipo_usuario;
 
         MensagemDestinatario::create($destinatario);
@@ -237,7 +238,6 @@ class MensagemController extends Controller
                 $escola = Escola::where('user_id', $user_logado)->first();
                 $escola_id = $escola->id;
                 $responsaveis = Responsavel::where('escola_id', $escola_id)->get();
-
                 break;
         }
 
@@ -272,6 +272,8 @@ class MensagemController extends Controller
                 $remetene = Professor::where('user_id', $id_usuario)->first();
                 $remetente_professor = $remetene->id;
                 $escola_id = $remetene->escola_id;
+                $escola_nome = Escola::where('id', $escola_id)->pluck('nome');
+                $escola_nome = $escola_nome[0];
                 break;
         }
 
