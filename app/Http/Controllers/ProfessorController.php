@@ -36,7 +36,7 @@ class ProfessorController extends Controller
         $user['email'] = $dados['email'];
         $user['password'] = bcrypt($dados['senha']);
         $user['permission_id'] = $this->permission_id;
-        $user['name'] = $dados['nome'];
+        $user['name'] = $dados['login'];
         $user = User::create($user);
         $dados['user_id'] = $user->id;
         $user_logado = $request->user()->id;
@@ -81,7 +81,7 @@ class ProfessorController extends Controller
         $telefone->telefone = $dados['telefone'];
         $telefone->save();
         $professor = Professor::find($id)->update($dados);
-        $novo_login['email'] = $dados['email'];
+        $novo_login['email'] = $dados['login'];
         $novo_login['password'] = bcrypt($dados['senha']);
 
         $user_id = Professor::where('id', '=', $id)->pluck('user_id');
