@@ -39,7 +39,7 @@ class ResponsavelController extends Controller
     {
         $request->flash();
         $dados = $request->all();
-        $user['email'] = $dados['email'];
+        $user['email'] = $dados['login'];
         $user['password'] = bcrypt($dados['senha']);
 //        $user['password'] = $dados['senha'];
         $user['permission_id'] = $this->permission_id;
