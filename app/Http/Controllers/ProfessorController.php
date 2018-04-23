@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 use App\Professor;
 use App\Telefone;
 use DateTime;
-use App\Http\Controllers\Auth;
+use Illuminate\Support\Facades\Auth;
 
 class ProfessorController extends Controller
 {
@@ -17,7 +17,10 @@ class ProfessorController extends Controller
 
     public function index()
     {
-        $registros = Professor::with('telefones')->paginate(10);
+        $user_logado = Auth::user()->id;
+        $escola = Escola::where('user_id', $user_logado)->first();
+        $escola_id = $escola->id;
+        $registros = Professor::with('telefones')->where('escola_id', $escola_id)->paginate(10);
 
         return view('professor.index', compact('registros'));
     }
