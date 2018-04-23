@@ -61,7 +61,7 @@ class ProfessorController extends Controller
         $registro = Professor::find($id);
         $user_id = $registro->user_id;
         $login = User::find($user_id);
-        $registro['email'] = $login->email;
+        $registro['login'] = $login->email;
 
         $telefone = Professor::find($id)->telefones;
         $registro['telefone'] = $telefone->telefone;
