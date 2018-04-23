@@ -73,7 +73,7 @@
                     </div>
 
                     <div class="box" id="nova_mensagem">
-                        <form action="@if($tipo_usuario == 4){{ route('mensagem.responsavel.enviar') }} @else {{ route('mensagem.escola.enviar') }} @endif" method="post">
+                        <form action="@if($tipo_usuario == 4 or $tipo_usuario == 3){{ route('mensagem.responsavel.enviar') }} @else {{ route('mensagem.escola.enviar') }} @endif" method="post">
                             <div class="box-body">
                                 {{ csrf_field() }}
                                 <input type="hidden" name="mensagem_id" value="{{ $mensagem->id }}">

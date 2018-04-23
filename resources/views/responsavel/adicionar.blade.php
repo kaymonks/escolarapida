@@ -14,10 +14,9 @@
         </section>
 
         <section class="content">
-
             <div class="box box-primary">
                 <div class="box-header with-border">
-                    <h3 class="box-title">Adicionar Responsável</h3>
+                    <h2 class="box-title">Adicionar Responsável</h2>
                 </div>
                 <form class="form-horizontal" method="post" action="{{ route('responsavel.salvar') }}">
                     <div class="box-body">
@@ -29,7 +28,6 @@
                     </div>
                 </form>
             </div>
-
         </section>
     </div>
 

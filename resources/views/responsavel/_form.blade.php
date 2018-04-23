@@ -45,6 +45,13 @@
     </div>
 
     <div class="form-group">
+        <label for="inputEmail" class="col-sm-4 control-label">Email</label>
+        <div class="col-sm-5">
+            <input type="text" name="email" id="inputEmail" class="form-control" placeholder="Email" value="{{ isset($registro->email) ? $registro->endereco : old('endereco') }}">
+        </div>
+    </div>
+
+    <div class="form-group">
         <label for="inputEndereco" class="col-sm-4 control-label">Endereço</label>
         <div class="col-sm-5">
             <input type="text" name="endereco" id="inputEndereco" class="form-control" placeholder="Endereço" value="{{ isset($registro->endereco) ? $registro->endereco : old('endereco') }}">
@@ -57,10 +64,18 @@
             <input type="text" name="cep" id="inputCEP" class="form-control" placeholder="CEP" value="{{ isset($registro->cep) ? $registro->cep : old('cep') }}">
         </div>
     </div>
+
     <div class="form-group">
         <label for="inputNumero" class="col-sm-4 control-label">Número</label>
-        <div class="col-sm-2 col-md-2 col-lg-1">
+        <div class="col-sm-2">
             <input type="text" name="numero" id="inputNumero" class="form-control" value="{{ isset($registro->numero) ? $registro->numero : old('numero') }}">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="inputBairro" class="col-sm-4 control-label">Bairro</label>
+        <div class="col-sm-4">
+            <input type="text" name="bairro" id="inputBairro" class="form-control" placeholder="Bairro" value="{{ isset($registro->bairro) ? $registro->bairro : old('bairro') }}">
         </div>
     </div>
 
@@ -70,29 +85,25 @@
             <input type="text" name="estado" id="inputEstado" class="form-control" placeholder="Estado" value="{{ isset($registro->estado) ? $registro->estado : old('estado') }}">
         </div>
     </div>
+
     <div class="form-group">
         <label for="inputCidade" class="col-sm-4 control-label">Cidade</label>
         <div class="col-sm-4">
             <input type="text" name="cidade" id="inputCidade" class="form-control" placeholder="Cidade" value="{{ isset($registro->cidade) ? $registro->cidade : old('cidade') }}">
         </div>
     </div>
-    <div class="form-group">
-        <label for="inputBairro" class="col-sm-4 control-label">Bairro</label>
-        <div class="col-sm-4">
-            <input type="text" name="bairro" id="inputBairro" class="form-control" placeholder="Bairro" value="{{ isset($registro->bairro) ? $registro->bairro : old('bairro') }}">
-        </div>
-    </div>
-
 </div>
+
 <hr>
+
 <div class="col-md-12">
     <fieldset>
         <legend>Login</legend>
         <div class="row">
             <div class="form-group">
-                <label for="inputEmail" class="col-sm-4 control-label">Email</label>
+                <label for="inputLogin" class="col-sm-4 control-label">Login</label>
                 <div class="col-sm-4 col-md-3">
-                    <input type="text" name="email" id="inputEmail" class="form-control" placeholder="Email" value="{{isset($registro->email) ? $registro->email : old('email') }}">
+                    <input type="text" name="login" id="inputLogin" class="form-control" placeholder="Login" value="{{isset($registro->login) ? $registro->login : old('login') }}">
                 </div>
             </div>
             <div class="form-group">

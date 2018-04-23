@@ -1,54 +1,27 @@
 @extends('layout.site')
-
 @section('titulo', 'Enviar mensagem')
-
-
 @section('conteudo')
     <div class="content-wrapper">
-        <section class="content-header">
-            <h1>Turmas</h1>
-            <ol class="breadcrumb">
-                <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-                <li><a href="{{ route('mensagens') }}"> Mensagens</a></li>
-                <li><a href="{{ route('turmas') }}"> Turmas</a></li>
-                <li class="active">Enviar</li>
-            </ol>
-        </section>
         <section class="content">
             <div class="row">
                 <div class="col-xs-12">
                     <div class="box box-primary">
                         <div class="box-header with-border">
-                            <h3 class="box-title">Escrever nova mensagem</h3>
+                            <h3 class="box-title">Nova mensagem</h3>
                         </div>
-                        <!-- /.box-header -->
-                        <form action="{{ route('mensagem.turma.enviar') }}" method="post">
+                        <form class="form-horizontal" action="{{ route('mensagem.turma.enviar') }}" method="post">
                             <div class="box-body">
                                 {{ csrf_field() }}
                                 @include('mensagem.turma._form')
                             </div>
-                            <!-- /.box-body -->
                             <div class="box-footer">
-                                <div class="pull-right">
-                                    <a href="{{ route('mensagem.turma') }}" class="btn btn-default"><i class="fa fa-times"></i> Cancelar</a>
-                                </div>
-                                <button type="submit" class="btn btn-primary"><i class="fa fa-paper-plane"></i> Enviar</button>
+                                <a href="{{ route('mensagens') }}" class="btn btn-default"><i class="fa fa-times"></i> Cancelar</a>
+                                <button type="submit" class="btn btn-primary pull-right"><i class="fa fa-paper-plane"></i> Enviar</button>
                             </div>
-                            <!-- /.box-footer -->
                         </form>
                     </div>
-                    <!-- /.box-primary -->
                 </div>
             </div>
         </section>
     </div>
 @endsection
-{{--<form method="post" action="{{ route('escola.salvar') }}">--}}
-    {{--<div class="box-body">--}}
-        {{--{{ csrf_field() }}--}}
-        {{--@include('mensagem.escola._form')--}}
-    {{--</div>--}}
-    {{--<div class="box-footer">--}}
-        {{--<button type="submit" class="btn btn-primary">Salvar</button>--}}
-    {{--</div>--}}
-{{--</form>--}}
