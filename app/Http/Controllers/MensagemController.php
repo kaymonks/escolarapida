@@ -288,7 +288,7 @@ class MensagemController extends Controller
         if ($mensagem) {
             foreach ($responsaveis as $responsavel) {
                 $email = $responsavel['email'];
-                require (base_path() . '\app\SendGrid\sendgrid.php');
+                require (base_path() . '/SendGrid/sendgrid.php');
             }
         }
         $mensagem_id = $mensagem->id;
