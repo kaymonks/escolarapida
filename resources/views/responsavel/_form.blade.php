@@ -47,7 +47,7 @@
     <div class="form-group">
         <label for="inputEmail" class="col-sm-4 control-label">Email</label>
         <div class="col-sm-5">
-            <input type="text" name="email" id="inputEmail" class="form-control" placeholder="Email" value="{{ isset($registro->email) ? $registro->endereco : old('endereco') }}">
+            <input type="text" name="email" id="inputEmail" class="form-control" placeholder="Email" value="{{ isset($registro->email) ? $registro->email : old('email') }}">
         </div>
     </div>
 
