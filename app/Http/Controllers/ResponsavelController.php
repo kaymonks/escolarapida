@@ -76,12 +76,18 @@ class ResponsavelController extends Controller
         $telefone2 = Telefone::create($telefone);
         $dados['telefone_id'] = $telefone2->id;
         $novaData = DateTime::createFromFormat('d/m/Y', $dados['data_nascimento']);
-        if ( false===$novaData )
-        {
-            die('formato de data inválido');
-        }
+//        if ( false===$novaData )
+//        {
+//            die('formato de data inválido');
+//        }
         $dados['data_nascimento'] = $novaData->format('Y-m-d');
         Responsavel::find($id)->update($dados);
+        $novo_login['email'] = $dados['login'];
+        $novo_login['password'] = bcrypt($dados['senha']);
+
+        $user_id = Responsavel::where('id', '=', $id)->pluck('user_id');
+
+        User::find($user_id)->update($novo_login);
         return redirect()->route('responsaveis');
     }
 
