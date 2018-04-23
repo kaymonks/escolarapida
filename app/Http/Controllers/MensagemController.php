@@ -37,7 +37,7 @@ class MensagemController extends Controller
                         }
                     }
                     else{
-                        $turma_id = "";
+                        $turma_id = array();
                     }
                 }
 
