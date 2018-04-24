@@ -21,23 +21,17 @@ class LoginController extends Controller
     public function entrar(LoginRequest  $request)
     {
         $dados = $request->all();
-//    die('tesrte');
 
-        if (Auth::attempt(['email'=>$dados['email'], 'password'=>$dados['senha'], 'permission_id'=>1])){ //admim
+        if (Auth::attempt(['login'=>$dados['login'], 'password'=>$dados['senha'], 'permission_id'=>1])){ //admim
             return redirect()->intended('/escolas');
-        }elseif (Auth::attempt(['email'=>$dados['email'], 'password'=>$dados['senha'], 'permission_id'=>2])) { //escolas
-            return redirect()->intended('/responsaveis');
-
-        }elseif (Auth::attempt(['email'=>$dados['email'], 'password'=>$dados['senha'], 'permission_id'=>3])) { //professor
-
+        }elseif (Auth::attempt(['login'=>$dados['login'], 'password'=>$dados['senha'], 'permission_id'=>2])) { //escolas
             return redirect()->intended('/mensagens');
-        }elseif (Auth::attempt(['email'=>$dados['email'], 'password'=>$dados['senha'], 'permission_id'=>4])) { //pais
-//
+        }elseif (Auth::attempt(['login'=>$dados['login'], 'password'=>$dados['senha'], 'permission_id'=>3])) { //professor
+            return redirect()->intended('/mensagens');
+        }elseif (Auth::attempt(['login'=>$dados['login'], 'password'=>$dados['senha'], 'permission_id'=>4])) { //pais
              return redirect()->intended('/mensagens');
         }
         else{
-//            dd($dados);
-
             return redirect()->intended('/login');
         }
     }
