@@ -21,5 +21,5 @@
 @endif
 
 <div class="mailbox-read-message">
-    <p>{{ isset($mensagem->corpo) ? $mensagem->corpo : '' }}</p>
+    {!! isset($mensagem->corpo) ? nl2br(e($mensagem->corpo)) : ''  !!}
 </div>

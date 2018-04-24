@@ -20,21 +20,10 @@
                         <div class="box-header with-border"><h3 class="box-title">Caixa de Entrada</h3></div>
                         <div class="box-body table-responsive">
                             <table class="table table-hover table-bordered">
-                                <thead>
-                                <tr>
-                                    {{--<th style="width: 70px">#</th>--}}
-                                    <th  style="width: 280px">Remetente</th>
-                                    <th style=" ">Título</th>
-                                    <th style="width: 110px">Data</th>
-                                    <th style="width: 80px">Visualizar</th>
-                                </tr>
-                                </thead>
                                 <tbody>
                                 @forelse($mensagens as $mensagem)
                                     <tr>
-                                        {{--<td>{{$mensagem->id}}</td>--}}
-{{--                                        <td>{{ $mensagem->remetente_resp->nome  }}--}}
-                                        <td>
+                                        <td style="width: 300px">
                                             @if ($mensagem->remetente_escola!=NULL)
                                                 {{ $mensagem->remetente_escola->nome }}
                                             @elseif($mensagem->remetente_resp!=NULL)
@@ -45,9 +34,9 @@
                                             @endif
                                         </td>
                                         <td>{{ $mensagem->titulo }}</td>
-                                        <td> {{ $mensagem->data = date('d/m/Y', strtotime($mensagem->data)) }}</td>
+                                        <td style="width: 100px"> {{ $mensagem->data = date('d/m/Y', strtotime($mensagem->data)) }}</td>
                                         </td>
-                                        <td style="text-align: center">
+                                        <td style="text-align: center; width: 60px">
                                             <a title="Visualizar" class="btn btn-primary btn-sm"  href="{{ route('mensagem.view',$mensagem->id) }}"><i class="fa fa-eye" aria-hidden="true"></i></a>
                                         </td>
                                     </tr>
