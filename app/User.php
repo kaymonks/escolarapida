@@ -15,7 +15,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'permission_id',
+        'name', 'login', 'password', 'permission_id',
     ];
 
     /**
@@ -26,14 +26,6 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
-
-    public function ePai()
-    {
-        if ($this->permission_id == 4) {
-            return true;
-        }
-        return false;
-    }
 
     public function getId()
     {
