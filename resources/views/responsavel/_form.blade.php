@@ -109,7 +109,7 @@
             <div class="form-group">
                 <label for="inputSenha" class="col-sm-4 control-label">Senha</label>
                 <div class="col-sm-4 col-md-3">
-                    <input type="password" name="senha" id="inputSenha" class="form-control" placeholder="senha" value="{{isset($registro->senha) ? $registro->senha : old('senha')}}">
+                    <input type="password" name="senha" id="inputSenha" class="form-control" placeholder="senha">
                 </div>
             </div>
         </div>
