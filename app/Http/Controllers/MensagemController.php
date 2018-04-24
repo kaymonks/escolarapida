@@ -285,11 +285,11 @@ class MensagemController extends Controller
 
         $responsaveis = Responsavel::select('email')->whereIn('id', $request->destinatario)->get()->toArray();
         $mensagem = Mensagem::create($dados);
-        
+
         if ($mensagem) {
             foreach ($responsaveis as $responsavel) {
                 $email = $responsavel['email'];
-                require (base_path() . '/SendGrid/sendgrid.php');
+                require ('/SendGrid/sendgrid.php');
             }
         }
         $mensagem_id = $mensagem->id;
