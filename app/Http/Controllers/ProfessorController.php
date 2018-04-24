@@ -33,7 +33,7 @@ class ProfessorController extends Controller
     public function salvar(ProfessorRequest $request)
     {
         $dados = $request->all();
-        $user['email'] = $dados['email'];
+        $user['login'] = $dados['email'];
         $user['password'] = bcrypt($dados['senha']);
         $user['permission_id'] = $this->permission_id;
         $user['name'] = $dados['login'];
@@ -61,7 +61,7 @@ class ProfessorController extends Controller
         $registro = Professor::find($id);
         $user_id = $registro->user_id;
         $login = User::find($user_id);
-        $registro['login'] = $login->email;
+        $registro['login'] = $login->login;
 
         $telefone = Professor::find($id)->telefones;
         $registro['telefone'] = $telefone->telefone;
@@ -81,7 +81,9 @@ class ProfessorController extends Controller
         $telefone->telefone = $dados['telefone'];
         $telefone->save();
         $professor = Professor::find($id)->update($dados);
-        $novo_login['email'] = $dados['login'];
+        if ($dados['login'] != null) {
+            $novo_login['login'] = $dados['login'];
+        }
         $novo_login['password'] = bcrypt($dados['senha']);
 
         $user_id = Professor::where('id', '=', $id)->pluck('user_id');

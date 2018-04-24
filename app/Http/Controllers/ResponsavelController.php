@@ -39,7 +39,7 @@ class ResponsavelController extends Controller
     {
         $request->flash();
         $dados = $request->all();
-        $user['email'] = $dados['login'];
+        $user['login'] = $dados['login'];
         $user['password'] = bcrypt($dados['senha']);
 //        $user['password'] = $dados['senha'];
         $user['permission_id'] = $this->permission_id;
@@ -66,6 +66,9 @@ class ResponsavelController extends Controller
         $registro = Responsavel::find($id);
         $registro['data_nascimento'] = date( 'd/m/Y' , strtotime($registro->data_nascimento ) );
         $telefone = Responsavel::find($id)->telefones;
+        $user_id = $registro->user_id;
+        $login = User::where('id', $user_id)->pluck('login');
+        $registro['login'] = $login[0];
         return view('responsavel.editar', compact('registro', 'telefone'));
     }
 
@@ -76,14 +79,11 @@ class ResponsavelController extends Controller
         $telefone2 = Telefone::create($telefone);
         $dados['telefone_id'] = $telefone2->id;
         $novaData = DateTime::createFromFormat('d/m/Y', $dados['data_nascimento']);
-//        if ( false===$novaData )
-//        {
-//            die('formato de data inválido');
-//        }
         $dados['data_nascimento'] = $novaData->format('Y-m-d');
         Responsavel::find($id)->update($dados);
-        $novo_login['email'] = $dados['login'];
+        $novo_login['login'] = $dados['login'];
         $novo_login['password'] = bcrypt($dados['senha']);
+        $novo_login['name'] = $dados['nome'];
 
         $user_id = Responsavel::where('id', '=', $id)->pluck('user_id');
 
