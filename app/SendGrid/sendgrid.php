@@ -2,7 +2,7 @@
 
 require '../vendor/autoload.php';
 
-$from = new SendGrid\Email(null, 'kaymon.storino@gmail.com');
+$from = new SendGrid\Email(null, $remetente_email);
 $subject = $escola_nome;
 $to = new SendGrid\Email(null, $email);
 $content = new SendGrid\Content("text/html",
