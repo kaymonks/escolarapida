@@ -28,7 +28,6 @@ class AlunoRequest extends FormRequest
             'pai_id' => 'required',
             'turma_id' => 'required',
             'data_nascimento' => 'required',
-            'telefone' => 'required',
             'sexo' => 'required',
         ];
     }

@@ -17,7 +17,7 @@
     <div class="form-group">
         <label for="inputDataNascimento" class="col-sm-4 control-label">Data de Nascimento</label>
         <div class="col-sm-4 col-md-2">
-            <input type="text" name="data_nascimento" class="form-control" id="date" value="{{isset($registro->data_nascimento) ? $registro->data_nascimento : old('data_nascimento')}}">
+            <input type="text" name="data_nascimento" class="form-control" id="date" value="{{isset($registro->data_nascimento) ? date( 'd/m/Y' , strtotime($registro->data_nascimento ) ) : old('data_nascimento')}}">
         </div>
     </div>
 
@@ -59,8 +59,8 @@
         <label for=""  class="col-sm-4 control-label">Responsáveis</label>
         <div class="col-sm-8 col-md-5">
             <select class="form-control select2 select2-hidden-accessible" multiple="" name="pai_id[]" style="width: 100%;" tabindex="-1" aria-hidden="true">
-                @foreach($pais as $pai)
-                    <option value="{{ $pai->id }}" @if(in_array($pai->id, $nomepais)) selected @endif >{{ $pai->nome }}</option>
+                @foreach($responsaveis as $responsavel)
+                    <option value="{{ $responsavel->id }}" @if(in_array($responsavel->id, $nomepais)) selected @endif >{{ $responsavel->nome }}</option>
                 @endforeach
             </select>
         </div>

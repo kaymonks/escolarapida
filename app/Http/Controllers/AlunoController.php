@@ -12,6 +12,7 @@ use App\Aluno;
 use App\Responsavel;
 use App\Turma;
 use DateTime;
+use Illuminate\Support\Facades\Auth;
 
 class AlunoController extends Controller
 {
@@ -23,14 +24,12 @@ class AlunoController extends Controller
 
     public function adicionar()
     {
-        $pais = Responsavel::orderBy('nome', 'asc')->get();
-        $turmas = Turma::all();
-        $registro = Aluno::all();
-        $paiNome = array('id'=>1);
-        $turmaNome = array('id'=>1);
-        $telefone = array('telefone'=>'3r32r3');
+        $usuario = Auth::user();
+        $escola_id = Escola::where('user_id', '=', $usuario->id)->pluck('id');
+        $responsaveis = Responsavel::where('escola_id', $escola_id)->orderBy('nome', 'asc')->get();
+        $turmas = Turma::where('escola_id', $escola_id)->get();
         $nomepais = array();
-        return view('aluno.adicionar', compact('pais', 'turmas', 'nomepais'));
+        return view('aluno.adicionar', compact('responsaveis', 'turmas', 'nomepais'));
     }
 
     public function salvar(AlunoRequest $request)
@@ -63,20 +62,23 @@ class AlunoController extends Controller
 
     public function editar($id)
     {
+        $usuario = Auth::user();
+        $escola_id = Escola::where('user_id', '=', $usuario->id)->pluck('id');
         $registro = Aluno::find($id);
-        $registro['data_nascimento'] = date( 'd/m/Y' , strtotime($registro->data_nascimento ) );
-        $turmas = Turma::all();
-        $pais = Responsavel::all();
+//        dd($registro);
+//        $registro['data_nascimento'] = date( 'd/m/Y' , strtotime($registro->data_nascimento ) );
+        $turmas = Turma::where('escola_id', $escola_id)->get();
+        $responsaveis = Responsavel::where('escola_id', $escola_id)->orderBy('nome', 'asc')->get();
         $turmaNome = Aluno::find($id)->turmas;
         $paiNome = Aluno::find($id)->pais;
         $telefone = Aluno::find($id)->telefones;
         $paisAlunos = Aluno::find($id)->responsaveis->all();
-//        dd($paisAlunos);
+
         foreach ($paisAlunos as $item) {
             $nomepais[] = $item->id;
         }
-//        dd($nomepais);
-        return view('aluno.editar', compact('registro', 'turmas', 'pais', 'turmaNome', 'paiNome', 'telefone', 'nomepais'));
+
+        return view('aluno.editar', compact('registro', 'turmas', 'responsaveis', 'turmaNome', 'paiNome', 'telefone', 'nomepais'));
     }
 
     public function atualizar(AlunoRequest $request, $id)
@@ -92,6 +94,10 @@ class AlunoController extends Controller
             $pai['responsavel_id'] = $item;
             AlunoResponsavel::create($pai);
         }
+        $novoTelefone['telefone'] = $dados['telefone'];
+        $get_tel_id = Aluno::where('id', $id)->pluck('telefone_id');
+        $telefone = Telefone::find($get_tel_id)->update($novoTelefone);
+
         return redirect()->route('alunos');
     }
 
