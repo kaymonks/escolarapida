@@ -285,7 +285,7 @@ class MensagemController extends Controller
 
         $responsaveis = Responsavel::select('email')->whereIn('id', $request->destinatario)->get()->toArray();
         $mensagem = Mensagem::create($dados);
-        echo base_path();die('teste');
+        
         if ($mensagem) {
             foreach ($responsaveis as $responsavel) {
                 $email = $responsavel['email'];
