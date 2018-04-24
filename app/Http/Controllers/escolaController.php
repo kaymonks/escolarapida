@@ -25,7 +25,7 @@ class escolaController extends Controller
     public function salvar(EscolaRequest $request)
     {
         $dados = $request->all();
-        $user['email'] = $dados['email'];
+        $user['login'] = $dados['login'];
         $user['password'] = bcrypt($dados['senha']);
         $user['permission_id'] = 2;
         $user['name'] = $dados['nome'];
@@ -44,9 +44,10 @@ class escolaController extends Controller
         $registro = Escola::find($id);
         $telefone = Escola::find($id)->telefones;
         $registro['telefone'] = $telefone->telefone;
-        $usuario = Escola::find($id)->usuarios;
-        $registro['email'] = $usuario->email;
-        $registro['senha'] = $usuario->password;
+        $escola = Escola::find($id)->usuarios;
+        $user_id = $escola->id;
+        $user = User::find($user_id);
+        $registro['login'] = $user->login;
         return view('escola.editar', compact('registro'));
     }
 
@@ -54,7 +55,7 @@ class escolaController extends Controller
     {
         $dados = $request->all();
         $dadosUser = array();
-        $dadosUser['email'] = $dados['email'];
+        $dadosUser['login'] = $dados['login'];
         $dadosUser['password'] = bcrypt($dados['senha']);
 
         Escola::find($id)->update($dados);
