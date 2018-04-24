@@ -16,10 +16,10 @@
                 {{ csrf_field() }}
                 <div class="box-body">
 
-                    <div class="form-group {{ ($errors->first('email')) ? 'has-error'  :''}}">
-                        <label for="inputEmail1">Login</label>
-                        <input type="text" id="inputEmail1" class="form-control" placeholder="Email" name="email">
-                        {!! $errors->first('email', '<span class="help-block">:message</span>') !!}
+                    <div class="form-group {{ ($errors->first('login')) ? 'has-error'  :''}}">
+                        <label for="inputLogin">Login</label>
+                        <input type="text" id="inputLogin" class="form-control" placeholder="Login" name="login">
+                        {!! $errors->first('login', '<span class="help-block">:message</span>') !!}
                     </div>
 
                     <div class="form-group {{ ($errors->first('senha')) ? 'has-error'  :''}}">

@@ -7,22 +7,28 @@
 @endif
 <fieldset>
     <legend>Dados Gerais</legend>
-    <div class="col-md-4">
+    <div class="col-md-3">
         <div class="form-group">
             <label for="inputNome">Unidade</label>
             <input type="text" name="nome" id="inputNome" class="form-control" placeholder="Unidade" value="{{isset($registro->nome) ? $registro->nome : ''}}">
         </div>
     </div>
-    <div class="col-md-4">
+    <div class="col-md-3">
         <div class="form-group">
             <label for="inputDiretor">Diretor</label>
             <input type="text" name="diretor" id="inputDiretor" class="form-control" placeholder="Diretor" value="{{isset($registro->diretor) ? $registro->diretor : ''}}">
         </div>
     </div>
-    <div class="col-md-4">
+    <div class="col-md-3">
         <div class="form-group">
             <label for="inputTelefone">Telefone</label>
             <input type="text" name="telefone" id="inputTelefone" class="form-control" placeholder="Telefone" value="{{isset($registro->telefone) ? $registro->telefone : ''}}">
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="form-grouo">
+            <label for="inputEmail">Email</label>
+            <input type="email" name="email" id="inputEmail" class="form-control" placeholder="Email" value="{{isset($registro->email) ? $registro->email : ''}}">
         </div>
     </div>
 </fieldset>
@@ -69,8 +75,8 @@
     <legend>Login</legend>
     <div class="col-md-4">
         <div class="form-group">
-            <label for="inputEmail">Email</label>
-            <input type="text" name="email" id="inputEmail" class="form-control" placeholder="Email" value="{{isset($registro->email) ? $registro->email : ''}}">
+            <label for="inputLogin">Login</label>
+            <input type="text" name="login" id="inputLogin" class="form-control" placeholder="login" value="{{isset($registro->login) ? $registro->login : ''}}">
         </div>
     </div>
     <div class="col-md-3">
