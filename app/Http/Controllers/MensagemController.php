@@ -289,7 +289,9 @@ class MensagemController extends Controller
         $dados['remetente_professor_id'] = $remetente_professor;
         $dados['remetente_responsavel_id'] = $remetente_responsavel;
         $dados['tipo_remetente'] = $tipo_usuario;
-
+        $path = public_path();
+        echo $path;
+        die('teste');
         $responsaveis = Responsavel::select('id', 'email')->whereIn('id', $request->destinatario)->get()->toArray();
         $mensagem = Mensagem::create($dados);
         $mensagem_id = $mensagem->id;
