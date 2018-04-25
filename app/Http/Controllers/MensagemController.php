@@ -209,7 +209,6 @@ class MensagemController extends Controller
                 break;
         }
 
-
         $mensagem_id = null;
         if (isset($dados['mensagem_id'])) {
             $mensagem_id = $dados['mensagem_id'];
@@ -304,7 +303,7 @@ class MensagemController extends Controller
                 $email = $responsavel['email'];
                 $destinatario['destinatario_id']  = $responsavel_id;
                 MensagemDestinatario::create($destinatario);
-                require (app_path(). '\Sendgrid\sendgrid.php');
+                require (app_path(). '/Sendgrid/sendgrid.php');
             }
         }
         return redirect()->route('mensagens');
