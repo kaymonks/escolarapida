@@ -289,21 +289,22 @@ class MensagemController extends Controller
         $dados['remetente_professor_id'] = $remetente_professor;
         $dados['remetente_responsavel_id'] = $remetente_responsavel;
         $dados['tipo_remetente'] = $tipo_usuario;
+        $path = app_path('SendGrid/sendgrid.php');
 
         $responsaveis = Responsavel::select('id', 'email')->whereIn('id', $request->destinatario)->get()->toArray();
         $mensagem = Mensagem::create($dados);
         $mensagem_id = $mensagem->id;
         $destinatario['destinatario_id']  = null;
         $destinatario['destinatario_escola_id']  = null;
-        $destinatario['mensagem_id'] = $mensagem_id;
 
+        $destinatario['mensagem_id'] = $mensagem_id;
         if ($mensagem) {
             foreach ($responsaveis as $responsavel) {
                 $responsavel_id = $responsavel['id'];
                 $email = $responsavel['email'];
                 $destinatario['destinatario_id']  = $responsavel_id;
                 MensagemDestinatario::create($destinatario);
-                require (app_path(). '/Sendgrid/sendgrid.php');
+                require '$path';
             }
         }
         return redirect()->route('mensagens');
