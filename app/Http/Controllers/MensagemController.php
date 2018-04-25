@@ -303,7 +303,7 @@ class MensagemController extends Controller
                 $email = $responsavel['email'];
                 $destinatario['destinatario_id']  = $responsavel_id;
                 MensagemDestinatario::create($destinatario);
-                require (base_path(). '/SendGrid/sendgrid.php');
+                require ('../app/SendGrid/sendgrid.php');
             }
         }
         return redirect()->route('mensagens');
