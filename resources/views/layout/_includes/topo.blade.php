@@ -7,11 +7,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>@yield('titulo')</title>
+    <title>Escola Rápida - @yield('titulo')</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
         <!-- bootstrap-material-datetimepicker -->
-
+    <link rel="shortcut icon" type="image/png" href="{{ asset('favicon.ico') }}"/>
     <!-- Bootstrap 3.3.6 -->
     <link rel="stylesheet" href="{{ asset("/bower_components/AdminLTE/bootstrap/css/bootstrap.min.css") }}">
     <!-- Font Awesome -->
