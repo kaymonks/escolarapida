@@ -18,7 +18,7 @@
                 <div class="col-xs-12">
                     <div class="box">
                         <div class="box-header with-border"><h3 class="box-title">Caixa de Entrada</h3></div>
-                        <div class="box-body table-responsive">
+                        <div class="box-body table-responsive"  style="max-height: 700px; overflow-y: auto">
                             <table class="table table-hover table-bordered">
                                 <tbody>
                                 @forelse($mensagensDestinatarios as $mensagem)
@@ -31,6 +31,8 @@
                                                 {{ $mensagem->destinatario_resp->nome }}
                                             @elseif($mensagem->destinatario_prof != null)
                                                 {{ $mensagem->destinatario_prof->nome }}
+                                            @elseif($mensagem->destinatario_turma != null)
+                                                Turma {{ $mensagem->destinatario_turma->ano }}
                                             @endif
                                         </td>
                                         <td>{{ $mensagem->mensagens->titulo }}</td>

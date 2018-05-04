@@ -21,7 +21,6 @@
                                 <div id="accordion">
                                     <div class="box box-primary">
                                         <div class="mailbox-read-info">
-                                            {{--data-toggle="collapse" data-target="#demo"--}}
                                             <h3>
                                                 {{ $ms->titulo }}
                                                 <div class="pull-right">
@@ -73,7 +72,7 @@
                     </div>
 
                     <div class="box" id="nova_mensagem">
-                        <form action="@if($tipo_usuario == 2 or $tipo_usuario == 3){{ route('mensagem.responsavel.enviar') }} @else {{ route('mensagem.escola.enviar') }} @endif" method="post">
+                        <form action="@if($tipo_usuario == 2 or $tipo_usuario == 3){{ route('mensagem.responsavel.enviar') }} @elseif ($mensagem->remetente_escola_id != null) {{ route('mensagem.escola.enviar') }} @elseif($mensagem->remetente_professor_id != null) {{ route('mensagem.professor.enviar') }} @endif " method="post">
                             <div class="box-body">
                                 {{ csrf_field() }}
                                 <input type="hidden" name="mensagem_id" value="{{ $mensagem->id }}">

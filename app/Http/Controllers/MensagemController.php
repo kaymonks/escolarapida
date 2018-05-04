@@ -46,7 +46,7 @@ class MensagemController extends Controller
                                         ->whereIn('id', $mensagens_id)
                                         ->where('remetente_responsavel_id', null)
                                         ->orderBy('id', 'desc')
-                                        ->paginate(10);
+                                        ->paginate(20);
                 break;
             case 2: //Escola
                 $id_user = Escola::where('user_id', '=', $id_usuario)->first();
@@ -85,7 +85,6 @@ class MensagemController extends Controller
                 foreach ($mensagens as $mensagem) {
                     if ($mensagem->remetente_responsavel_id != NULL){
                         $remetente = Responsavel::select('id', 'nome')->where('id', $mensagem->remetente_responsavel_id)->get()->toArray();
-//                        dd($remetente);
                     }
                     if ($mensagem->remetente_escola_id != NULL){
                         $remetente =  Escola::select('id', 'nome')->where('id', $mensagem->remetente_escola_id)->get()->toArray();
@@ -120,7 +119,7 @@ class MensagemController extends Controller
                     }elseif($item->remetente_responsavel_id != NULL){
                         $item->remetente_responsavel_id = Responsavel::where('id', $item->remetente_responsavel_id)->pluck('nome')->toArray();
                     }elseif ($item->remetente_professor_id != NULL){
-                        $remetenteHistorico[] =  Professor::select('id', 'nome')->where('id', $item->remetente_professor_id)->get()->toArray();
+                        $item->remetente_professor_id =  Professor::where('id', $item->remetente_professor_id)->pluck('nome')->toArray();
                     }
                 }
             }
@@ -165,7 +164,7 @@ class MensagemController extends Controller
                 $remetente = Escola::where('user_id', '=', $id_usuario)->first();
                 $escola_id = $remetente->id;
                 $mensagensId = Mensagem::where('remetente_escola_id', $escola_id)->pluck('id')->toArray();
-                $mensagensDestinatarios = MensagemDestinatario::with('destinatario_prof:id,nome', 'destinatario_resp:id,nome', 'destinatario_escola:id,nome', 'mensagens:id,titulo,corpo,created_at')
+                $mensagensDestinatarios = MensagemDestinatario::with('destinatario_prof:id,nome', 'destinatario_resp:id,nome', 'destinatario_escola:id,nome', 'destinatario_turma:id,ano', 'mensagens:id,titulo,corpo,created_at')
                                                                     ->whereIn('mensagem_id', $mensagensId)
                                                                     ->orderBy('created_at', 'desc')
                                                                     ->paginate(10);
@@ -174,7 +173,7 @@ class MensagemController extends Controller
                 $id_user = Professor::where('user_id', '=', $id_usuario)->first();
                 $id_user = $id_user->id;
                 $mensagensId = Mensagem::where('remetente_professor_id', $id_user)->pluck('id')->toArray();
-                $mensagensDestinatarios = MensagemDestinatario::with('destinatario_resp:id,nome', 'destinatario_escola:id,nome', 'mensagens:id,titulo,corpo,created_at')
+                $mensagensDestinatarios = MensagemDestinatario::with('destinatario_resp:id,nome', 'destinatario_escola:id,nome', 'destinatario_turma:id,ano', 'mensagens:id,titulo,corpo,created_at')
                                                                     ->whereIn('mensagem_id', $mensagensId)
                                                                     ->orderBy('created_at', 'desc')
                                                                     ->paginate(10);
@@ -325,7 +324,6 @@ class MensagemController extends Controller
                 $escola_nome = Escola::where('id', $escola_id)->pluck('nome');
                 $escola_nome = $escola_nome[0];
                 break;
-
         }
 
         $dados['escola_id'] = $escola_id;
@@ -449,12 +447,24 @@ class MensagemController extends Controller
                 break;
         }
 
+        $mensagem_id = null;
+        if (isset($dados['mensagem_id'])) {
+            $mensagem_id = $dados['mensagem_id'];
+        }
+        $dados['mensagem_id'] = $mensagem_id;
         $dados['escola_id'] = $escola_id;
+
         $mensagem = Mensagem::create($dados);
+
         $destinatario['destinatario_turma_id'] = null;
-        $destinatario['mensagem_id'] = $mensagem->id;
-        $destinatario['destinatario_professor_id']  = $request->destinatario;
         $destinatario['tipo_destinatario']  = $tipo_usuario;
+
+        foreach ($request->destinatario as $item) {
+            $destinatario['mensagem_id'] = $mensagem->id;
+            $destinatario['destinatario_professor_id']  = $item;
+        }
+
+
         MensagemDestinatario::create($destinatario);
         return redirect()->route('mensagens');
     }

@@ -85,7 +85,7 @@
                         <ul class="treeview-menu">
                             <li><a href="{{ route('mensagens') }}"><i class="fa fa-inbox"></i> Caixa de entrada</a></li>
                             <li class="treeview">
-                                <a href=""><i class="fa fa-paper-plane"></i>
+                                <a href=""><i class="fa fa-plus"></i>
                                     Enviar
                                     <span class="pull-right-container">
                                         <i class="fa fa-angle-left pull-right"></i>
@@ -96,6 +96,7 @@
                                     <li><a href="{{ route('mensagem.turma') }}">Turma(s)</a></li>
                                 </ul>
                             </li>
+                            <li><a href="{{ route('mensagens.enviados') }}"><i class="fa fa-send"></i> Enviados</a></li>
                         </ul>
                     </a>
                 </li>
@@ -119,7 +120,7 @@
                         <ul class="treeview-menu">
                             <li><a href="{{ route('mensagens') }}"><i class="fa fa-inbox"></i> Caixa de entrada</a></li>
                             <li class="treeview">
-                                <a href=""><i class="fa fa-paper-plane"></i>
+                                <a href=""><i class="fa fa-plus"></i>
                                     Enviar
                                     <span class="pull-right-container">
                                         <i class="fa fa-angle-left pull-right"></i>

@@ -25,6 +25,11 @@ class MensagemDestinatario extends Model
         return $this->hasOne('App\Escola', 'id', 'destinatario_escola_id');
     }
 
+    public function destinatario_turma()
+    {
+        return $this->hasOne('App\Turma', 'id', 'destinatario_turma_id');
+    }
+
     public function mensagens()
     {
         return $this->hasOne('App\Mensagem', 'id', 'mensagem_id');

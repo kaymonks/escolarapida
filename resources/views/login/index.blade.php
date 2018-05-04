@@ -18,7 +18,7 @@
 
                     <div class="form-group {{ ($errors->first('login')) ? 'has-error'  :''}}">
                         <label for="inputLogin">Login</label>
-                        <input type="text" id="inputLogin" class="form-control" placeholder="Login" name="login">
+                        <input type="text" id="inputLogin" class="form-control" placeholder="Login" name="login" autofocus>
                         {!! $errors->first('login', '<span class="help-block">:message</span>') !!}
                     </div>
 

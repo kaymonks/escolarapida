@@ -18,7 +18,7 @@
                 <div class="col-xs-12">
                     <div class="box">
                         <div class="box-header with-border"><h3 class="box-title">Caixa de Entrada</h3></div>
-                        <div class="box-body table-responsive">
+                        <div class="box-body table-responsive" style="max-height: 700px; overflow-y: auto">
                             <table class="table table-hover table-bordered">
                                 <tbody>
                                 @forelse($mensagens as $mensagem)
@@ -30,7 +30,6 @@
                                                 {{ $mensagem->remetente_resp->nome }}
                                             @else
                                                     {{ $mensagem->remetente->nome }}
-
                                             @endif
                                         </td>
                                         <td>{{ $mensagem->titulo }}</td>
