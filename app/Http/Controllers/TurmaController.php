@@ -39,8 +39,19 @@ class TurmaController extends Controller
 
     public function adicionar()
     {
-        $registros = Professor::all();
-        $nomes = array();
+        $user_logado = Auth::user();
+        $tipo_usuario = $user_logado->permission_id;
+        if ($tipo_usuario == 2){
+            $id_usuario = $user_logado->id;
+            $id_user = Escola::where('user_id', '=', $id_usuario)->first();
+            $id_escola = $id_user->id;
+
+            $registros = Professor::where('escola_id', $id_escola)->get();
+            $nomes = array();
+
+        } else {
+            return response('Unauthorized.', 401);
+        }
         return view('turma.adicionar', compact('registros', 'nomes'));
     }
 
@@ -68,15 +79,23 @@ class TurmaController extends Controller
 
     public function editar($id)
     {
-        $turmas = Turma::find($id);
-        $registros = Professor::all();
+        $user_logado = Auth::user();
+        $tipo_usuario = $user_logado->permission_id;
+        if ($tipo_usuario == 2){
+            $id_usuario = $user_logado->id;
+            $id_user = Escola::where('user_id', '=', $id_usuario)->first();
+            $id_escola = $id_user->id;
+            $turmas = Turma::find($id);
+            $registros = Professor::where('escola_id', $id_escola)->get();
+            $nomes = array();
+            $a = Turma::find($id)->professores->all();
 
-        $a = Turma::find($id)->professores->all();
+            foreach($a as $item) {
+                $nomes[] = $item->id;
 
-        $nomes = array();
-        foreach($a as $item) {
-            $nomes[] = $item->id;
-
+            }
+        } else {
+            return response('Unauthorized.', 401);
         }
 
         return view('turma.editar', compact('turmas', 'registros', 'nomes'));
