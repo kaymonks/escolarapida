@@ -29,7 +29,7 @@
                                     @endif </span>
                         </a>
                         <ul class="dropdown-menu">
-                            {{--<li><a style="padding: 10px 20px;" href="" class="">Perfil</a></li>--}}
+                            <li><a style="padding: 10px 20px;" href="{{ route('perfil') }}" class="">Perfil</a></li>
                             <li><a style="padding: 10px 20px;" href="{{ route('login.sair') }}" class="">Sair</a></li>
                         </ul>
                     </li>
