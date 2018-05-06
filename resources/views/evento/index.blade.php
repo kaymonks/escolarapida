@@ -24,9 +24,9 @@
                                 <tr>
                                     <th style="width: 10px">#</th>
                                     <th>Título</th>
-                                    <th>Data</th>
-                                    <th>Horário</th>
-                                    <th style="width: 150px">#</th>
+                                    <th style="width: 100px">Data</th>
+                                    <th style="width: 100px">Horário</th>
+                                    <th style="width: 121px">#</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -36,12 +36,13 @@
                                         <td>{{ $evento->titulo }}</td>
                                         <td>{{date( 'd/m/Y' , strtotime($evento->date ) )}}</td>
                                         <td>{{$evento->time}}</td>
-                                        <td>@if($tipo_usuario == 2)
+                                        <td>
+                                            <a title="Visualizar" class="btn btn-primary btn-sm"  href="{{ route('evento.visualizar',$evento->id) }}"><i class="fa fa-eye" aria-hidden="true"></i></a>
+                                            @if($tipo_usuario == 2)
                                                 <a title="Editar" class="btn btn-primary btn-sm"  href="{{ route('evento.editar',$evento->id) }}"><i class="fa fa-pencil" aria-hidden="true"></i></a>
-                                                <a title="Excluir" class="btn btn-danger btn-sm excluirEvento"  href="{{ route('evento.deletar',$evento->id) }}"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
-                                            @else
-                                                <a title="Visualizar" class="btn btn-primary btn-sm"  href="{{ route('evento.visualizar',$evento->id) }}"><i class="fa fa-eye" aria-hidden="true"></i></a>
                                             @endif
+                                            <a title="Excluir" class="btn btn-danger btn-sm excluirEvento"  href="{{ route('evento.deletar',$evento->id) }}"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+
                                         </td>
                                     </tr>
                                 @endforeach

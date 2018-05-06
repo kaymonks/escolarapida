@@ -86,6 +86,7 @@ Route::group(['middleware'=> ['checkEvento']], function () {
 
 Route::get('/eventos', ['as' => 'eventos', 'uses' => 'EventoController@index'])->middleware('checkEventoResponsavel');
 Route::get('/eventos/visualizar/{id}', ['as' => 'evento.visualizar', 'uses' => 'EventoController@visualizar'])->middleware('checkEventoResponsavel');
+Route::get('/evento/{id}/confirmar', ['as' => 'evento.confirmar', 'uses' => 'EventoController@confirmarEvento'])->middleware('checkEventoResponsavel');
 Route::get('/evento/escola', ['as' => 'evento.escola', 'uses' => 'EventoController@escola'])->middleware('checkEventoEscola');
 Route::post('/evento/escola/enviar', ['as' => 'evento.escola.enviar', 'uses' => 'EventoController@salvarEventoEscola'])->middleware('checkEventoEscola');
 

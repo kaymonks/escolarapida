@@ -43,11 +43,39 @@
                             <div>
                                 <p>{{ $eventos->descricao }}</p>
                             </div>
-                            {{--<hr>--}}
-                                {{--<a href="" class="btn btn-primary">Confirmar presença</a>--}}
+                            <hr>
+                            @if($tipo_usuario == 4)
+                                @if($eventoConfirmado == false)
+                                        <a href="{{ route('evento.confirmar', $eventos->id) }}" class="btn btn-primary">Confirmar presença</a>
+                                    @else
+                                        <a href="" class="btn btn-primary disabled">Presença Confirmada</a>
+                                @endif
+                            @endif
                         </div>
                     </div>
-
+                    @if($tipo_usuario == 2)
+                        <div id="accordion">
+                            <div class="box box-primary">
+                                <div class="box-header with-border">
+                                    <h3>Presenças confirmadas</h3>
+                                </div>
+                                <div class="box-body" style="display:none;">
+                                    <table class="table table-hover table-bordered">
+                                        <thead><tr><th>Responsavel</th></tr></thead>
+                                        <tbody>
+                                        @foreach($responsaveisConfirmados as $responsavel)
+                                            @foreach($responsavel['responsaveis'] as $t)
+                                                <tr>
+                                                    <td>{{ $t['nome'] }}</td>
+                                                </tr>
+                                            @endforeach
+                                        @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    @endif
                 </div>
             </div>
         </section>
