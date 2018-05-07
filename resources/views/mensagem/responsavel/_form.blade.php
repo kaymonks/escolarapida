@@ -16,7 +16,7 @@
     <div class="form-group">
         <label class="col-sm-4 control-label">Responsável</label>
         <div class="col-sm-8 col-md-5">
-            <select class="form-control select2 select2-hidden-accessible" multiple="" name="destinatario[]" style="width: 100%;" tabindex="-1" aria-hidden="true">
+            <select class="form-control select2 select2-hidden-accessible" multiple="" name="destinatario[]"  data-placeholder="Selecione um ou mais responsáveis" style="width: 100%;" tabindex="-1" aria-hidden="true">
                 @foreach($responsaveis as $responsavel)
                     <option value="{{ $responsavel->id }}">{{ $responsavel->nome }}</option>
                 @endforeach

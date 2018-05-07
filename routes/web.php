@@ -11,10 +11,6 @@
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-});
-
 Route::get('/401',function () {
    return view('errors/401');
 });
@@ -22,6 +18,7 @@ Route::get('/401',function () {
 Route::get('/login', ['as'=>'login', 'uses'=>'LoginController@index']);
 Route::post('/login/entrar', ['as'=>'login.entrar', 'uses'=>'LoginController@entrar']);
 Route::get('/login/sair', ['as'=>'login.sair', 'uses'=>'LoginController@sair']);
+Route::get('/home', ['as'=>'home', 'uses'=>'HomeController@index'])->middleware('checkEscola');
 
 Route::group(['middleware'=> ['admin']], function () {
     Route::get('/escolas', ['as'=>'escolas', 'uses'=>'escolaController@index']);
@@ -39,6 +36,7 @@ Route::group(['middleware'=> ['checkEscola']], function () {
     Route::get('/professor/editar/{id}', ['as'=>'professor.editar', 'uses'=>'ProfessorController@editar']);
     Route::put('/professor/atualizar/{id}', ['as'=>'professor.atualizar', 'uses'=>'ProfessorController@atualizar']);
     Route::get('/professor/deletar/{id}', ['as'=>'professor.deletar', 'uses'=>'ProfessorController@deletar']);
+
 });
 
 Route::group(['middleware'=> 'checkResponsaveis'], function () {
@@ -104,4 +102,4 @@ Route::get('/perfil', ['as' => 'perfil', 'uses' => 'PerfilController@index']);
 
 //Auth::routes();
 
-Route::get('/home', 'HomeController@index');
+//Route::get('/home', 'HomeController@index');
