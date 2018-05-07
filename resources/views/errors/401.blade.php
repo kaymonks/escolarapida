@@ -101,9 +101,6 @@ Brown
 <div class="page-wrap">
     <h1>401</h1>
     <h2>NÃO AUTORIZADO</h2>
-    <p>Bem, o que dizer. Hmm? Desculpa ...</p>
-    <p><a href="{{ URL::previous() }}">Voltar</a></p>
+
 </div>
-
-
 </body></html>
