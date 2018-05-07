@@ -177,6 +177,7 @@ return [
         App\Providers\AuthServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+        Pyaesone17\ActiveState\ActiveStateServiceProvider::class,
 
     ],
 
@@ -224,7 +225,7 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
-
+        'Active' => Pyaesone17\ActiveState\ActiveFacade::class,
     ],
 
 ];
