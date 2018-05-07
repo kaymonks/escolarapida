@@ -22,6 +22,9 @@ class CheckProfessor
             {
                 return $next($request);
             }
+            return redirect(401);
+        }else{
+            return redirect()->route('login');
         }
     }
 }

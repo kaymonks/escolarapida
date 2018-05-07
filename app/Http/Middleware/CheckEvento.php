@@ -24,8 +24,10 @@ class CheckEvento
             {
                 return $next($request);
             }
-            return response('Unauthorized.', 401);
+            return redirect(401);
 
+        }else{
+            return redirect()->route('login');
         }
     }
 }

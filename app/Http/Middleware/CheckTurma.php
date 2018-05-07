@@ -18,9 +18,11 @@ class CheckTurma
     {
         if (Auth::check()) {
             if (Auth::user()->permission_id != 3 && Auth::user()->permission_id != 2) {
-                return response('Unauthorized.', 401);
+                return redirect(401);
             }
             return $next($request);
+        }else{
+            return redirect()->route('login');
         }
     }
 }

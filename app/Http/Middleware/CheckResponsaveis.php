@@ -21,7 +21,9 @@ class CheckResponsaveis
             if ( Auth::user()->permission_id == 4 || Auth::user()->permission_id == 2) {
                 return $next($request);
             }
-            return response('Unauthorized.', 401);
+            return redirect(401);
+        }else{
+            return redirect()->route('login');
         }
     }
 }
