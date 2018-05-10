@@ -33,10 +33,10 @@ class ProfessorController extends Controller
     public function salvar(ProfessorRequest $request)
     {
         $dados = $request->all();
-        $user['login'] = $dados['email'];
+        $user['login'] = $dados['login'];
         $user['password'] = bcrypt($dados['senha']);
         $user['permission_id'] = $this->permission_id;
-        $user['name'] = $dados['login'];
+        $user['name'] =  $dados['nome'];
         $user = User::create($user);
         $dados['user_id'] = $user->id;
         $user_logado = $request->user()->id;
