@@ -30,10 +30,8 @@ class ProfessorRequest extends FormRequest
             'sexo' => 'required',
             'email' => 'email',
             'endereco' => 'required',
-            'numero' => 'required',
-            'bairro' => 'required',
-            'estado' => 'required',
-            'cidade' => 'required',
+            'login' => 'required',
+            'senha' => 'required',
         ];
     }
 
@@ -46,10 +44,8 @@ class ProfessorRequest extends FormRequest
             'email.email' => 'Insira um email válido',
             'sexo.required' => 'O campo sexo é obrigatório.',
             'endereco.required' => 'O campo endereço é obrigatório.',
-            'numero.required' => 'O campo número é obrigatório.',
-            'bairro.required' => 'O campo bairro é obrigatório.',
-            'cidade.required' => 'O campo cidade é obrigatório.',
-            'estado.required' => 'O campo estado é obrigatório.',
+            'login.required' => 'Campo login obrigatório',
+            'senha.required' => 'Campo login obrigatório',
         ];
     }
 }

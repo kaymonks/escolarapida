@@ -30,10 +30,6 @@ class PaiRequest extends FormRequest
             'email' => 'email',
             'sexo' => 'required',
             'endereco' => 'required',
-            'numero' => 'required|numeric',
-            'bairro' => 'required',
-            'estado' => 'required',
-            'cidade' => 'required',
         ];
     }
 
@@ -47,11 +43,6 @@ class PaiRequest extends FormRequest
             'email.email' => 'Insira um email válido',
             'sexo.required' => 'O campo Sexo é obrigatório.',
             'endereco.required' => 'O campo Endereço é obrigatório.',
-            'numero.required' => 'O campo Número é obrigatório.',
-            'numero.numeric' => 'O campo Número precisa ser somente números.',
-            'bairro.required' => 'O campo Bairro é obrigatório.',
-            'cidade.required' => 'O campo Cidade é obrigatório.',
-            'estado.required' => 'O campo Estado é obrigatório.',
         ];
     }
 }
