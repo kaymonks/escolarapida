@@ -47,7 +47,7 @@
     <div class="form-group">
         <label for="inputEmail" class="col-sm-4 control-label">Email</label>
         <div class="col-sm-5">
-            <input type="text" name="email" id="inputEmail" class="form-control" placeholder="Email" value="{{ isset($registro->email) ? $registro->endereco : old('endereco') }}">
+            <input type="text" name="email" id="inputEmail" class="form-control" placeholder="Email" value="{{ isset($registro->email) ? $registro->email : old('email') }}">
         </div>
     </div>
 
@@ -55,40 +55,6 @@
         <label for="inputEndereco"  class="col-sm-4 control-label">Endereço</label>
         <div class="col-sm-5">
             <input type="text" name="endereco" id="inputEndereco" class="form-control" placeholder="Endereço" value="{{ isset($registro->endereco) ? $registro->endereco : old('endereco') }}">
-        </div>
-    </div>
-
-    <div class="form-group">
-        <label for="inputCEP" class="col-sm-4 control-label">CEP</label>
-        <div class="col-sm-3 col-md-2">
-            <input type="text" name="cep" id="inputCEP" class="form-control" placeholder="CEP" value="{{ isset($registro->cep) ? $registro->cep : old('cep') }}">
-        </div>
-    </div>
-
-    <div class="form-group">
-        <label for="inputNumero" class="col-sm-4 control-label">Número</label>
-        <div class="col-sm-2">
-            <input type="text" name="numero" id="inputNumero" class="form-control" placeholder="Numero" value="{{ isset($registro->numero) ? $registro->numero : old('numero') }}">
-        </div>
-    </div>
-
-    <div class="form-group">
-        <label for="inputBairro" class="col-sm-4 control-label">Bairro</label>
-        <div class="col-sm-4">
-            <input type="text" name="bairro" id="inputBairro" class="form-control" placeholder="Bairro" value="{{ isset($registro->bairro) ? $registro->bairro : old('bairro') }}">
-        </div>
-    </div>
-
-    <div class="form-group">
-        <label for="inputEstado" class="col-sm-4 control-label">Estado</label>
-        <div class="col-sm-4">
-            <input type="text" name="estado" id="inputEstado" class="form-control" placeholder="Estado" value="{{ isset($registro->estado) ? $registro->estado : old('estado') }}">
-        </div>
-    </div>
-    <div class="form-group">
-        <label for="inputCidade" class="col-sm-4 control-label">Cidade</label>
-        <div class="col-sm-4">
-            <input type="text" name="cidade" id="inputCidade" class="form-control" placeholder="Cidade" value="{{ isset($registro->cidade) ? $registro->cidade : old('cidade') }}">
         </div>
     </div>
 </div>

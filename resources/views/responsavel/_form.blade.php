@@ -64,34 +64,6 @@
             <input type="text" name="cep" id="inputCEP" class="form-control" placeholder="CEP" value="{{ isset($registro->cep) ? $registro->cep : old('cep') }}">
         </div>
     </div>
-
-    <div class="form-group">
-        <label for="inputNumero" class="col-sm-4 control-label">Número</label>
-        <div class="col-sm-2">
-            <input type="text" name="numero" id="inputNumero" class="form-control" value="{{ isset($registro->numero) ? $registro->numero : old('numero') }}">
-        </div>
-    </div>
-
-    <div class="form-group">
-        <label for="inputBairro" class="col-sm-4 control-label">Bairro</label>
-        <div class="col-sm-4">
-            <input type="text" name="bairro" id="inputBairro" class="form-control" placeholder="Bairro" value="{{ isset($registro->bairro) ? $registro->bairro : old('bairro') }}">
-        </div>
-    </div>
-
-    <div class="form-group">
-        <label for="inputEstado" class="col-sm-4 control-label">Estado</label>
-        <div class="col-sm-4">
-            <input type="text" name="estado" id="inputEstado" class="form-control" placeholder="Estado" value="{{ isset($registro->estado) ? $registro->estado : old('estado') }}">
-        </div>
-    </div>
-
-    <div class="form-group">
-        <label for="inputCidade" class="col-sm-4 control-label">Cidade</label>
-        <div class="col-sm-4">
-            <input type="text" name="cidade" id="inputCidade" class="form-control" placeholder="Cidade" value="{{ isset($registro->cidade) ? $registro->cidade : old('cidade') }}">
-        </div>
-    </div>
 </div>
 
 <hr>
