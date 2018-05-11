@@ -41,7 +41,11 @@ class MensagemController extends Controller
                     }
                 }
 
-                $mensagens_id = MensagemDestinatario::where('destinatario_id', '=', $id_user)->orWhere('destinatario_escola_id', $escola_id_responsavel)->orWhereIn('destinatario_turma_id', $turma_id)->pluck('mensagem_id')->toArray();
+                $mensagens_id = MensagemDestinatario::where('destinatario_id', $id_user)
+                                        ->orWhere('destinatario_escola_id', $escola_id_responsavel)
+                                        ->orWhereIn('destinatario_turma_id', $turma_id)
+                                        ->pluck('mensagem_id')
+                                        ->toArray();
                 $mensagens = Mensagem::with('remetente_escola:id,nome', 'remetente_resp:id,nome', 'remetente:id,nome')
                                         ->whereIn('id', $mensagens_id)
                                         ->where('remetente_responsavel_id', null)
@@ -265,7 +269,7 @@ class MensagemController extends Controller
 
         MensagemDestinatario::create($destinatario);
 
-        return redirect()->route('mensagem.escola');
+        return redirect()->route('mensagens');
     }
 
     public function responsavel()
