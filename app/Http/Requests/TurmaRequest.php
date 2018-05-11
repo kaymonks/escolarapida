@@ -33,7 +33,7 @@ class TurmaRequest extends FormRequest
     {
         return [
             'professor.required' => 'Campo professor obrigatório',
-            'ano.required' => "Campo ano obrigatório",
+            'ano.required' => "Campo turma obrigatório",
         ];
     }
 }
