@@ -15,15 +15,35 @@
 <script type="text/javascript" src="http://momentjs.com/downloads/moment-with-locales.min.js"></script>
 <script type="text/javascript" src="{{asset("/bower_components/AdminLTE/plugins/bootstrap-material-datetimepicker/bootstrap-material-datetimepicker.js")}}"></script>
 <script src="{{asset("/bower_components/AdminLTE/plugins/jQuery-Mask-Plugin/jquery.mask.js")}}"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap.min.js"></script>
 
 
-<script>
 
-    // $("#accordion .box-primary .box-body").css("display", "none");
+<script type="text/javascript">
+
+    $(document).ready(function() {
+        $('#datatables').DataTable({
+            'language': {
+                'url' : '//cdn.datatables.net/plug-ins/1.10.16/i18n/Portuguese-Brasil.json'
+            }
+        });
+    } );
+
+    $('select[name=estado]').change(function () {
+        var idEstado = $(this).val();
+        console.log(idEstado);
+        $.get('/get-cidades/' + idEstado, function (cidades) {
+            $('select[name=cidade]').empty();
+            $.each(cidades, function (key, value) {
+                $('select[name=cidade]').append('<option value=' + value.id + '>' + value.cidade + '</option>');
+            });
+        });
+    });
 
     $("#accordion .box-primary").on('click', function () {
         $(this).children('.box-body').toggle("slow");
-    })
+    });
 
 
     $("#nova_mensagem").css("display", "none");

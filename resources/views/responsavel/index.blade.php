@@ -15,9 +15,11 @@
             <div class="row">
                 <div class="col-xs-12">
                     <div class="box">
-                        <div class="box-header"><h3 class="box-title">Listar Responsáveis</h3></div>
+                        <div class="box-header">
+                            <h3 class="box-title">Listar Responsáveis</h3>
+                        </div>
                         <div class="box-body table-responsive">
-                            <table class="table table-striped table-bordered">
+                            <table class="table table-hover table-bordered" id="datatables">
                                 <thead>
                                     <tr>
                                         <th style="width: 10px">#</th>
@@ -40,9 +42,6 @@
                                     @endforeach
                                 </tbody>
                             </table>
-                        </div>
-                        <div class="row" align="center">
-{{--                            {{ $registros->links() }}--}}
                         </div>
                     </div>
                     <a class="btn btn-success" href="{{ route('responsavel.adicionar') }}"><i class="fa fa-plus" aria-hidden="true"></i> Adicionar pai</a>

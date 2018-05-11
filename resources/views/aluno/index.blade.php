@@ -19,7 +19,7 @@
                     <div class="box">
                         <div class="box-header"><h3 class="box-title">Listar Alunos</h3></div>
                         <div class="box-body table-responsive">
-                            <table class="table table-hover table-bordered">
+                            <table class="table table-hover table-bordered" id="datatables">
                                 <thead>
                                     <tr>
                                         <th style="width: 10px">#</th>
@@ -40,9 +40,6 @@
                                     @endforeach
                                 </tbody>
                             </table>
-                        </div>
-                        <div class="row" align="center">
-                            {{ $registros->links() }}
                         </div>
                     </div>
                     <a class="btn btn-success" href="{{ route('aluno.adicionar') }}"><i class="fa fa-plus" aria-hidden="true"></i> Adicionar aluno</a>

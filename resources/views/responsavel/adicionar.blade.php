@@ -20,7 +20,7 @@
                 </div>
                 <form class="form-horizontal" method="post" action="{{ route('responsavel.salvar') }}">
                     <div class="box-body">
-                        {{ csrf_field() }}
+                        <input type="hidden" value="{{ csrf_token() }}" id="_token" name="_token"/>
                         @include('responsavel._form')
                     </div>
                     <div class="box-footer">

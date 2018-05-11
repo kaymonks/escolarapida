@@ -10,8 +10,17 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <title>Escola Rápida - @yield('titulo')</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+
         <!-- bootstrap-material-datetimepicker -->
     <link rel="shortcut icon" type="image/png" href="{{ asset('favicon.ico') }}"/>
+    {{--<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.16/datatables.min.css"/>--}}
+    {{--<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>--}}
+    {{--<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap.min.css"/>--}}
+    <!-- DataTable -->
+    <link rel="stylesheet" href="{{ asset("/bower_components/AdminLTE/plugins/datatables/dataTables.bootstrap.css") }}">
+
+
+
     <!-- Bootstrap 3.3.6 -->
     <link rel="stylesheet" href="{{ asset("/bower_components/AdminLTE/bootstrap/css/bootstrap.min.css") }}">
     <!-- Font Awesome -->
@@ -37,6 +46,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+    <meta name="csrf-token" content="{{ csrf_token() }}"/>
     <style>
         @media (max-width:767px) {
             .main-sidebar, .left-side {

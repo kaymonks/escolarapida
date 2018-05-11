@@ -19,7 +19,15 @@
                     <div class="box">
                         <div class="box-header with-border"><h3 class="box-title">Caixa de Entrada</h3></div>
                         <div class="box-body table-responsive"  style="max-height: 700px; overflow-y: auto">
-                            <table class="table table-hover table-bordered">
+                            <table class="table table-hover table-bordered" id="datatables">
+                                <thead>
+                                <tr class="hidden">
+                                    <th style="width: 100px">#</th>
+                                    <th>Remetente</th>
+                                    <th>Assunto</th>
+                                    <th>Ação</th>
+                                </tr>
+                                </thead>
                                 <tbody>
                                 @forelse($mensagensDestinatarios as $mensagem)
                                     <tr>
@@ -37,7 +45,7 @@
                                         </td>
                                         <td>{{ $mensagem->mensagens->titulo }}</td>
                                         <td style="width: 135px"> {{ date('d/m/Y H:i:s', strtotime($mensagem->mensagens->created_at)) }}</td>
-                                        </td>
+
                                         <td style="text-align: center; width: 60px">
                                             <a title="Visualizar" class="btn btn-primary btn-sm"  href="{{ route('mensagem.view',$mensagem->id) }}"><i class="fa fa-eye" aria-hidden="true"></i></a>
                                         </td>
@@ -49,9 +57,6 @@
                                 @endforelse
                                 </tbody>
                             </table>
-                        </div>
-                        <div class="row" align="center">
-                            {{ $mensagensDestinatarios->links() }}
                         </div>
                     </div>
                 </div>
