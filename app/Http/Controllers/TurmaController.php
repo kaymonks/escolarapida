@@ -18,21 +18,18 @@ class TurmaController extends Controller
     {
         $usuario = Auth::user();
 
-
         if ($usuario->permission_id == 3)
         {
             $professor = Professor::where('user_id', '=', $usuario->id)->first();
             $professor_id = $professor->id;
             $escola_id = $professor->escola_id;
             $turmas = Professor::find($professor_id)->turmas()->paginate(10);
-
         }else{
             $escola = Escola::where('user_id', $usuario->id)->first();
             $escola_id = $escola->id;
             $turmas = Turma::where('escola_id', $escola_id)->paginate(4);
         }
         $turmas->permission_id = $usuario->permission_id;
-
 
         return view('turma.index', compact('turmas'));
     }
@@ -67,14 +64,12 @@ class TurmaController extends Controller
 
         $turma_id =  $turma->id;
 
-
-
         foreach ($request->professor as $item) {
             $professor['turma_id'] = $turma_id;
             $professor['professor_id'] = $item;
             TurmaProfessor::create($professor);
         }
-        return redirect()->route('turmas');
+        return redirect()->route('turmas')->with('success', 'Turma adicionada com sucesso');
     }
 
     public function editar($id)
