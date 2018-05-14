@@ -44,21 +44,21 @@
     <div class="row">
         <div class="col-md-8">
             <label>Título</label>
-            <input class="form-control" placeholder="Titulo" name="titulo" value="{{ isset($eventos->titulo) ? $eventos->titulo : '' }}">
+            <input class="form-control" placeholder="Titulo" name="titulo" value="{{ isset($registros->titulo) ? $registros->titulo : '' }}">
         </div>
         <div class="col-sm-6 col-md-2">
             <label for="date">Data</label>
             <div class="form-control-wrapper">
-                <input type="text" class="form-control" name="date" id="date" value="{{ isset($eventos->date) ? $eventos->date : '' }}">
+                <input type="text" class="form-control" name="date" id="date" value="{{ isset($registros->date) ? $registros->date : '' }}">
             </div>
         </div>
         <div class="col-sm-6 col-md-2">
             <label for="time">Hora</label>
-            <input type="text" class="form-control" name="time" id="time" value="{{ isset($eventos->time) ? $eventos->time : '' }}">
+            <input type="text" class="form-control" name="time" id="time" value="{{ isset($registros->time) ? $registros->time : '' }}">
         </div>
     </div>
 </div>
 <div class="form-group">
     <label>Descrição</label>
-    <textarea class="form-control" name="descricao" rows="10">{{ isset($eventos->descricao) ? $eventos->descricao : '' }}</textarea>
+    <textarea class="form-control" name="descricao" rows="10">{{ isset($registros->descricao) ? $registros->descricao : '' }}</textarea>
 </div>

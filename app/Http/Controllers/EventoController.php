@@ -26,23 +26,24 @@ class EventoController extends Controller
             case 2:
                 $id_user = Escola::where('user_id', '=', $id_usuario)->first();
                 $id_user_escola = $id_user->id;
-                $eventos = Evento::where('escola_id', $id_user_escola)->orderBy('id', 'desc')->get();
+                $registros = Evento::where('escola_id', $id_user_escola)->orderBy('id', 'desc')->get();
                 break;
             case 4:
                 $id_user = Responsavel::where('user_id', '=', $id_usuario)->first();
+//                dd($id_usuario);
                 $id_user_escola = $id_user->escola_id;
                 $id_user = $id_user->id;
-                $eventos_id = EventoDestinatario::where('responsavel_id', '=', $id_user)->orWhere('escola_id', $id_user_escola)->pluck('evento_id')->toArray();
-                $eventos = Evento::select('*')->whereIn('id', $eventos_id)->orderBy('id', 'desc')->get();
+                $registros_id = EventoDestinatario::where('responsavel_id', '=', $id_user)->orWhere('escola_id', $id_user_escola)->pluck('evento_id')->toArray();
+                $registros = Evento::select('*')->whereIn('id', $registros_id)->orderBy('id', 'desc')->get();
                 break;
         }
-        return view('evento.index', compact('eventos', 'tipo_usuario'));
+        return view('evento.index', compact('registros', 'tipo_usuario'));
     }
 
     public function editar($id)
     {
-        $eventos = Evento::find($id);
-        $eventos['date'] = date( 'd/m/Y' , strtotime($eventos->date ) );
+        $registros = Evento::find($id);
+        $registros['date'] = date( 'd/m/Y' , strtotime($registros->date ) );
         $destinatarios = EventoDestinatario::where('evento_id', '=', $id)->get(); //obtem quem foi o destinatario: turma, responsavel ou escola.
         $nomeTurmas = array();
         $nomePais = array();
@@ -62,7 +63,7 @@ class EventoController extends Controller
                 $nomeEscola[] = $escola->nome;
             }
         }
-        return view('evento.editar', compact('eventos', 'destinatarios', 'nomeTurmas', 'nomePais', 'nomeEscola'));
+        return view('evento.editar', compact('registros', 'destinatarios', 'nomeTurmas', 'nomePais', 'nomeEscola'));
     }
 
     public function visualizar($id)

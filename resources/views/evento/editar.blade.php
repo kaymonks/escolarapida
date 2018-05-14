@@ -19,7 +19,7 @@
                         <div class="box-header with-border">
                             <h2 class="box-title">Editar Evento</h2>
                         </div>
-                        <form method="post" action="{{ route('evento.atualizar', $eventos->id) }}" enctype="multipart/form-data">
+                        <form method="post" action="{{ route('evento.atualizar', $registros->id) }}" enctype="multipart/form-data">
                             <div class="box-body">
                                 {{ csrf_field() }}
                                 <input type="hidden" name="_method" value="put">
