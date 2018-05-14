@@ -21,7 +21,6 @@ class ProfessorController extends Controller
         $escola = Escola::where('user_id', $user_logado)->first();
         $escola_id = $escola->id;
         $registros = Professor::with('telefones')->where('escola_id', $escola_id)->paginate(10);
-
         return view('professor.index', compact('registros'));
     }
 
@@ -53,7 +52,7 @@ class ProfessorController extends Controller
 //        dd($dados);
         Professor::create($dados);
 
-        return redirect()->route('professores');
+        return redirect()->route('professores')->with('success', 'Professor adicionado com sucesso!');
     }
 
     public function editar($id)
@@ -90,12 +89,12 @@ class ProfessorController extends Controller
 
         User::find($user_id)->update($novo_login);
 
-        return redirect()->route('professores');
+        return redirect()->route('professores')->with('success', 'Professor editado com sucesso!');
     }
 
     public function deletar($id)
     {
         Professor::find($id)->delete();
-        return redirect('professores');
+        return redirect('professores')->with('success', 'Professor excluído!');
     }
 }
