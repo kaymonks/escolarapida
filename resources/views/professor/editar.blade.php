@@ -24,7 +24,7 @@
                         @include('professor._form')
                     </div>
                     <div class="box-footer">
-                        <button type="submit" class="btn btn-primary"><i class="fa fa-floppy-o "></i> Atualizar</button>
+                        <button type="submit" class="btn btn-primary pull-right"><i class="fa fa-floppy-o "></i> Atualizar</button>
                     </div>
                 </form>
             </div>
