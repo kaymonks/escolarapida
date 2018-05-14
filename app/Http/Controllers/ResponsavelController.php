@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Escola;
+use App\Estado;
 use App\Http\Requests\PaiRequest;
 use App\Telefone;
 use App\User;
+use CidadeController;
 use Illuminate\Http\Request;
 use App\Responsavel;
 use DateTime;
@@ -41,7 +43,6 @@ class ResponsavelController extends Controller
         $dados = $request->all();
         $user['login'] = $dados['login'];
         $user['password'] = bcrypt($dados['senha']);
-//        $user['password'] = $dados['senha'];
         $user['permission_id'] = $this->permission_id;
         $user['name'] = $dados['nome'];
         $user = User::create($user);
@@ -88,12 +89,17 @@ class ResponsavelController extends Controller
         $user_id = Responsavel::where('id', '=', $id)->pluck('user_id');
 
         User::find($user_id)->update($novo_login);
-        return redirect()->route('responsaveis');
+        return redirect()->route('responsaveis')->with('success', 'Responsável atualizado com sucesso!');
     }
 
     public function deletar($id)
     {
-        Responsavel::find($id)->delete();
-        return redirect('responsaveis');
+        $id_user = Responsavel::find($id);
+        $responsavel_user = User::find($id_user->user_id)->delete();
+        if ($responsavel_user) {
+            return redirect()->route('responsaveis')->with('success', 'Responsável excluído com sucesso');
+        }else{
+            return redirect()->route('responsaveis')->with('error', 'Houve um erro ao excluir. Se persistir o erro, contate o administrador');
+        }
     }
 }
