@@ -15,6 +15,7 @@ use App\TurmaProfessor;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use PhpParser\Node\Expr\Array_;
+use function Sodium\add;
 use function Symfony\Component\VarDumper\Dumper\esc;
 
 class MensagemController extends Controller
@@ -24,40 +25,43 @@ class MensagemController extends Controller
         $user_logado = Auth::user();
         $tipo_usuario = $user_logado->permission_id;
         $id_usuario = $user_logado->id;
-
         switch ($tipo_usuario){
             case 4: //Responsável
-                $alunos = Responsavel::with('alunoss')->where('user_id', '=', $id_usuario)->get();
-                foreach ($alunos as $aluno) {
-                    $id_user = $aluno->id;
-                    $escola_id_responsavel = $aluno->escola_id;
-                    if ($aluno->alunoss->count() > 0){
-                        foreach ($aluno->alunoss as $nome) {
-                            $turma_id[] = $nome->turma_id;
+                $alunos = Responsavel::with('alunoss')->where('user_id', '=', $id_usuario)->get();;
+                if (count($alunos) > 0){
+                    foreach ($alunos as $aluno) {
+                        $id_user = $aluno->id;
+                        $escola_id_responsavel = $aluno->escola_id;
+                        if ($aluno->alunoss->count() > 0){
+                            foreach ($aluno->alunoss as $nome) {
+                                $turma_id[] = $nome->turma_id;
+                            }
+                        }
+                        else{
+                            $turma_id = array();
                         }
                     }
-                    else{
-                        $turma_id = array();
-                    }
+
+                    $mensagens_id = MensagemDestinatario::where('destinatario_id', $id_user)
+                        ->orWhere('destinatario_escola_id', $escola_id_responsavel)
+                        ->orWhereIn('destinatario_turma_id', $turma_id)
+                        ->pluck('mensagem_id')
+                        ->toArray();
+                    $mensagens = Mensagem::with('remetente_escola:id,nome', 'remetente_resp:id,nome', 'remetente:id,nome')
+                        ->whereIn('id', $mensagens_id)
+                        ->where('remetente_responsavel_id', null)
+                        ->orderBy('id', 'desc')
+                        ->paginate(20);
+                }else{
+                    $mensagens = collect(new Mensagem());
                 }
 
-                $mensagens_id = MensagemDestinatario::where('destinatario_id', $id_user)
-                                        ->orWhere('destinatario_escola_id', $escola_id_responsavel)
-                                        ->orWhereIn('destinatario_turma_id', $turma_id)
-                                        ->pluck('mensagem_id')
-                                        ->toArray();
-                $mensagens = Mensagem::with('remetente_escola:id,nome', 'remetente_resp:id,nome', 'remetente:id,nome')
-                                        ->whereIn('id', $mensagens_id)
-                                        ->where('remetente_responsavel_id', null)
-                                        ->orderBy('id', 'desc')
-                                        ->paginate(20);
                 break;
             case 2: //Escola
                 $id_user = Escola::where('user_id', '=', $id_usuario)->first();
                 $id_user = $id_user->id;
                 $mensagens_id = MensagemDestinatario::where('destinatario_escola_id', '=', $id_user)->pluck('mensagem_id')->toArray();
                 $mensagens = Mensagem::with('remetente_resp:id,nome')->whereIn('id', $mensagens_id)->orderBy('id', 'desc')->paginate(10);
-                //TODO Não exibir na caixa de entrada as mensagens que a escola envia à escola
                 break;
             case 3: //Professor
                 $id_user = Professor::where('user_id', '=', $id_usuario)->first();
@@ -269,7 +273,7 @@ class MensagemController extends Controller
 
         MensagemDestinatario::create($destinatario);
 
-        return redirect()->route('mensagens');
+        return redirect()->route('mensagens')->with('success', 'Mensagem enviada com sucesso!');
     }
 
     public function responsavel()
@@ -352,7 +356,7 @@ class MensagemController extends Controller
                 require ('../app/SendGrid/sendgrid.php');
             }
         }
-        return redirect()->route('mensagens');
+        return redirect()->route('mensagens')->with('success', 'Mensagem enviada com sucesso!');
     }
 
     public function turma()
@@ -411,7 +415,7 @@ class MensagemController extends Controller
             MensagemDestinatario::create($destinatario);
         }
 
-        return redirect()->route('mensagem.turma');
+        return redirect()->route('mensagem.turma')->with('success', 'Mensagem enviada com sucesso!');
     }
 
     public function professor()
@@ -470,6 +474,6 @@ class MensagemController extends Controller
 
 
         MensagemDestinatario::create($destinatario);
-        return redirect()->route('mensagens');
+        return redirect()->route('mensagens')->with('success', 'Mensagem enviada com sucesso!');
     }
 }
