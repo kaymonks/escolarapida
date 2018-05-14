@@ -12,6 +12,15 @@
             </ol>
         </section>
         <section class="content">
+            @if(session('success'))
+                <div class="alert alert-success">
+                    {{ session('success') }}
+                </div>
+                @elseif(session('error'))
+                <div class="alert alert-danger">
+                    {{ session('error') }}
+                </div>
+            @endif
             <div class="row">
                 <div class="col-xs-12">
                     <div class="box">
@@ -29,17 +38,22 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach($registros as $registro)
+                                    <?php $file = "responsavel"; ?>
+                                    @forelse($registros as $registro)
                                         <tr>
                                             <td>{{$registro->id}}</td>
                                             <td>{{ $registro->nome }}</td>
 
                                             <td>
                                                 <a title="Editar" class="btn btn-primary btn-sm" href="{{ route('responsavel.editar',$registro->id) }}"><i class="fa fa-pencil" aria-hidden="true"></i></a>
-                                                <a title="Excluir" class="btn btn-danger btn-sm excluirPai" href="{{ route('responsavel.deletar',$registro->id) }}"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                                                <a class="btn btn-danger btn-sm excluirRegistro"  href="{{ route('responsavel.deletar',$registro->id) }}"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
                                             </td>
                                         </tr>
-                                    @endforeach
+                                    @empty
+                                        <tr>
+                                            <td colspan="3">Nenhum registro encontrado.</td>
+                                        </tr>
+                                    @endforelse
                                 </tbody>
                             </table>
                         </div>
@@ -49,4 +63,5 @@
             </div>
         </section>
     </div>
+
 @endsection

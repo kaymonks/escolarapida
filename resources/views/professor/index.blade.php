@@ -14,6 +14,11 @@
             </ol>
         </section>
         <section class="content">
+            @if(session('success'))
+                <div class="alert bg-success">
+                    {{ session('success') }}
+                </div>
+            @endif
             <div class="row">
                 <div class="col-xs-12">
                     <div class="box">
@@ -25,19 +30,18 @@
                                     <th style="width: 10px">#</th>
                                     <th>Professor</th>
                                     <th>Telefone</th>
-                                    <th style="width: 150px">Ação</th>
+                                    <th style="width: 100px">Ação</th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 @foreach($registros as $registro)
-
                                     <tr>
                                         <td>{{$registro->id}}</td>
                                         <td>{{ $registro->nome }}</td>
                                         <td>{{$registro->telefones->telefone}}</td>
                                         <td>
                                             <a title="Editar" class="btn btn-primary btn-sm"  href="{{ route('professor.editar',$registro->id) }}"><i class="fa fa-pencil" aria-hidden="true"></i></a>
-                                            <a title="Excluir" class="btn btn-danger btn-sm excluirProfessor"  href="{{ route('professor.deletar',$registro->id) }}"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                                            <a title="Excluir" class="btn btn-danger btn-sm excluirRegistro"  href="{{ route('professor.deletar',$registro->id) }}"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
                                         </td>
                                     </tr>
                                 @endforeach

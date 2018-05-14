@@ -34,7 +34,7 @@
                                             <td>{{ $registro->nome }}</td>
                                             <td>
                                                 <a title="Editar" class="btn btn-primary btn-sm" href="{{ route('aluno.editar',$registro->id) }}"><i class="fa fa-pencil" aria-hidden="true"></i></a>
-                                                <a title="Excluir" class="btn btn-danger btn-sm excluirAluno" href="{{ route('aluno.deletar',$registro->id) }}"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                                                <a title="Excluir" class="btn btn-danger btn-sm excluirRegistro"  href="{{ route('aluno.deletar',$registro->id) }}"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
                                             </td>
                                         </tr>
                                     @endforeach

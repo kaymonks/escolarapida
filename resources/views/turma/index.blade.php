@@ -17,6 +17,11 @@
             </ol>
         </section>
         <section class="content">
+            @if(session('success'))
+                <div class="alert bg-success">
+                    {{ session('success') }}
+                </div>
+            @endif
             <div class="row">
                 <div class="col-xs-12 col-sm-7 col-md-5 col-lg-4">
                     <div class="box">
@@ -34,13 +39,12 @@
                                 <tbody>
                                     @foreach($turmas as $registro)
                                         <tr>
-
                                             <td>{{$registro->id}}</td>
                                             <td>{{ $registro->ano }}</td>
                                             <td>
                                                 @if ($turmas->permission_id == 2)
                                                     <a title="Editar" class="btn btn-primary" href="{{ route('turma.editar',$registro->id) }}"><i class="fa fa-pencil" aria-hidden="true"></i></a>
-                                                    <a title="Excluir" class="btn btn-danger excluirTurma" href="{{ route('turma.deletar',$registro->id) }}"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                                                    <a title="Excluir" class="btn btn-danger excluirRegistro"  href="{{ route('turma.deletar',$registro->id) }}"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
                                                 @endif
                                             </td>
                                         </tr>
