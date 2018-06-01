@@ -14,12 +14,12 @@
 <script src="{{asset("/bower_components/AdminLTE/plugins/datepicker/bootstrap-datepicker.js")}}"></script>
 <!-- Bootstrap 3.3.6 -->
 <script src="{{ asset("/bower_components/AdminLTE/bootstrap/js/bootstrap.min.js") }}"></script>
-<script src="{{ asset("/bower_components/AdminLTE/plugins/bootbox/bootbox.min.js") }}"></script>
-<script type="text/javascript" src="http://momentjs.com/downloads/moment-with-locales.min.js"></script>
+
+<script type="text/javascript" src="{{ asset("/bower_components/AdminLTE/plugins/momentjs/moment-with-locales.min.js") }}"></script>
 <script type="text/javascript" src="{{asset("/bower_components/AdminLTE/plugins/bootstrap-material-datetimepicker/bootstrap-material-datetimepicker.js")}}"></script>
 <script src="{{asset("/bower_components/AdminLTE/plugins/jQuery-Mask-Plugin/jquery.mask.js")}}"></script>
-<script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
-<script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap.min.js"></script>
+<script type="text/javascript" src="{{ asset('/bower_components/AdminLTE/plugins/datatables/jquery.dataTables.js') }}"></script>
+<script type="text/javascript" src="{{ asset('/bower_components/AdminLTE/plugins/datatables/dataTables.bootstrap.js') }}"></script>
 
 
 
