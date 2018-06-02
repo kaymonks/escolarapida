@@ -3,6 +3,8 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ProfessorRequest extends FormRequest
 {
@@ -30,8 +32,9 @@ class ProfessorRequest extends FormRequest
             'sexo' => 'required',
             'email' => 'email',
             'endereco' => 'required',
-            'login' => 'required',
-            'senha' => 'required',
+            'login' => 'required|unique:users,login,' . Auth::user()->id,
+            'senha' => 'required|min:3',
+
         ];
     }
 
@@ -45,7 +48,9 @@ class ProfessorRequest extends FormRequest
             'sexo.required' => 'O campo sexo é obrigatório.',
             'endereco.required' => 'O campo endereço é obrigatório.',
             'login.required' => 'Campo login obrigatório',
+            'login.unique' => 'Campo login já existe',
             'senha.required' => 'Campo login obrigatório',
+            'senha.min' => 'Senha muito curta. Escolha uma senha mais segura.',
         ];
     }
 }

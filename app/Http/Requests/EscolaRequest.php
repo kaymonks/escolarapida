@@ -33,6 +33,8 @@ class EscolaRequest extends FormRequest
             'bairro' => 'required',
             'estado' => 'required',
             'cidade' => 'required',
+            'login' => 'required',
+            'senha' => 'required',
         ];
     }
 
@@ -48,6 +50,8 @@ class EscolaRequest extends FormRequest
             'bairro.required' => 'O campo Bairro é obrigatório.',
             'estado.required' => 'O campo Estado é obrigatório.',
             'cidade.required' => 'O campo Cidade é obrigatório.',
+            'login.required' => 'O campo Login é obrigatório.',
+            'senha.required' => 'O campo Senha é obrigatório.',
         ];
     }
 }
