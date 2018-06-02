@@ -19,7 +19,7 @@
                         <div class="box-header with-border">
                             <h2 class="box-title">Editar Escola</h2>
                         </div>
-                        <form method="post" action="{{ route('escola.atualizar', $registro->id) }}" enctype="multipart/form-data">
+                        <form class="form-horizontal" method="post" action="{{ route('escola.atualizar', $registro->id) }}" enctype="multipart/form-data">
                             <div class="box-body">
                                 {{ csrf_field() }}
                                 <input type="hidden" name="_method" value="put">

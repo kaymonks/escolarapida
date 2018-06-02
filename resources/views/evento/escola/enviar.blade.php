@@ -21,17 +21,14 @@
                             <h3 class="box-title">Criar evento</h3>
                         </div>
                         <!-- /.box-header -->
-                        <form method="post" action="{{ route('evento.escola.enviar') }}">
+                        <form class="form-horizontal" method="post" action="{{ route('evento.escola.enviar') }}">
                             <div class="box-body">
                                 {{ csrf_field() }}
                                 @include('evento.escola._form')
                             </div>
                             <!-- /.box-body -->
                             <div class="box-footer">
-                                <div class="pull-right">
-                                    <a href="{{ route('eventos') }}" class="btn btn-default"><i class="fa fa-times"></i> Cancelar</a>
-                                </div>
-                                <button type="submit" class="btn btn-primary"><i class="fa fa-paper-plane"></i> Salvar</button>
+                                <button type="submit" class="btn btn-primary  pull-right"><i class="fa fa-paper-plane"></i> Salvar</button>
                             </div>
                             <!-- /.box-footer -->
                         </form>
