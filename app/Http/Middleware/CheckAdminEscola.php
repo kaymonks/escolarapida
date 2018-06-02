@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Support\Facades\Auth;
 
-class CheckProfessor
+class CheckAdminEscola
 {
     /**
      * Handle an incoming request.
@@ -18,11 +18,11 @@ class CheckProfessor
     {
         if (Auth::check())
         {
-            if (Auth::user()->permission_id == 2|| Auth::user()->permission_id == 3)
+            if (Auth::user()->permission_id == 1 || Auth::user()->permission_id == 2)
             {
                 return $next($request);
             }
-            return redirect(401);
+            return redirect( 401);
         }else{
             return redirect()->route('login');
         }

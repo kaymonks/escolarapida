@@ -24,28 +24,36 @@ Route::group(['middleware'=> ['admin']], function () {
     Route::get('/escolas', ['as'=>'escolas', 'uses'=>'escolaController@index']);
     Route::get('/escola/adicionar', ['as'=>'escola.adicionar', 'uses'=>'escolaController@adicionar']);
     Route::post('/escola/salvar', ['as'=>'escola.salvar', 'uses'=>'escolaController@salvar']);
-    Route::get('/escola/editar/{id}', ['as'=>'escola.editar', 'uses'=>'escolaController@editar']);
-    Route::put('/escola/atualizar/{id}', ['as'=>'escola.atualizar', 'uses'=>'escolaController@atualizar']);
     Route::get('/escola/deletar/{id}', ['as'=>'escola.deletar', 'uses'=>'escolaController@deletar']);
 });
+
+Route::put('/escola/atualizar/{id}', ['as'=>'escola.atualizar', 'uses'=>'escolaController@atualizar'])->middleware('checkAdminEscola');;
+Route::get('/escola/editar/{id}', ['as'=>'escola.editar', 'uses'=>'escolaController@editar'])->middleware('checkAdminEscola');
+Route::get('/perfil/{perfil}/{id}', ['as'=>'perfil', 'uses' => 'PerfilController@index']); /// <<<<<<<<<<<<<!!!!
 
 Route::group(['middleware'=> ['checkEscola']], function () {
     Route::get('/professores', ['as'=>'professores', 'uses'=>'ProfessorController@index']);
     Route::get('/professor/adicionar', ['as'=>'professor.adicionar', 'uses'=>'ProfessorController@adicionar']);
     Route::post('/professor/salvar', ['as'=>'professor.salvar', 'uses'=>'ProfessorController@salvar']);
-    Route::get('/professor/editar/{id}', ['as'=>'professor.editar', 'uses'=>'ProfessorController@editar']);
-    Route::put('/professor/atualizar/{id}', ['as'=>'professor.atualizar', 'uses'=>'ProfessorController@atualizar']);
     Route::get('/professor/deletar/{id}', ['as'=>'professor.deletar', 'uses'=>'ProfessorController@deletar']);
-
 });
 
-Route::group(['middleware'=> 'checkResponsaveis'], function () {
+
+Route::group(['middleware'=>['checkProfessor']], function () {
+    Route::get('/professor/editar/{id}', ['as'=>'professor.editar', 'uses'=>'ProfessorController@editar']);
+    Route::put('/professor/atualizar/{id}', ['as'=>'professor.atualizar', 'uses'=>'ProfessorController@atualizar']);
+});
+
+Route::group(['middleware'=> 'checkEscola'], function () {
     Route::get('/responsaveis', ['as'=>'responsaveis', 'uses'=>'ResponsavelController@index']);
     Route::get('/responsavel/adicionar', ['as'=>'responsavel.adicionar', 'uses'=>'ResponsavelController@adicionar']);
     Route::post('/responsavel/salvar', ['as'=>'responsavel.salvar', 'uses'=>'ResponsavelController@salvar']);
+    Route::get('/responsavel/deletar/{id}', ['as'=>'responsavel.deletar', 'uses'=>'ResponsavelController@deletar']);
+});
+
+Route::group(['middleware'=>'checkResponsaveis'], function () {
     Route::get('/responsavel/editar/{id}', ['as'=>'responsavel.editar', 'uses'=>'ResponsavelController@editar']);
     Route::put('/responsavel/atualizar/{id}', ['as'=>'responsavel.atualizar', 'uses'=>'ResponsavelController@atualizar']);
-    Route::get('/responsavel/deletar/{id}', ['as'=>'responsavel.deletar', 'uses'=>'ResponsavelController@deletar']);
 });
 
 Route::group(['middleware'=> ['checkAluno']], function () {
@@ -96,8 +104,6 @@ Route::group(['middleware'=> ['checkTurma']], function () {
     Route::put('/turma/atualizar/{id}', ['as'=>'turma.atualizar', 'uses'=>'TurmaController@atualizar']);
     Route::get('/turma/deletar/{id}', ['as'=>'turma.deletar', 'uses'=>'TurmaController@deletar']);
 });
-
-Route::get('/perfil', ['as' => 'perfil', 'uses' => 'PerfilController@index']);
 
 
 //Auth::routes();
