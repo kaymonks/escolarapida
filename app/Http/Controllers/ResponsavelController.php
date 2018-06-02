@@ -89,6 +89,9 @@ class ResponsavelController extends Controller
         $user_id = Responsavel::where('id', '=', $id)->pluck('user_id');
 
         User::find($user_id)->update($novo_login);
+        if (Auth::user()->permission_id == 4) {
+            return redirect()->route('perfil', ['perfil'=>'responsavel', 'id'=>Auth::user()->id]);
+        }
         return redirect()->route('responsaveis')->with('success', 'Responsável atualizado com sucesso!');
     }
 

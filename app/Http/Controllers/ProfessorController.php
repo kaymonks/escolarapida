@@ -88,7 +88,9 @@ class ProfessorController extends Controller
         $user_id = Professor::where('id', '=', $id)->pluck('user_id');
 
         User::find($user_id)->update($novo_login);
-
+        if (Auth::user()->permission_id == 3) {
+            return redirect()->route('perfil', ['perfil'=>'professor', 'id'=>Auth::user()->id]);
+        }
         return redirect()->route('professores')->with('success', 'Professor editado com sucesso!');
     }
 

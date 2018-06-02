@@ -7,6 +7,7 @@ use App\Telefone;
 use App\User;
 use Illuminate\Http\Request;
 use App\Escola;
+use Illuminate\Support\Facades\Auth;
 
 class escolaController extends Controller
 {
@@ -41,13 +42,17 @@ class escolaController extends Controller
 
     public function editar($id)
     {
-        $registro = Escola::find($id);
+        $registro = Escola::findOrFail($id);
         $telefone = Escola::find($id)->telefones;
         $registro['telefone'] = $telefone->telefone;
         $escola = Escola::find($id)->usuarios;
         $user_id = $escola->id;
         $user = User::find($user_id);
         $registro['login'] = $user->login;
+
+        if (Auth::user()->id != $user_id and Auth::user()->permission_id != 1) {
+            return redirect(401);
+        }
         return view('escola.editar', compact('registro'));
     }
 
@@ -63,6 +68,9 @@ class escolaController extends Controller
         $escolaUser = $escolaUser[0];
 
         User::find($escolaUser)->update($dadosUser);
+        if (Auth::user()->permission_id == 2) {
+            return redirect()->route('perfil', ['perfil'=>'escola', 'id'=>Auth::user()->id]);
+        }
         return redirect()->route('escolas');
     }
 
