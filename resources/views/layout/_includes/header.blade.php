@@ -23,13 +23,25 @@
                             {{--<img src="{{ asset("/bower_components/AdminLTE/dist/img/user2-160x160.jpg") }}" class="user-image" alt="User Image">--}}
                             <!-- hidden-xs hides the username on small devices so only the image appears. -->
                             <i class="fa fa-user"></i>
-                            <span class="hidden-xs"> @if(Auth::guest())
+                            <span class="hidden-xs">
+                                @if(Auth::guest())
                                 @else
                                     {{ Auth::user()->name }}
-                                    @endif </span>
+                                    <?php $perfil = null;
+                                        $id_user = Auth::user()->id; ?>
+                                @if(Auth::user()->permission_id == 2)
+                                        <?php $perfil = "escola"  ?>
+                                    @elseif(Auth::user()->permission_id == 4)
+                                        <?php $perfil = "responsavel" ?>
+                                    @elseif(Auth::user()->permission_id == 3)
+                                        <?php $perfil = "professor" ?>
+                                    @endif
+                               @endif </span>
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a style="padding: 10px 20px;" href="{{ route('perfil') }}" class="">Perfil</a></li>
+                            @if(Auth::user()->permission_id != 1)
+                                <li><a style="padding: 10px 20px;" href="{{ route('perfil', ['perfil'=>$perfil, 'id'=>$id_user]) }}" class="">Perfil</a></li>
+                            @endif
                             <li><a style="padding: 10px 20px;" href="{{ route('login.sair') }}" class="">Sair</a></li>
                         </ul>
                     </li>
