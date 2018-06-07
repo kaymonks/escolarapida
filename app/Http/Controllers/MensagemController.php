@@ -22,6 +22,7 @@ class MensagemController extends Controller
 {
     public function index()
     {
+        /* TODO notificação com a quantidade de mensagem nao lida*/
         $user_logado = Auth::user();
         $tipo_usuario = $user_logado->permission_id;
         $id_usuario = $user_logado->id;
@@ -71,7 +72,11 @@ class MensagemController extends Controller
                 break;
         }
 
-        return view('mensagem.index', compact('mensagens'));
+
+        $qtdNaoLido = $mensagens->where('lido', 0)->count();
+
+
+        return view('mensagem.index', compact('mensagens', 'qtdNaoLido'));
     }
 
     public function view($id)
@@ -196,6 +201,8 @@ class MensagemController extends Controller
                                                                 ->paginate(10);
                 break;
         }
+
+
 
         return view('mensagem.enviados', compact('mensagensDestinatarios'));
 
@@ -407,6 +414,7 @@ class MensagemController extends Controller
         $dados['escola_id'] = $escola_id;
         $mensagem = Mensagem::create($dados);
         $mensagem_id = $mensagem->id;
+//        dd($request->destinatario);
 
         foreach ($request->destinatario as $item) {
             $destinatario['mensagem_id'] = $mensagem_id;
@@ -463,14 +471,21 @@ class MensagemController extends Controller
         $dados['escola_id'] = $escola_id;
 
         $mensagem = Mensagem::create($dados);
+//        echo $mensagem->id;
+//        foreach ($request->destinatario as $item) {
+//            echo $item;
+//        }
+//        dd($request->destinatario);
+//        die('testee');
+        $item = $request->destinatario;
 
         $destinatario['destinatario_turma_id'] = null;
         $destinatario['tipo_destinatario']  = $tipo_usuario;
 
-        foreach ($request->destinatario as $item) {
+//        foreach ($request->destinatario as $item) {
             $destinatario['mensagem_id'] = $mensagem->id;
             $destinatario['destinatario_professor_id']  = $item;
-        }
+//        }
 
 
         MensagemDestinatario::create($destinatario);

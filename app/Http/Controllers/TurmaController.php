@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Aluno;
 use App\Http\Requests\TurmaRequest;
 use Illuminate\Http\Request;
 use App\Turma;
@@ -115,5 +116,20 @@ class TurmaController extends Controller
     {
         Turma::find($id)->delete();
         return redirect('turmas');
+    }
+
+    public function alunos($id)
+    {
+//        $dados = new Turma();
+//        $dados = $dados->alunos()->get();
+//        echo $id;
+        $dados = Aluno::with('responsaveis')->where('turma_id', $id)->get();
+//        foreach ($dados as $teste) {
+//            foreach ($teste->responsaveiss as $resp){
+//                echo $resp->nome;
+//            }
+//        }
+//        dd($dados);
+        return view('turma.alunos', compact('dados'));
     }
 }

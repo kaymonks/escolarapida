@@ -23,9 +23,9 @@
                 </div>
             @endif
             <div class="row">
-                <div class="col-xs-12 col-sm-7 col-md-5 col-lg-4">
+                <div class="col-xs-12">
                     <div class="box">
-                        <div class="box-header with-border"><h3 class="box-title">Listar Turmas</h3></div>
+                        <div class="box-header with-border"><h3 class="box-title">Lista de Turmas</h3></div>
                         <div class="box-body">
                             <table class="table table-hover table-bordered">
                                 <thead>
@@ -33,7 +33,7 @@
                                         <th style="width: 10px">#</th>
                                         <th>Turma</th>
 
-                                        <th style="width: 150px">Ação</th>
+                                        <th style="width: 52px"></th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -42,9 +42,10 @@
                                             <td>{{$registro->id}}</td>
                                             <td>{{ $registro->ano }}</td>
                                             <td>
-                                                @if ($turmas->permission_id == 2)
-                                                    <a title="Editar" class="btn btn-primary" href="{{ route('turma.editar',$registro->id) }}"><i class="fa fa-pencil" aria-hidden="true"></i></a>
-                                                    <a title="Excluir" class="btn btn-danger excluirRegistro"  href="{{ route('turma.deletar',$registro->id) }}"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                                                <a title="Alunos" class="btn btn-primary btn-sm" href="{{ route('turma.alunos', $registro->id) }}"><i class="fa fa-users" aria-hidden="true"></i></a>
+                                            @if ($turmas->permission_id == 2)
+                                                    <a title="Editar" class="btn btn-primary btn-sm" href="{{ route('turma.editar',$registro->id) }}"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                                                    <a title="Excluir" class="btn btn-danger excluirRegistro btn-sm"  href="{{ route('turma.deletar',$registro->id) }}"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
                                                 @endif
                                             </td>
                                         </tr>

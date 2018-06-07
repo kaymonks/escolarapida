@@ -29,7 +29,7 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @forelse($mensagensDestinatarios as $mensagem)
+                                @foreach($mensagensDestinatarios as $mensagem)
                                     <tr>
                                         <td style="width: 300px">
                                             Para:
@@ -47,14 +47,10 @@
                                         <td style="width: 135px"> {{ date('d/m/Y H:i:s', strtotime($mensagem->mensagens->created_at)) }}</td>
 
                                         <td style="text-align: center; width: 60px">
-                                            <a title="Visualizar" class="btn btn-primary btn-sm"  href="{{ route('mensagem.view',$mensagem->id) }}"><i class="fa fa-eye" aria-hidden="true"></i></a>
+                                            <a title="Visualizar" class="btn btn-primary btn-sm"  href="{{ route('mensagem.view',$mensagem->mensagens->id) }}"><i class="fa fa-eye" aria-hidden="true"></i></a>
                                         </td>
                                     </tr>
-                                @empty
-                                    <tr>
-                                        <td colspan="3">Não há mensagens.</td>
-                                    </tr>
-                                @endforelse
+                                @endforeach
                                 </tbody>
                             </table>
                         </div>

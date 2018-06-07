@@ -14,6 +14,10 @@ class Aluno extends Model
     {
         return $this->belongsToMany('App\Responsavel');
     }
+    public function responsaveiss()
+    {
+        return $this->belongsToMany('App\Responsavel', 'aluno_responsavel', 'aluno_id', 'responsavel_id');
+    }
 
     public function turmas()
     {

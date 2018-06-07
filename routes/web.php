@@ -103,6 +103,7 @@ Route::group(['middleware'=> ['checkTurma']], function () {
     Route::get('/turma/editar/{id}', ['as'=>'turma.editar', 'uses'=>'TurmaController@editar']);
     Route::put('/turma/atualizar/{id}', ['as'=>'turma.atualizar', 'uses'=>'TurmaController@atualizar']);
     Route::get('/turma/deletar/{id}', ['as'=>'turma.deletar', 'uses'=>'TurmaController@deletar']);
+    Route::get('/turma/{id}/alunos', ['as'=>'turma.alunos', 'uses'=>'TurmaController@alunos']);
 });
 
 

@@ -18,7 +18,7 @@ class Turma extends Model
 
     public function alunos()
     {
-        return $this->hasMany('App\Aluno');
+        return $this->hasMany('App\Aluno', 'turma_id', 'id');
     }
 
     public function escola()
