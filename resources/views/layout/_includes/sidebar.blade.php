@@ -20,7 +20,7 @@
             @if(Auth::check() && Auth::user()->permission_id == 1)
                 <li class="{{  Route::is('escola') ? 'active' : ''  }}"><a href="{{ route('escolas') }}"><i class="fa fa-institution"></i> <span>Escolas</span></a></li>
             @elseif(Auth::check() && Auth::user()->permission_id == 2)
-                <li class="{{  Route::is('home') ? 'active' : '' }}"><a href="{{ route('home') }}"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
+                {{--<li class="{{  Route::is('home') ? 'active' : '' }}"><a href="{{ route('home') }}"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>--}}
                 <li class="{{ Route::is('professor.*') ? 'active' : '' }} {{ Route::is('professores') ? 'active' : '' }}"><a href="{{ route('professores') }}"><i class="fa fa-user"></i> <span>Professores</span></a></li>
                 <li class="{{ Route::is('turma.*') ? 'active' : '' }} {{ Route::is('turmas') ? 'active' : '' }}"><a href="{{ route('turmas') }}"><i class="fa fa-pencil-square"></i> <span>Turmas</span></a></li>
                 <li class="{{  Route::is('responsavel.*') ? 'active' : '' }} {{ Route::is('responsaveis') ? 'active' : ''  }}"><a href="{{ route('responsaveis') }}"><i class="fa fa-user"></i> <span>Responsáveis</span></a></li>
