@@ -36,7 +36,7 @@ class AlunoRequest extends FormRequest
     {
         return [
             'nome.required' => "O campo Nome é obrigatório.",
-            'pai_id.required' => "O campo Pai é obrigatório.",
+            'pai_id.required' => "O campo Responsável é obrigatório.",
             'turma_id.required' => "O campo Turma é obrigatório.",
             'data_nascimento.required' => "O campo Data de Nascimento é obrigatório.",
             'telefone.required' => "O campo Telefone é obrigatório.",

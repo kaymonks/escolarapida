@@ -32,7 +32,7 @@ class ProfessorRequest extends FormRequest
             'sexo' => 'required',
             'email' => 'email',
             'endereco' => 'required',
-            'login' => 'required|unique:users,login,' . Auth::user()->id,
+            'login' => 'required',
             'senha' => 'required|min:3',
 
         ];
@@ -48,7 +48,6 @@ class ProfessorRequest extends FormRequest
             'sexo.required' => 'O campo sexo é obrigatório.',
             'endereco.required' => 'O campo endereço é obrigatório.',
             'login.required' => 'Campo login obrigatório',
-            'login.unique' => 'Campo login já existe',
             'senha.required' => 'Campo login obrigatório',
             'senha.min' => 'Senha muito curta. Escolha uma senha mais segura.',
         ];

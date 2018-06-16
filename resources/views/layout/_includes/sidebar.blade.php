@@ -81,13 +81,13 @@
                     <a href="">
                         <i class="fa fa-envelope"></i><span>Mensagens</span>
                         <!-- todo exibir quantidade de mensagens não lidas -->
-                        @if(isset($qtdNaoLido) and $qtdNaoLido > 0)
-                            <span class="pull-right-container">
-                                <small class="label pull-right bg-green">3</small>
-                            </span>
-                        @else
+                        {{--@if(isset($qtdNaoLido) and $qtdNaoLido > 0)--}}
+                            {{--<span class="pull-right-container">--}}
+                                {{--<small class="label pull-right bg-green">3</small>--}}
+                            {{--</span>--}}
+                        {{--@else--}}
 
-                        @endif
+                        {{--@endif--}}
                         <span class="pull-right-container">
                             <i class="fa fa-angle-left pull-right"></i>
                         </span>

@@ -21,12 +21,9 @@ class ResponsavelController extends Controller
     public function index()
     {
         $user_logado = Auth::user();
-
         $id_usuario = $user_logado->id;
-
         $escola = Escola::where('user_id', $id_usuario)->first();
-
-        $registros = Responsavel::where('escola_id', '=', $escola->id)->get();
+        $registros = Responsavel::where('escola_id', '=', $escola->id)->paginate(10);
 
 //        $registros = Responsavel::paginate(3);
         return view('responsavel.index', compact('registros'));

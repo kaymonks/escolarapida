@@ -13,6 +13,7 @@ use App\Responsavel;
 use App\Turma;
 use DateTime;
 use Illuminate\Support\Facades\Auth;
+use PhpParser\Node\Expr\Array_;
 
 class AlunoController extends Controller
 {
@@ -73,7 +74,8 @@ class AlunoController extends Controller
         $paiNome = Aluno::find($id)->pais;
         $telefone = Aluno::find($id)->telefones;
         $paisAlunos = Aluno::find($id)->responsaveis->all();
-
+//        dd($paisAlunos);
+        $nomepais = Array();
         foreach ($paisAlunos as $item) {
             $nomepais[] = $item->id;
         }

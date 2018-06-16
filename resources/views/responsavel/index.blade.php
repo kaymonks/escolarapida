@@ -16,7 +16,7 @@
                 <div class="alert alert-success">
                     {{ session('success') }}
                 </div>
-                @elseif(session('error'))
+            @elseif(session('error'))
                 <div class="alert alert-danger">
                     {{ session('error') }}
                 </div>
@@ -33,32 +33,26 @@
                                     <tr>
                                         <th style="width: 10px">#</th>
                                         <th>Responsável</th>
-
                                         <th style="width: 150px">Ação</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php $file = "responsavel"; ?>
-                                    @forelse($registros as $registro)
+                                    @foreach($registros as $registro)
                                         <tr>
                                             <td>{{$registro->id}}</td>
                                             <td>{{ $registro->nome }}</td>
-
                                             <td>
                                                 <a title="Editar" class="btn btn-primary btn-sm" href="{{ route('responsavel.editar',$registro->id) }}"><i class="fa fa-pencil" aria-hidden="true"></i></a>
                                                 <a class="btn btn-danger btn-sm excluirRegistro"  href="{{ route('responsavel.deletar',$registro->id) }}"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
                                             </td>
                                         </tr>
-                                    @empty
-                                        <tr>
-                                            <td colspan="3">Nenhum registro encontrado.</td>
-                                        </tr>
-                                    @endforelse
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>
                     </div>
-                    <a class="btn btn-success" href="{{ route('responsavel.adicionar') }}"><i class="fa fa-plus" aria-hidden="true"></i> Adicionar pai</a>
+                    <a class="btn btn-success" href="{{ route('responsavel.adicionar') }}"><i class="fa fa-plus" aria-hidden="true"></i> Adicionar responsável</a>
                 </div>
             </div>
         </section>

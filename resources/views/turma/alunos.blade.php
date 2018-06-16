@@ -43,9 +43,9 @@
                                     </tr>
                                     <tr id="accordion{{$i}}" class="collapse">
                                         <td></td><td>
-                                        @foreach($registro->responsaveiss as $teste)
+                                        @foreach($registro->responsaveiss as $nome)
 
-                                             {{ $teste->nome}}
+                                             {{ $nome->nome}}<br>
                                         @endforeach
                                         </td>
                                     </tr>

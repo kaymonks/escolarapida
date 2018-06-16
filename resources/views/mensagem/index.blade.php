@@ -24,7 +24,7 @@
                     <div class="box">
                         <div class="box-header with-border"><h3 class="box-title">Caixa de Entrada</h3></div>
                         <div class="box-body table-responsive" style="max-height: 700px; overflow-y: auto">
-                            <table class="table table-hover table-bordered" id="datatables">
+                            <table class="table table-hover table-bordered" id="datatablesOrderByCad">
                                 <thead>
                                     <tr class="hidden">
                                         <th style="width: 100px">#</th>

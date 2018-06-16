@@ -51,7 +51,7 @@ class MensagemController extends Controller
                     $mensagens = Mensagem::with('remetente_escola:id,nome', 'remetente_resp:id,nome', 'remetente:id,nome')
                         ->whereIn('id', $mensagens_id)
                         ->where('remetente_responsavel_id', null)
-                        ->orderBy('id', 'desc')
+                        ->orderBy('data', 'desc')
                         ->paginate(20);
                 }else{
                     $mensagens = collect(new Mensagem());
@@ -72,10 +72,7 @@ class MensagemController extends Controller
                 break;
         }
 
-
         $qtdNaoLido = $mensagens->where('lido', 0)->count();
-
-
         return view('mensagem.index', compact('mensagens', 'qtdNaoLido'));
     }
 
@@ -478,6 +475,7 @@ class MensagemController extends Controller
 //        dd($request->destinatario);
 //        die('testee');
         $item = $request->destinatario;
+//        print_r($request->destinatario);
 
         $destinatario['destinatario_turma_id'] = null;
         $destinatario['tipo_destinatario']  = $tipo_usuario;
@@ -487,6 +485,7 @@ class MensagemController extends Controller
             $destinatario['destinatario_professor_id']  = $item;
 //        }
 
+//        dd($destinatario);
 
         MensagemDestinatario::create($destinatario);
         return redirect()->route('mensagens')->with('success', 'Mensagem enviada com sucesso!');

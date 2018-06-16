@@ -26,14 +26,13 @@
                 <div class="col-xs-12">
                     <div class="box">
                         <div class="box-header with-border"><h3 class="box-title">Lista de Turmas</h3></div>
-                        <div class="box-body">
-                            <table class="table table-hover table-bordered">
+                        <div class="box-body table-responsive">
+                            <table class="table table-hover table-bordered" id="datatables">
                                 <thead>
                                     <tr>
                                         <th style="width: 10px">#</th>
                                         <th>Turma</th>
-
-                                        <th style="width: 52px"></th>
+                                        <th style="width: 100px">Ação</th>
                                     </tr>
                                 </thead>
                                 <tbody>

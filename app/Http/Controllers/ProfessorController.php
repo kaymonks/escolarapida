@@ -84,7 +84,7 @@ class ProfessorController extends Controller
             $novo_login['login'] = $dados['login'];
         }
         $novo_login['password'] = bcrypt($dados['senha']);
-
+        $novo_login['name'] = $dados['nome'];
         $user_id = Professor::where('id', '=', $id)->pluck('user_id');
 
         User::find($user_id)->update($novo_login);

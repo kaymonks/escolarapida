@@ -95,10 +95,9 @@
                                 </div>
                             </div>
                             <div class="box-footer">
-                                <div class="pull-right">
-                                    <a class="btn btn-default"><i class="fa fa-times"></i> Cancelar</a>
-                                </div>
-                                <button type="submit" class="btn btn-primary"><i class="fa fa-paper-plane"></i> Enviar</button>
+                                <a class="btn btn-default"><i class="fa fa-times"></i> Cancelar</a>
+
+                                <button type="submit" class="btn btn-primary pull-right"><i class="fa fa-paper-plane"></i> Enviar</button>
                             </div>
                         </form>
                     </div>
