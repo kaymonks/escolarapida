@@ -21,17 +21,14 @@
                             <h3 class="box-title">Criar evento</h3>
                         </div>
                         <!-- /.box-header -->
-                        <form action="{{ route('evento.turma.enviar') }}" method="post">
+                        <form class="form-horizontal" action="{{ route('evento.turma.enviar') }}" method="post">
                             <div class="box-body">
                                 {{ csrf_field() }}
                                 @include('evento.turma._form')
                             </div>
                             <!-- /.box-body -->
                             <div class="box-footer">
-                                <div class="pull-right">
-                                    <a href="{{ route('eventos') }}" class="btn btn-default"><i class="fa fa-times"></i> Cancelar</a>
-                                </div>
-                                <button type="submit" class="btn btn-primary"><i class="fa fa-paper-plane"></i> Enviar</button>
+                                <button type="submit" class="btn btn-primary pull-right"><i class="fa fa-paper-plane"></i> Enviar</button>
                             </div>
                             <!-- /.box-footer -->
                         </form>
@@ -42,12 +39,3 @@
         </section>
     </div>
 @endsection
-{{--<form method="post" action="{{ route('escola.salvar') }}">--}}
-    {{--<div class="box-body">--}}
-        {{--{{ csrf_field() }}--}}
-        {{--@include('mensagem.escola._form')--}}
-    {{--</div>--}}
-    {{--<div class="box-footer">--}}
-        {{--<button type="submit" class="btn btn-primary">Salvar</button>--}}
-    {{--</div>--}}
-{{--</form>--}}

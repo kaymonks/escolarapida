@@ -5,15 +5,16 @@
         @endforeach
     </div>
 @endif
-
-<div class="form-group">
-    <div class="row">
-        <div class="col-md-12 col-lg-6">
-            <label>Título</label>
+<div class="col-md-12">
+    <div class="form-group">
+        <label class="col-sm-4 control-label">Título</label>
+        <div class="col-sm-8 col-md-5">
             <input class="form-control" placeholder="Titulo" name="titulo">
         </div>
-        <div class="col-md-12 col-lg-6">
-            <label>Turmas</label>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-4 control-label">Turmas</label>
+        <div class="col-md-8 col-md-5">
             <select class="form-control select2 select2-hidden-accessible" multiple="" name="destinatario[]" data-placeholder="Selecione a(s) turma(s)" style="width: 100%;" tabindex="-1" aria-hidden="true">
                 @foreach($turmas as $turma)
                     <option value="{{ $turma->id }}">{{ $turma->ano}}</option>
@@ -21,24 +22,25 @@
             </select>
         </div>
     </div>
-</div>
 
-<div class="form-group">
-    <div class="row">
-        <div class="col-xs-6 col-md-2">
-            <label>Data</label>
-            <div class="form-control-wrapper">
-                <input type="text" class="form-control" name="date" id="date">
-            </div>
+    <div class="form-group">
+        <label class="col-sm-4 control-label">Data</label>
+        <div class="col-sm-8 col-md-5">
+            <input type="text" class="form-control" name="date" id="date">
         </div>
-        <div class="col-xs-6 col-md-2">
-            <label for="">Hora</label>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-4 control-label">Hora</label>
+        <div class="col-sm-4 col-md-5">
             <input type="text" class="form-control" name="time" id="time">
         </div>
     </div>
-</div>
 
-<div class="form-group">
-    <label>Descrição</label>
-    <textarea class="form-control" name="descricao" rows="10"></textarea>
+    <div class="form-group">
+        <label class="col-sm-4 control-label">Descrição</label>
+        <div class="col-sm-4 col-md-5">
+            <textarea class="form-control" name="descricao" rows="10"></textarea>
+        </div>
+    </div>
+
 </div>
