@@ -19,7 +19,7 @@
                         <div class="box-header with-border">
                             <h3 class="box-title">Adicionar Escola</h3>
                         </div>
-                        <form method="post" action="{{ route('escola.salvar') }}">
+                        <form class="form-horizontal" method="post" action="{{ route('escola.salvar') }}">
                             <div class="box-body">
                                 {{ csrf_field() }}
                                 @include('escola._form')
