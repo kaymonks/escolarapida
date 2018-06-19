@@ -19,7 +19,9 @@ class AlunoController extends Controller
 {
     public function index()
     {
-        $registros = Aluno::paginate(15);
+        $usuario = Auth::user();
+        $escola_id = Escola::where('user_id', '=', $usuario->id)->pluck('id');
+        $registros = Aluno::where('escola_id', $escola_id)->paginate(15);
         return view('aluno.index', compact('registros'));
     }
 
