@@ -28,4 +28,12 @@ class LoginRequest extends FormRequest
             'senha' => 'required'
         ];
     }
+
+    public function messages()
+    {
+        return [
+            'login.required' => 'Campo login obrigatório',
+            'senha.required' => 'Campo senha obrigatório',
+        ];
+    }
 }
