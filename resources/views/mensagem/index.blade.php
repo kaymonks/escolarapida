@@ -41,8 +41,7 @@
                                                 {{ $mensagem->remetente_escola->nome }}
                                             @elseif($mensagem->remetente_resp!=NULL)
                                                 {{ $mensagem->remetente_resp->nome }}
-                                            @else
-                                                    {{ $mensagem->remetente->nome }}
+
                                             @endif
                                         </td>
                                         <td>{{ $mensagem->titulo }}</td>
